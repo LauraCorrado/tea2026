@@ -1,3 +1,4 @@
+// appunti:sfondo colore e padding verticale
 import type { SectionProps } from "./Section.types";
 
 const baseClasses = "w-full";
