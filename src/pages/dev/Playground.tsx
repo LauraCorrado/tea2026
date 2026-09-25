@@ -1,5 +1,5 @@
 import { ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
-import { Button, IconButton, Section } from "@/components/ui";
+import { Button, Container, IconButton, Section } from "@/components/ui";
 
 export function Playground() {
   return (
@@ -9,7 +9,8 @@ export function Playground() {
         <span className="text-tea-green">TEA</span>
         <span className="text-tea-blue">!</span>
       </h1>
-
+      {/* SEZIONI */}
+      <h2 className="text-2xl font-semibold p-10">Sezioni</h2>
       <div className="flex">
         <Section spacing="sm">
           <h2>Default section with SM space</h2>
@@ -43,6 +44,37 @@ export function Playground() {
           <h2>Red section</h2>
         </Section>
       </div>
+
+      {/* SEZIONI CON CONTAINER */}
+      <h2 className="text-2xl font-semibold p-10">Container</h2>
+      <Section variant="alternative">
+        <Container size="sm">
+          <div className="bg-white p-4">Container SM</div>
+        </Container>
+      </Section>
+
+      <Section variant="blue">
+        <Container size="md">
+          <div className="bg-white/10 p-4">Container MD</div>
+        </Container>
+      </Section>
+
+      <Section variant="green">
+        <Container size="lg">
+          <div className="bg-white/10 p-4">Container LG</div>
+        </Container>
+      </Section>
+
+      <Section variant="red">
+        <Container size="xl">
+          <div className="bg-white/20 p-4">Container XL</div>
+        </Container>
+      </Section>
+      <Section variant="orange">
+        <Container size="full">
+          <div className="bg-white/10 p-4">Container FULL</div>
+        </Container>
+      </Section>
 
       {/* BUTTONS */}
       <section className="space-y-6 p-10">
