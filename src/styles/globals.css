@@ -16,6 +16,12 @@ body {
   min-width: 320px;
 }
 
+@layer base {
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
 /* 
 ! tailwind inserisce il suo Preflight che resetta tutti gli stili di default dei browser, quindi non è necessario fare un reset manuale. in sè ha:
   - box-sizing: border-box;
