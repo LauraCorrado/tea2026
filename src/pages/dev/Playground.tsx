@@ -1,5 +1,11 @@
 import { ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
-import { Button, Container, IconButton, Section } from "@/components/ui";
+import {
+  Button,
+  Container,
+  IconButton,
+  Section,
+  SectionHeader,
+} from "@/components/ui";
 
 export function Playground() {
   return (
@@ -9,6 +15,7 @@ export function Playground() {
         <span className="text-tea-green">TEA</span>
         <span className="text-tea-blue">!</span>
       </h1>
+
       {/* SEZIONI */}
       <h2 className="text-2xl font-semibold p-10">Sezioni</h2>
       <div className="flex">
@@ -76,6 +83,69 @@ export function Playground() {
         </Container>
       </Section>
 
+      {/* SECTION HEADER */}
+      <h2 className="p-10 text-2xl font-semibold">Section Header</h2>
+
+      <Section variant="alternative">
+        <Container>
+          <SectionHeader
+            eyebrow="esempio eyebrow"
+            title="Titolo (allineamento left - default)"
+            description="Lorem ipsum dolor sit amet. Urna tempor pulvinar vivamus fringilla lacus nec metus. Iaculis massa nisl malesuada lacinia integer nunc posuere."
+          />
+        </Container>
+      </Section>
+
+      <Section variant="green">
+        <Container>
+          <SectionHeader
+            eyebrow="esempio eyebrow"
+            title="Titolo (allineamento center)"
+            description=" Nisl malesuada lacinia integer nunc posuere ut hendrerit."
+            align="center"
+          />
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <SectionHeader
+            title="Titolo (allineamento right)"
+            description="Pretium tellus duis convallis tempus leo eu aenean SENZA EYEBROW. "
+            align="right"
+          />
+        </Container>
+      </Section>
+
+      <Section variant="alternative">
+        <Container>
+          <SectionHeader
+            eyebrow={
+              <>
+                <span className="font-bold">Esempio eye</span>
+                <span className="text-tea-red hover:underline">brow</span>{" "}
+                CUSTOM
+              </>
+            }
+            title={
+              <>
+                Titolo <span className="text-tea-green">custom</span>
+              </>
+            }
+            description={
+              <>
+                Questo è un esempio di{" "}
+                <span className="italic tracking-widest text-tea-green">
+                  descrizione
+                </span>{" "}
+                customizzata.
+              </>
+            }
+            align="center"
+          />
+        </Container>
+      </Section>
+
       {/* BUTTONS */}
       <section className="space-y-6 p-10">
         <h2 className="text-2xl font-semibold">Buttons</h2>
@@ -96,6 +166,7 @@ export function Playground() {
           <Button disabled>Disabled</Button>
         </div>
       </section>
+
       {/* BUTTONS CONTROLLO INTERFACCIA */}
       <section className="space-y-6 p-10">
         <h2 className="text-2xl font-semibold">
