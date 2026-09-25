@@ -22,6 +22,83 @@ body {
   }
 }
 
+@layer components {
+  .icon-button-glow {
+    position: absolute;
+    inset: -4px;
+    opacity: 0;
+    filter: blur(6px);
+
+    transition: opacity 250ms ease;
+
+    background:
+      radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgb(255 255 255 / 0.45) 0%,
+        transparent 30%),
+      conic-gradient(from 180deg,
+        rgb(53 148 214 / 0.70),
+        rgb(53 184 112 / 0.70),
+        rgb(249 155 58 / 0.70),
+        rgb(224 79 60 / 0.70),
+        rgb(53 148 214 / 0.70));
+  }
+
+  .icon-button:not(:disabled):hover .icon-button-glow {
+    opacity: 1;
+  }
+
+  .icon-button-draw svg>* {
+    stroke-dasharray: 30;
+    stroke-dashoffset: 0;
+  }
+
+  .icon-button:not(:disabled):hover .icon-button-draw svg>* {
+    animation: icon-draw 1000ms ease-out infinite;
+  }
+
+  @keyframes icon-draw {
+    0% {
+      stroke-dashoffset: 30;
+      opacity: 0;
+    }
+
+    15% {
+      opacity: 1;
+    }
+
+    45% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+
+    55% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+
+    85% {
+      opacity: 1;
+    }
+
+    100% {
+      stroke-dashoffset: -30;
+      opacity: 0;
+    }
+  }
+
+  .icon-button:not(:disabled):hover .icon-button-draw svg>*:nth-child(1) {
+    animation-delay: 0ms;
+  }
+
+  .icon-button:not(:disabled):hover .icon-button-draw svg>*:nth-child(2) {
+    animation-delay: 100ms;
+  }
+
+  .icon-button:not(:disabled):hover .icon-button-draw svg>*:nth-child(3) {
+    animation-delay: 200ms;
+  }
+}
+
 /* 
 ! tailwind inserisce il suo Preflight che resetta tutti gli stili di default dei browser, quindi non è necessario fare un reset manuale. in sè ha:
   - box-sizing: border-box;
