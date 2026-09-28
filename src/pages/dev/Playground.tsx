@@ -5,7 +5,9 @@ import {
   IconButton,
   Section,
   SectionHeader,
+  PageHero,
 } from "@/components/ui";
+import testHero from "@/assets/images/test.webp";
 
 export function Playground() {
   return (
@@ -15,6 +17,69 @@ export function Playground() {
         <span className="text-tea-green">TEA</span>
         <span className="text-tea-blue">!</span>
       </h1>
+
+      {/* PAGE HERO */}
+      <h2 className="text-2xl font-semibold p-10">Esempi Page Hero</h2>
+      <PageHero
+        title="Overlay blue"
+        subtitle="Lorem ipsum dolor sit amet lorem ipsum dolor sit amet"
+        backgroundImage={testHero}
+        overlay="blue"
+        action={
+          <>
+            <Button variant="primary" color="white">
+              Scopri di più
+            </Button>
+            <Button variant="secondary" color="white">
+              Contattaci
+            </Button>
+          </>
+        }
+      />
+      <PageHero
+        title="Overlay dark"
+        subtitle="Lorem ipsum dolor sit amet lorem ipsum dolor sit amet"
+        backgroundImage={testHero}
+        overlay="dark"
+        action={
+          <>
+            <Button variant="primary" color="orange">
+              Scopri di più
+            </Button>
+            <Button variant="secondary" color="orange">
+              Contattaci
+            </Button>
+          </>
+        }
+      />
+      <PageHero
+        title="Overlay green"
+        subtitle="Lorem ipsum dolor sit amet lorem ipsum dolor sit amet"
+        backgroundImage={testHero}
+        overlay="green"
+        action={
+          <>
+            <Button variant="primary" color="black">
+              Scopri di più
+            </Button>
+            <Button variant="secondary" color="white">
+              Contattaci
+            </Button>
+          </>
+        }
+      />
+      <PageHero
+        title="Overlay orange"
+        subtitle="Lorem ipsum dolor sit amet lorem ipsum dolor sit amet"
+        backgroundImage={testHero}
+        overlay="orange"
+      />
+      <PageHero
+        title="Overlay red"
+        subtitle="Lorem ipsum dolor sit amet lorem ipsum dolor sit amet"
+        backgroundImage={testHero}
+        overlay="red"
+      />
 
       {/* SEZIONI */}
       <h2 className="text-2xl font-semibold p-10">Sezioni</h2>
@@ -151,9 +216,56 @@ export function Playground() {
         <h2 className="text-2xl font-semibold">Buttons</h2>
 
         <div className="flex flex-wrap gap-4">
-          <Button>Primary</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="tertiary">Tertiary</Button>
+          <Button variant="primary" color="blue">
+            Primary / Blue Primary
+          </Button>
+          <Button variant="secondary" color="blue">
+            Secondary / Blue Secondary
+          </Button>
+        </div>
+
+        <div className="flex flex-wrap gap-4">
+          <Button variant="primary" color="black">
+            Black primary
+          </Button>
+          <Button variant="secondary" color="black">
+            Black secondary
+          </Button>
+        </div>
+
+        <div className="flex flex-wrap gap-4">
+          <Button variant="primary" color="green">
+            Green primary
+          </Button>
+          <Button variant="secondary" color="green">
+            Green secondary
+          </Button>
+        </div>
+
+        <div className="flex flex-wrap gap-4">
+          <Button variant="primary" color="orange">
+            Orange primary
+          </Button>
+          <Button variant="secondary" color="orange">
+            Orange secondary
+          </Button>
+        </div>
+
+        <div className="flex flex-wrap gap-4">
+          <Button variant="primary" color="red">
+            Red primary
+          </Button>
+          <Button variant="secondary" color="red">
+            Red secondary
+          </Button>
+        </div>
+        <div className="flex flex-wrap gap-4 bg-gray-800 p-2">
+          <Button variant="primary" color="white">
+            White primary
+          </Button>
+          <Button variant="secondary" color="white">
+            White secondary
+          </Button>
         </div>
 
         <div className="flex flex-wrap items-center gap-4">
