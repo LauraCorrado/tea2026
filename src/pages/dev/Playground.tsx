@@ -6,6 +6,7 @@ import {
   Section,
   SectionHeader,
   PageHero,
+  Card,
 } from "@/components/ui";
 import testHero from "@/assets/images/test.webp";
 
@@ -215,102 +216,156 @@ export function Playground() {
       <section className="space-y-6 p-10">
         <h2 className="text-2xl font-semibold">Buttons</h2>
 
-        <div className="flex flex-wrap gap-4">
-          <Button variant="primary" color="blue">
-            Primary / Blue Primary
-          </Button>
-          <Button variant="secondary" color="blue">
-            Secondary / Blue Secondary
-          </Button>
-        </div>
+        <Container size="full">
+          <div className="flex flex-wrap gap-4">
+            <Button variant="primary" color="blue">
+              Primary / Blue Primary
+            </Button>
+            <Button variant="secondary" color="blue">
+              Secondary / Blue Secondary
+            </Button>
+          </div>
+        </Container>
 
-        <div className="flex flex-wrap gap-4">
-          <Button variant="primary" color="black">
-            Black primary
-          </Button>
-          <Button variant="secondary" color="black">
-            Black secondary
-          </Button>
-        </div>
+        <Container size="full">
+          <div className="flex flex-wrap gap-4">
+            <Button variant="primary" color="black">
+              Black primary
+            </Button>
+            <Button variant="secondary" color="black">
+              Black secondary
+            </Button>
+          </div>
+        </Container>
 
-        <div className="flex flex-wrap gap-4">
-          <Button variant="primary" color="green">
-            Green primary
-          </Button>
-          <Button variant="secondary" color="green">
-            Green secondary
-          </Button>
-        </div>
+        <Container size="full">
+          <div className="flex flex-wrap gap-4">
+            <Button variant="primary" color="green">
+              Green primary
+            </Button>
+            <Button variant="secondary" color="green">
+              Green secondary
+            </Button>
+          </div>
+        </Container>
 
-        <div className="flex flex-wrap gap-4">
-          <Button variant="primary" color="orange">
-            Orange primary
-          </Button>
-          <Button variant="secondary" color="orange">
-            Orange secondary
-          </Button>
-        </div>
+        <Container size="full">
+          <div className="flex flex-wrap gap-4">
+            <Button variant="primary" color="orange">
+              Orange primary
+            </Button>
+            <Button variant="secondary" color="orange">
+              Orange secondary
+            </Button>
+          </div>
+        </Container>
 
-        <div className="flex flex-wrap gap-4">
-          <Button variant="primary" color="red">
-            Red primary
-          </Button>
-          <Button variant="secondary" color="red">
-            Red secondary
-          </Button>
-        </div>
-        <div className="flex flex-wrap gap-4 bg-gray-800 p-2">
-          <Button variant="primary" color="white">
-            White primary
-          </Button>
-          <Button variant="secondary" color="white">
-            White secondary
-          </Button>
-        </div>
+        <Container size="full">
+          <div className="flex flex-wrap gap-4">
+            <Button variant="primary" color="red">
+              Red primary
+            </Button>
+            <Button variant="secondary" color="red">
+              Red secondary
+            </Button>
+          </div>
+        </Container>
 
-        <div className="flex flex-wrap items-center gap-4">
-          <Button size="sm">Small</Button>
-          <Button size="md">Medium</Button>
-          <Button size="lg">Large</Button>
-        </div>
+        <Container size="full">
+          <div className="flex flex-wrap gap-4 bg-gray-800 p-2">
+            <Button variant="primary" color="white">
+              White primary
+            </Button>
+            <Button variant="secondary" color="white">
+              White secondary
+            </Button>
+          </div>
+        </Container>
 
-        <div>
+        <Container size="full">
+          <div className="flex flex-wrap items-center gap-4">
+            <Button size="sm">Small</Button>
+            <Button size="md">Medium</Button>
+            <Button size="lg">Large</Button>
+          </div>
+        </Container>
+
+        <Container size="full">
           <Button disabled>Disabled</Button>
-        </div>
+        </Container>
       </section>
 
       {/* BUTTONS CONTROLLO INTERFACCIA */}
-      <section className="space-y-6 p-10">
-        <h2 className="text-2xl font-semibold">
-          Icone - rotate, draw, glow, none
-        </h2>
+      <Section variant="alternative">
+        <Container size="full">
+          <section className="space-y-6 p-10">
+            <h2 className="text-2xl font-semibold">
+              Icone - rotate, draw, glow, none
+            </h2>
+            <div className="flex flex-wrap items-center gap-4">
+              <IconButton
+                icon={<X size={18} />}
+                label="Chiudi"
+                animation="rotate"
+              />
+              <IconButton
+                icon={<Menu size={18} />}
+                label="Apri menu"
+                animation="draw"
+              />
+              <IconButton
+                icon={<ChevronLeft size={18} />}
+                label="Indietro"
+                animation="glow"
+              />
+              <IconButton
+                icon={<ChevronRight size={18} />}
+                label="Avanti"
+                disabled
+              />
+            </div>
+          </section>
+        </Container>
+      </Section>
 
-        <div className="flex flex-wrap items-center gap-4">
-          <IconButton
-            icon={<X size={18} />}
-            label="Chiudi"
-            animation="rotate"
-          />
+      {/* CARD */}
+      <Section variant="default">
+        <Container size="full">
+          <SectionHeader title="Cards" />
+          <Card className="my-3">
+            <h3 className="text-xl font-semibold">Card base</h3>
+            <p className="mt-2 text-sm opacity-70">
+              Contenuto libero all'interno della card
+            </p>
+            <Button variant="primary" color="red" size="sm" className="my-3">
+              Esempio
+            </Button>
+          </Card>
 
-          <IconButton
-            icon={<Menu size={18} />}
-            label="Apri menu"
-            animation="draw"
-          />
+          <Card className="my-3" variant="outlined">
+            <h3 className="text-xl font-semibold">Card outlined</h3>
+            <p className="mt-2 text-sm opacity-70">Variante con bordo</p>
+            <Button variant="primary" color="black" size="sm" className="my-3">
+              Esempio
+            </Button>
+          </Card>
 
-          <IconButton
-            icon={<ChevronLeft size={18} />}
-            label="Indietro"
-            animation="glow"
-          />
-
-          <IconButton
-            icon={<ChevronRight size={18} />}
-            label="Avanti"
-            disabled
-          />
-        </div>
-      </section>
+          <Card className="my-3" variant="elevated" padding="lg">
+            <h3 className="text-xl font-semibold">Card elevated</h3>
+            <p className="mt-2 text-sm opacity-70">
+              Variante con ombra e padding maggiore
+            </p>
+            <Button
+              variant="secondary"
+              color="green"
+              size="sm"
+              className="my-3"
+            >
+              Esempio
+            </Button>
+          </Card>
+        </Container>
+      </Section>
     </main>
   );
 }
