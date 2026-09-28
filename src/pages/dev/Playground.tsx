@@ -7,10 +7,19 @@ import {
   SectionHeader,
   PageHero,
   Card,
+  Modal,
 } from "@/components/ui";
-import testHero from "@/assets/images/test.webp";
+import testHero from "@/assets/images/testHero.webp";
+import testProgetto1 from "@/assets/images/testProgetto1.webp";
+import testProgetto2 from "@/assets/images/testProgetto2.webp";
+import testProgetto3 from "@/assets/images/testProgetto3.webp";
+import { useState } from "react";
 
 export function Playground() {
+  //! State per la modale
+  const [modalOpen, setModalOpen] = useState(false);
+  const [projectOpen, setProjectOpen] = useState(false);
+
   return (
     <main className="min-h-screen bg-white">
       <h1 className="mb-8 text-3xl font-bold px-10 pt-10 text-center text-tea-red">
@@ -364,6 +373,76 @@ export function Playground() {
               Esempio
             </Button>
           </Card>
+        </Container>
+      </Section>
+
+      {/* MODALE */}
+      <Section variant="default">
+        <Container size="full">
+          <SectionHeader title="Modale" description="Esempio di modale" />
+          <div className="my-3 flex flex-wrap gap-3">
+            <Button color="orange" onClick={() => setModalOpen(true)}>
+              Apri modal semplice
+            </Button>
+
+            <Button color="blue" onClick={() => setProjectOpen(true)}>
+              Apri modal progetto
+            </Button>
+          </div>
+
+          <Modal
+            open={modalOpen}
+            onClose={() => setModalOpen(false)}
+            title="Esempio modale - HEADER"
+          >
+            <p>Contenuto libero per una modale informativa semplice.</p>
+          </Modal>
+
+          <Modal
+            open={projectOpen}
+            onClose={() => setProjectOpen(false)}
+            eyebrow="Modale per progetto"
+            title="Titolo progetto"
+            period="Apr 2010 — Gen 2011"
+            description="Descrizione breve progetto"
+            image={{
+              src: testHero,
+              alt: "Anteprima del progetto",
+            }}
+            gallery={[
+              {
+                src: testProgetto2,
+                alt: "Dettaglio del progetto",
+              },
+              {
+                src: testProgetto3,
+                alt: "Attività del progetto",
+              },
+              {
+                src: testProgetto1,
+                alt: "Attività del progetto",
+              },
+              {
+                src: testProgetto2,
+                alt: "Attività del progetto",
+              },
+              {
+                src: testHero,
+                alt: "Attività del progetto",
+              },
+            ]}
+            actions={
+              <>
+                <Button color="blue">Visita il progetto</Button>
+
+                <Button variant="secondary" color="blue">
+                  Approfondisci
+                </Button>
+              </>
+            }
+          >
+            <p>Qui posso inserire eventuali altre note sul progetto...</p>
+          </Modal>
         </Container>
       </Section>
     </main>

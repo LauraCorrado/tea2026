@@ -99,6 +99,37 @@ body {
   .icon-button:not(:disabled):hover .icon-button-draw svg>*:nth-child(3) {
     animation-delay: 200ms;
   }
+
+  /* MODALE */
+  .modal-gallery-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-tea-blue) transparent;
+  }
+
+  .modal-gallery-scrollbar::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .modal-gallery-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .modal-gallery-scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+  }
+
+  .modal-gallery-scrollbar::-webkit-scrollbar-thumb:hover {
+    opacity: 0.8;
+  }
+
+  .lightbox-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .lightbox-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* 
