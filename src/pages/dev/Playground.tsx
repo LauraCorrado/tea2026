@@ -10,6 +10,7 @@ import {
   Modal,
   Carousel,
   Badge,
+  Logo,
 } from "@/components/ui";
 import testHero from "@/assets/images/testHero.webp";
 import testProgetto1 from "@/assets/images/testProgetto1.webp";
@@ -764,6 +765,41 @@ export function Playground() {
                 </p>
               </Card>
             ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* LOGO */}
+      <Section variant="default">
+        <Container size="lg">
+          <SectionHeader
+            title="Logo"
+            description="Varianti e dimensioni del logo TEA"
+          />
+
+          <div className="mt-8 space-y-8">
+            <div>
+              <p className="mb-4 text-sm font-semibold">Default</p>
+
+              <Logo variant="default" size="lg" />
+            </div>
+
+            <div className="bg-tea-black p-8">
+              <p className="mb-4 text-sm font-semibold text-white">Negative</p>
+
+              <Logo variant="negative" size="lg" />
+            </div>
+
+            <div>
+              <p className="mb-4 text-sm font-semibold">Sizes</p>
+
+              <div className="flex flex-wrap items-end gap-8">
+                <Logo size="sm" />
+                <Logo size="md" />
+                <Logo size="lg" />
+                <Logo size="xl" />
+              </div>
+            </div>
           </div>
         </Container>
       </Section>
