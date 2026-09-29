@@ -14,4 +14,5 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   variant?: CardVariant;
   padding?: CardPadding;
+  badges?: ReactNode[];
 }

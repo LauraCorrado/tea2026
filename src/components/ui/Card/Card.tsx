@@ -16,6 +16,7 @@ const paddingClasses: Record<CardPadding, string> = {
 
 export function Card({
   children,
+  badges,
   variant = "default",
   padding = "md",
   className = "",
@@ -26,6 +27,9 @@ export function Card({
       className={`${baseClasses} ${variantClasses[variant]} ${paddingClasses[padding]} ${className}`}
       {...props}
     >
+      {badges && badges.length > 0 && (
+        <div className="mb-4 flex flex-wrap gap-2">{badges}</div>
+      )}
       {children}
     </div>
   );
