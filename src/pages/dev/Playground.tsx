@@ -12,6 +12,7 @@ import {
   Badge,
   Logo,
   SocialLinks,
+  LangSelector,
 } from "@/components/ui";
 import testHero from "@/assets/images/testHero.webp";
 import testProgetto1 from "@/assets/images/testProgetto1.webp";
@@ -21,11 +22,15 @@ import { useState } from "react";
 import type { WorkArea } from "@/types/workArea";
 import { workAreaConfig } from "@/types/workArea";
 import { teaSocialLinks } from "@/data/socialLinks";
+import { languages } from "@/data/languages";
 
 export function Playground() {
   //! State per la modale
   const [modalOpen, setModalOpen] = useState(false);
   const [projectOpen, setProjectOpen] = useState(false);
+  //! state per lingua
+  const [language, setLanguage] = useState("it");
+
   //! items carosello
   const carouselItems = [
     {
@@ -806,6 +811,7 @@ export function Playground() {
         </Container>
       </Section>
 
+      {/* SOCIAL LINKS */}
       <Section variant="default">
         <Container size="full">
           <SectionHeader
@@ -832,6 +838,18 @@ export function Playground() {
               <SocialLinks links={teaSocialLinks} size="lg" />
             </div>
           </div>
+        </Container>
+      </Section>
+      {/* LOCALIZZAZIONE */}
+      <Section variant="alternative">
+        <Container size="full">
+          <SectionHeader title="Localizzazione" />
+          <LangSelector
+            className="my-3"
+            languages={languages}
+            value={language}
+            onChange={setLanguage}
+          />
         </Container>
       </Section>
     </main>
