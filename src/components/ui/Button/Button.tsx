@@ -1,10 +1,10 @@
 import type { ButtonColor, ButtonProps, ButtonVariant } from "./Button.types";
 
 const baseClasses =
-  "inline-flex items-center justify-center rounded-md font-medium transition-colors " +
+  "inline-flex items-center justify-center rounded-md font-medium " +
+  "transition-all duration-300 " +
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 " +
-  "disabled:cursor-not-allowed disabled:opacity-50" +
-  "transition-all duration-300";
+  "disabled:cursor-not-allowed disabled:opacity-50"
 
 const sizeClasses = {
   sm: "h-9 px-3 text-sm",
