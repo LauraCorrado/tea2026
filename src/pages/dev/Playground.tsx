@@ -9,12 +9,15 @@ import {
   Card,
   Modal,
   Carousel,
+  Badge,
 } from "@/components/ui";
 import testHero from "@/assets/images/testHero.webp";
 import testProgetto1 from "@/assets/images/testProgetto1.webp";
 import testProgetto2 from "@/assets/images/testProgetto2.webp";
 import testProgetto3 from "@/assets/images/testProgetto3.webp";
 import { useState } from "react";
+import type { WorkArea } from "@/types/workArea";
+import { workAreaConfig } from "@/types/workArea";
 
 export function Playground() {
   //! State per la modale
@@ -72,7 +75,6 @@ export function Playground() {
       image: testProgetto3,
     },
   ];
-
   const testimonialItems = [
     {
       quote:
@@ -93,7 +95,6 @@ export function Playground() {
       role: "Sviluppatore presso Google",
     },
   ];
-
   const certificazioniPremi = [
     {
       eyebrow: "Parità di Genere",
@@ -111,6 +112,39 @@ export function Playground() {
       eyebrow: "Donne innovatrici",
       title: 'Concorso Donne Innovatrici "2010"',
       text: "Elena Console, CEO di TEA srl, spicca tra le dieci vincitrici del concorso “Donne Innovatrici”, proposte ed idee innovative delle imprenditrici calabresi, promosso dall’Unioncamere Calabria e dalla rete europea EEN (Enterprise Europe Network).",
+    },
+  ];
+
+  //! finti lavori per prova badge
+  const playgroundWorks: {
+    title: string;
+    description: string;
+    areas: WorkArea[];
+  }[] = [
+    {
+      title: "Progetto Accessibilità Museale",
+      description:
+        "Ricerca di mercato e creazione esperienza multisensoriale e multimaterica dedicata alla fruizione accessibile del patrimonio culturale.",
+      //uso qui le aree del workArea che ho creato
+      areas: ["fruizione-accessibile", "analisi-statistica"],
+    },
+    {
+      title: "Percorso gastronomico di Napoli",
+      description:
+        "Piattaforma per la consultazione e la visualizzazione dei migliori ristoranti del territorio di Napoli.",
+      areas: ["analisi-statistica"],
+    },
+    {
+      title: "Restauro virtuale documenti del Museo Nome Falso",
+      description:
+        "Attività di acquisizione e studio attraverso tecniche di imaging e lavorazione in digitale per il restauro dei documenti acquisiti.",
+      areas: ["imaging-multispettrale"],
+    },
+    {
+      title: "Esperienza educativa interattiva",
+      description:
+        "Percorso digitale progettato attraverso dinamiche di gioco e contenuti narrativi.",
+      areas: ["edutainment-gamification"],
     },
   ];
 
@@ -695,6 +729,41 @@ export function Playground() {
                 )}
               />
             </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* BADGE */}
+      <Section variant="default">
+        <Container size="full">
+          <SectionHeader
+            title="Card con aree di lavoro"
+            description="Esempi di card associate a una o più aree."
+          />
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {playgroundWorks.map((work) => (
+              <Card
+                key={work.title}
+                variant="outlined"
+                padding="lg"
+                badges={work.areas.map((area) => {
+                  const { label, color } = workAreaConfig[area];
+
+                  return (
+                    <Badge key={area} color={color}>
+                      {label}
+                    </Badge>
+                  );
+                })}
+              >
+                <h3 className="text-2xl font-semibold">{work.title}</h3>
+
+                <p className="mt-3 leading-relaxed opacity-70">
+                  {work.description}
+                </p>
+              </Card>
+            ))}
           </div>
         </Container>
       </Section>
