@@ -4,7 +4,7 @@ import { Minus, Plus, X } from "lucide-react";
 
 import { IconButton } from "../IconButton";
 
-import type { ModalProps, ModalSize } from "./Modal.types";
+import type { ModalImage, ModalProps, ModalSize } from "./Modal.types";
 
 const sizeClasses: Record<ModalSize, string> = {
   sm: "max-w-md",
@@ -33,18 +33,21 @@ export function Modal({
   closeOnOverlayClick = true,
   className = "",
 }: ModalProps) {
+  const MIN_ZOOM = 1;
+  const MAX_ZOOM = 2;
+  const ZOOM_STEP = 0.25;
+  const DRAG_THRESHOLD = 5;
+
   const titleId = useId();
 
   const [isGalleryDragging, setIsGalleryDragging] = useState(false);
-
-  const [selectedImage, setSelectedImage] = useState<{
-    src: string;
-    alt: string;
-  } | null>(null);
+  const [selectedImage, setSelectedImage] = useState<ModalImage | null>(null);
   const [zoom, setZoom] = useState(1);
-  const imageViewportRef = useRef<HTMLDivElement>(null);
+
   const [isDragging, setIsDragging] = useState(false);
 
+  const galleryPointerActive = useRef(false);
+  const imageViewportRef = useRef<HTMLDivElement>(null);
   const galleryDidDrag = useRef(false);
   const galleryRef = useRef<HTMLDivElement>(null);
   const dragStart = useRef({
@@ -58,9 +61,9 @@ export function Modal({
     scrollLeft: 0,
   });
 
-  function openImage(item: { src: string; alt: string }) {
+  function openImage(item: ModalImage) {
     setSelectedImage(item);
-    setZoom(1);
+    setZoom(MIN_ZOOM);
   }
 
   function handlePointerDown(event: React.PointerEvent<HTMLDivElement>) {
@@ -109,9 +112,9 @@ export function Modal({
     const galleryElement = galleryRef.current;
     if (!galleryElement) return;
 
-    galleryElement.setPointerCapture(event.pointerId);
+    galleryPointerActive.current = true;
 
-    setIsGalleryDragging(true);
+    setIsGalleryDragging(false);
     galleryDidDrag.current = false;
 
     galleryDragStart.current = {
@@ -121,16 +124,21 @@ export function Modal({
   }
 
   function handleGalleryPointerMove(event: React.PointerEvent<HTMLDivElement>) {
-    if (!isGalleryDragging) return;
+    if (!galleryPointerActive.current) return;
 
     const galleryElement = galleryRef.current;
     if (!galleryElement) return;
 
     const deltaX = event.clientX - galleryDragStart.current.x;
 
-    if (Math.abs(deltaX) > 5) {
+    if (!galleryDidDrag.current && Math.abs(deltaX) > DRAG_THRESHOLD) {
       galleryDidDrag.current = true;
+      setIsGalleryDragging(true);
+
+      galleryElement.setPointerCapture(event.pointerId);
     }
+
+    if (!galleryDidDrag.current) return;
 
     galleryElement.scrollLeft = galleryDragStart.current.scrollLeft - deltaX;
   }
@@ -138,11 +146,18 @@ export function Modal({
   function handleGalleryPointerUp(event: React.PointerEvent<HTMLDivElement>) {
     const galleryElement = galleryRef.current;
 
+    galleryPointerActive.current = false;
+
     if (galleryElement?.hasPointerCapture(event.pointerId)) {
       galleryElement.releasePointerCapture(event.pointerId);
     }
 
     setIsGalleryDragging(false);
+  }
+
+  function closeImage() {
+    setSelectedImage(null);
+    setZoom(MIN_ZOOM);
   }
 
   useEffect(() => {
@@ -152,8 +167,7 @@ export function Modal({
       if (event.key !== "Escape") return;
 
       if (selectedImage) {
-        setSelectedImage(null);
-        setZoom(1);
+        closeImage();
         return;
       }
 
@@ -250,7 +264,7 @@ export function Modal({
               className={`
       modal-gallery-scrollbar
       mt-6 flex gap-4 overflow-x-auto pb-3
-      snap-x snap-proximity scroll-smooth
+      
       touch-pan-x overscroll-x-contain
       select-none
       ${isGalleryDragging ? "cursor-grabbing" : "cursor-grab"}
@@ -266,6 +280,7 @@ export function Modal({
                   type="button"
                   onClick={() => {
                     if (galleryDidDrag.current) {
+                      galleryDidDrag.current = false;
                       return;
                     }
 
@@ -369,9 +384,9 @@ export function Modal({
               <IconButton
                 icon={<Minus size={18} />}
                 label="Riduci immagine"
-                disabled={zoom <= 1}
+                disabled={zoom <= MIN_ZOOM}
                 onClick={() =>
-                  setZoom((current) => Math.max(1, current - 0.25))
+                  setZoom((current) => Math.max(MIN_ZOOM, current - ZOOM_STEP))
                 }
               />
 
@@ -388,9 +403,9 @@ export function Modal({
               <IconButton
                 icon={<Plus size={18} />}
                 label="Ingrandisci immagine"
-                disabled={zoom >= 2}
+                disabled={zoom >= MAX_ZOOM}
                 onClick={() =>
-                  setZoom((current) => Math.min(2, current + 0.25))
+                  setZoom((current) => Math.min(MAX_ZOOM, current + ZOOM_STEP))
                 }
               />
 
@@ -400,10 +415,7 @@ export function Modal({
                 icon={<X size={18} />}
                 label="Chiudi immagine"
                 animation="rotate"
-                onClick={() => {
-                  setSelectedImage(null);
-                  setZoom(1);
-                }}
+                onClick={closeImage}
               />
             </div>
           </div>
