@@ -11,6 +11,7 @@ import {
   Carousel,
   Badge,
   Logo,
+  SocialLinks,
 } from "@/components/ui";
 import testHero from "@/assets/images/testHero.webp";
 import testProgetto1 from "@/assets/images/testProgetto1.webp";
@@ -19,6 +20,7 @@ import testProgetto3 from "@/assets/images/testProgetto3.webp";
 import { useState } from "react";
 import type { WorkArea } from "@/types/workArea";
 import { workAreaConfig } from "@/types/workArea";
+import { teaSocialLinks } from "@/data/socialLinks";
 
 export function Playground() {
   //! State per la modale
@@ -799,6 +801,35 @@ export function Playground() {
                 <Logo size="lg" />
                 <Logo size="xl" />
               </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      <Section variant="default">
+        <Container size="full">
+          <SectionHeader
+            title="Social Links"
+            description="Collegamenti ai canali social rappresentati tramite icone."
+          />
+
+          <div className="mt-8 space-y-8">
+            <div>
+              <p className="mb-4 font-semibold">Small</p>
+
+              <SocialLinks links={teaSocialLinks} size="sm" />
+            </div>
+
+            <div>
+              <p className="mb-4 font-semibold">Medium</p>
+
+              <SocialLinks links={teaSocialLinks} size="md" />
+            </div>
+
+            <div>
+              <p className="mb-4 font-semibold">Large</p>
+
+              <SocialLinks links={teaSocialLinks} size="lg" />
             </div>
           </div>
         </Container>
