@@ -6,3 +6,4 @@ export * from "./SectionHeader";
 export * from "./PageHero";
 export * from "./Card";
 export * from "./Modal"
+export * from "./Carousel"

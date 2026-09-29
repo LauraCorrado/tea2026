@@ -8,6 +8,7 @@ import {
   PageHero,
   Card,
   Modal,
+  Carousel,
 } from "@/components/ui";
 import testHero from "@/assets/images/testHero.webp";
 import testProgetto1 from "@/assets/images/testProgetto1.webp";
@@ -19,6 +20,99 @@ export function Playground() {
   //! State per la modale
   const [modalOpen, setModalOpen] = useState(false);
   const [projectOpen, setProjectOpen] = useState(false);
+  //! items carosello
+  const carouselItems = [
+    {
+      title: "Prima slide",
+      text: "Contenuto della prima slide",
+    },
+    {
+      title: "Seconda slide",
+      text: "Contenuto della seconda slide",
+    },
+    {
+      title: "Terza slide",
+      text: "Contenuto della terza slide",
+    },
+  ];
+  const carouselImages = [
+    {
+      src: testHero,
+      alt: "Esempio immagine uno",
+    },
+    {
+      src: testProgetto2,
+      alt: "Esempio immagine due",
+    },
+    {
+      src: testProgetto3,
+      alt: "Esempio immagine tre",
+    },
+  ];
+  const projectItems = [
+    {
+      title: "Esempio Progetto 1",
+      period: "2024 — 2025",
+      description:
+        "Breve descrizione del primo progetto presentato nel carosello.",
+      image: testProgetto1,
+    },
+    {
+      title: "Esempio Progetto 2",
+      period: "2020 — 2021",
+      description:
+        "Breve descrizione del secondo progetto presentato nel carosello.",
+      image: testProgetto2,
+    },
+    {
+      title: "Esempio Progetto 3",
+      period: "2020",
+      description:
+        "Breve descrizione del terzo progetto presentato nel carosello.",
+      image: testProgetto3,
+    },
+  ];
+
+  const testimonialItems = [
+    {
+      quote:
+        "Un approccio capace di unire tecnologia, progettazione e attenzione all'esperienza.",
+      author: "Mario Rossi",
+      role: "Direttore presso La Repubblica",
+    },
+    {
+      quote:
+        "La collaborazione ha permesso di trasformare un'idea complessa in una soluzione concreta.",
+      author: "Paolo Bianchi",
+      role: "Arcidiocesi di Milano",
+    },
+    {
+      quote:
+        "Un progetto costruito attraverso competenze diverse e un confronto continuo.",
+      author: "Laura Corrado",
+      role: "Sviluppatore presso Google",
+    },
+  ];
+
+  const certificazioniPremi = [
+    {
+      eyebrow: "Parità di Genere",
+      title: "Certificazione Parità di Genere",
+      text: "TEA ha ottenuto la Certificazione per la Parità di Genere a conferma del nostro impegno per un ambiente di lavoro equo, inclusivo e privo di discriminazioni.",
+      actionLabel: "Leggi la Politica",
+    },
+    {
+      eyebrow: "Certificazione ISO 9001",
+      title: "Sistema di Gestione per la Qualità",
+      text: "In un'ottica di miglioramento continuo e trasparenza, la nostra azienda ha adottato un Sistema di Gestione per la Qualità certificato secondo la norma UNI EN ISO 9001:2015. Questo impegno ci permette di ottimizzare ogni processo interno, garantendo ai nostri clienti standard qualitativi elevati, affidabilità e una costante attenzione alle loro esigenze.",
+      actionLabel: "Scarica il certificato",
+    },
+    {
+      eyebrow: "Donne innovatrici",
+      title: 'Concorso Donne Innovatrici "2010"',
+      text: "Elena Console, CEO di TEA srl, spicca tra le dieci vincitrici del concorso “Donne Innovatrici”, proposte ed idee innovative delle imprenditrici calabresi, promosso dall’Unioncamere Calabria e dalla rete europea EEN (Enterprise Europe Network).",
+    },
+  ];
 
   return (
     <main className="min-h-screen bg-white">
@@ -443,6 +537,165 @@ export function Playground() {
           >
             <p>Qui posso inserire eventuali altre note sul progetto...</p>
           </Modal>
+        </Container>
+      </Section>
+
+      {/* CAROSELLO */}
+      <Section variant="alternative">
+        <Container size="sm">
+          <SectionHeader
+            align="center"
+            title="Caroselli"
+            description="Esempi del componente Carousel con tipologie di contenuto differenti"
+          />
+
+          <div className="mt-10 space-y-16">
+            {/* Semplice */}
+            <div>
+              <h3 className="mb-4 text-xl font-semibold">Carosello semplice</h3>
+
+              <Carousel
+                items={carouselItems}
+                renderItem={(item) => (
+                  <Card variant="outlined" padding="lg">
+                    <h3 className="text-2xl font-semibold">{item.title}</h3>
+
+                    <p className="mt-2 opacity-70">{item.text}</p>
+                  </Card>
+                )}
+              />
+            </div>
+
+            {/* Immagini */}
+            <div>
+              <h3 className="mb-4 text-xl font-semibold">
+                Carosello di immagini
+              </h3>
+
+              <Carousel
+                items={carouselImages}
+                renderItem={(item) => (
+                  <div className="aspect-video overflow-hidden rounded-xl">
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                )}
+              />
+            </div>
+
+            {/* Progetti */}
+            <div>
+              <h3 className="mb-4 text-xl font-semibold">
+                Esempio per progetti con Card, img e Btn
+              </h3>
+
+              <Carousel
+                items={projectItems}
+                renderItem={(item) => (
+                  <Card
+                    variant="outlined"
+                    padding="sm"
+                    className="overflow-hidden"
+                  >
+                    <div className="grid gap-6 md:grid-cols-2">
+                      <div className="aspect-4/3 overflow-hidden rounded-lg">
+                        <img
+                          src={item.image}
+                          alt=""
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+
+                      <div className="flex flex-col justify-center p-4">
+                        <p className="text-sm font-medium text-tea-blue">
+                          {item.period}
+                        </p>
+
+                        <h3 className="mt-2 text-2xl font-semibold">
+                          {item.title}
+                        </h3>
+
+                        <p className="mt-3 leading-relaxed opacity-70">
+                          {item.description}
+                        </p>
+
+                        <div className="mt-6">
+                          <Button variant="secondary" color="red" size="sm">
+                            Approfondisci
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                )}
+              />
+            </div>
+
+            {/* Testimonianze */}
+            <div>
+              <h3 className="mb-4 text-xl font-semibold">
+                Carosello per testimonianze con Card
+              </h3>
+
+              <Carousel
+                items={testimonialItems}
+                renderItem={(item) => (
+                  <Card
+                    variant="elevated"
+                    padding="lg"
+                    className="mx-auto max-w-3xl my-3"
+                  >
+                    <blockquote className="text-xl leading-relaxed">
+                      “{item.quote}”
+                    </blockquote>
+
+                    <div className="mt-6">
+                      <p className="font-semibold">{item.author}</p>
+
+                      <p className="text-sm opacity-60">{item.role}</p>
+                    </div>
+                  </Card>
+                )}
+              />
+            </div>
+
+            {/* Contenuti editoriali */}
+            <div>
+              <h3 className="mb-4 text-xl font-semibold">
+                Carosello per contenuti editoriali con Card e Btn
+              </h3>
+
+              <Carousel
+                items={certificazioniPremi}
+                renderItem={(item) => (
+                  <Card variant="outlined" padding="lg">
+                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-tea-orange">
+                      {item.eyebrow}
+                    </p>
+
+                    <h3 className="mt-3 text-3xl font-semibold tracking-tight">
+                      {item.title}
+                    </h3>
+
+                    <p className="mt-4 max-w-2xl leading-relaxed opacity-70">
+                      {item.text}
+                    </p>
+
+                    {item.actionLabel && (
+                      <div className="mt-6">
+                        <Button variant="secondary" color="orange" size="sm">
+                          {item.actionLabel}
+                        </Button>
+                      </div>
+                    )}
+                  </Card>
+                )}
+              />
+            </div>
+          </div>
         </Container>
       </Section>
     </main>
