@@ -16,18 +16,14 @@ const sizeClasses: Record<ModalSize, string> = {
 export function Modal({
   open,
   onClose,
-
   eyebrow,
   title,
   period,
   description,
-
   image,
   gallery,
-
   actions,
   children,
-
   size = "lg",
   showCloseButton = true,
   closeOnOverlayClick = true,
@@ -36,6 +32,7 @@ export function Modal({
   const MIN_ZOOM = 1;
   const MAX_ZOOM = 2;
   const ZOOM_STEP = 0.25;
+  const WHEEL_STEP = 0.1;
   const DRAG_THRESHOLD = 5;
 
   const titleId = useId();
@@ -60,6 +57,10 @@ export function Modal({
     x: 0,
     scrollLeft: 0,
   });
+  const activePointers = useRef(new Map<number, { x: number; y: number }>());
+
+  const pinchStartDistance = useRef<number | null>(null);
+  const pinchStartZoom = useRef(MIN_ZOOM);
 
   function openImage(item: ModalImage) {
     setSelectedImage(item);
@@ -67,10 +68,22 @@ export function Modal({
   }
 
   function handlePointerDown(event: React.PointerEvent<HTMLDivElement>) {
-    if (zoom <= 1) return;
+    activePointers.current.set(event.pointerId, {
+      x: event.clientX,
+      y: event.clientY,
+    });
 
     const viewport = imageViewportRef.current;
     if (!viewport) return;
+
+    if (activePointers.current.size === 2) {
+      pinchStartDistance.current = getPointerDistance();
+      pinchStartZoom.current = zoom;
+      setIsDragging(false);
+      return;
+    }
+
+    if (zoom <= 1) return;
 
     viewport.setPointerCapture(event.pointerId);
 
@@ -85,12 +98,36 @@ export function Modal({
   }
 
   function handlePointerMove(event: React.PointerEvent<HTMLDivElement>) {
+    if (activePointers.current.has(event.pointerId)) {
+      activePointers.current.set(event.pointerId, {
+        x: event.clientX,
+        y: event.clientY,
+      });
+    }
+
+    if (activePointers.current.size === 2) {
+      const currentDistance = getPointerDistance();
+
+      if (!currentDistance || !pinchStartDistance.current) {
+        return;
+      }
+
+      const scale = currentDistance / pinchStartDistance.current;
+
+      const nextZoom = pinchStartZoom.current * scale;
+
+      setZoom(Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, nextZoom)));
+
+      return;
+    }
+
     if (!isDragging) return;
 
     const viewport = imageViewportRef.current;
     if (!viewport) return;
 
     const deltaX = event.clientX - dragStart.current.x;
+
     const deltaY = event.clientY - dragStart.current.y;
 
     viewport.scrollLeft = dragStart.current.scrollLeft - deltaX;
@@ -101,8 +138,14 @@ export function Modal({
   function handlePointerUp(event: React.PointerEvent<HTMLDivElement>) {
     const viewport = imageViewportRef.current;
 
+    activePointers.current.delete(event.pointerId);
+
     if (viewport?.hasPointerCapture(event.pointerId)) {
       viewport.releasePointerCapture(event.pointerId);
+    }
+
+    if (activePointers.current.size < 2) {
+      pinchStartDistance.current = null;
     }
 
     setIsDragging(false);
@@ -155,6 +198,18 @@ export function Modal({
     setIsGalleryDragging(false);
   }
 
+  function getPointerDistance() {
+    const pointers = Array.from(activePointers.current.values());
+
+    if (pointers.length < 2) {
+      return null;
+    }
+
+    const [first, second] = pointers;
+
+    return Math.hypot(second.x - first.x, second.y - first.y);
+  }
+
   function closeImage() {
     setSelectedImage(null);
     setZoom(MIN_ZOOM);
@@ -184,6 +239,32 @@ export function Modal({
       document.body.style.overflow = previousOverflow;
     };
   }, [open, onClose, selectedImage]);
+
+  useEffect(() => {
+    const viewport = imageViewportRef.current;
+
+    if (!selectedImage || !viewport) return;
+
+    function handleWheel(event: WheelEvent) {
+      event.preventDefault();
+
+      const direction = event.deltaY > 0 ? -1 : 1;
+
+      setZoom((current) => {
+        const nextZoom = current + direction * WHEEL_STEP;
+
+        return Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, nextZoom));
+      });
+    }
+
+    viewport.addEventListener("wheel", handleWheel, {
+      passive: false,
+    });
+
+    return () => {
+      viewport.removeEventListener("wheel", handleWheel);
+    };
+  }, [selectedImage]);
 
   if (!open) return null;
 
@@ -347,6 +428,7 @@ export function Modal({
     max-h-[85vh] max-w-[90vw]
     overflow-auto
     select-none
+    touch-none
     ${zoom > 1 ? "cursor-grab" : "cursor-default"}
     ${isDragging ? "cursor-grabbing" : ""}
   `}
