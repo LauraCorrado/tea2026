@@ -18,6 +18,7 @@ import {
   Select,
   EmptyState,
 } from "@/components/ui";
+import { ProductCard } from "@/components/features";
 import testHero from "@/assets/images/testHero.webp";
 import testProgetto1 from "@/assets/images/testProgetto1.webp";
 import testProgetto2 from "@/assets/images/testProgetto2.webp";
@@ -755,7 +756,7 @@ export function Playground() {
       </Section>
 
       {/* BADGE */}
-      <Section variant="default">
+      <Section variant="alternative">
         <Container size="full">
           <SectionHeader
             title="Card con aree di lavoro"
@@ -913,7 +914,7 @@ export function Playground() {
           </div>
 
           <EmptyState
-          className="my-3"
+            className="my-3"
             title="Nessun lavoro trovato"
             description="Prova a modificare i filtri o i termini di ricerca."
             action={
@@ -922,6 +923,64 @@ export function Playground() {
               </Button>
             }
           />
+        </Container>
+      </Section>
+
+      {/* PRODUCT CARD */}
+      <Section>
+        <Container size="lg">
+          <SectionHeader
+            eyebrow="Aives e Ammira"
+            title="Product cards"
+            align="center"
+          />
+          <div className="space-y-20 my-3">
+            <ProductCard
+              side="right"
+              accent="red"
+              image={{
+                src: testProgetto3,
+                alt: "Esperienza multisensoriale AIVES",
+              }}
+              title="AIVES"
+              description={
+                <>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Dolor, beatae. Sapiente facilis et nesciunt cum, repudiandae
+                  odio odit, vero tempore blanditiis, qui dolorum quis sit quod
+                  porro accusamus atque. Minus.
+                </>
+              }
+              action={
+                <Button color="red" size="sm">
+                  Scopri AIVES
+                </Button>
+              }
+            />
+
+            <ProductCard
+              side="left"
+              accent="green"
+              image={{
+                src: testHero,
+                alt: "Analisi multispettrale del progetto @MMIRA",
+              }}
+              title="@MMIRA"
+              description={
+                <>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Dolores accusantium, quae fuga perspiciatis eligendi adipisci
+                  magnam facere ipsam aliquid maxime. Assumenda nobis quam saepe
+                  ut rem suscipit consectetur tenetur id?
+                </>
+              }
+              action={
+                <Button color="green" size="sm">
+                  Scopri @MMIRA
+                </Button>
+              }
+            />
+          </div>
         </Container>
       </Section>
     </main>
