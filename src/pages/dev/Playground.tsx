@@ -15,6 +15,7 @@ import {
   LangSelector,
   LoadingState,
   SearchInput,
+  Select,
 } from "@/components/ui";
 import testHero from "@/assets/images/testHero.webp";
 import testProgetto1 from "@/assets/images/testProgetto1.webp";
@@ -32,8 +33,10 @@ export function Playground() {
   const [projectOpen, setProjectOpen] = useState(false);
   //! state per lingua
   const [language, setLanguage] = useState("it");
-  //! state per search input
+  //! state per search input e select
   const [search, setSearch] = useState("");
+  //! state per select
+  const [area, setArea] = useState<WorkArea | "">("");
 
   //! items carosello
   const carouselItems = [
@@ -159,6 +162,11 @@ export function Playground() {
       areas: ["edutainment-gamification"],
     },
   ];
+  //! prova aree
+  const areaOptions = Object.entries(workAreaConfig).map(([value, config]) => ({
+    value,
+    label: config.label,
+  }));
 
   return (
     <main className="min-h-screen bg-white">
@@ -859,7 +867,7 @@ export function Playground() {
       </Section>
 
       {/* LOADING STATE */}
-      <Section variant="alternative">
+      <Section>
         <Container size="full">
           <SectionHeader
             title="Loading States"
@@ -876,14 +884,14 @@ export function Playground() {
         </Container>
       </Section>
 
-      {/* SEARCH INPUT */}
+      {/* SEARCH INPUT e SELECT */}
       <Section variant="alternative">
         <Container size="full">
           <SectionHeader
-            title="Search Input"
-            description="Campo di ricerca testuale per filtrare contenuti e risultati"
+            title="Controlli di ricerca"
+            description="Campo di ricerca testuale e campo select"
           />
-          <div className="mt-8 max-w-xl">
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
             <SearchInput
               value={search}
               onChange={setSearch}
@@ -893,6 +901,13 @@ export function Playground() {
                   ? `Ricerca corrente: ${search}`
                   : "Nessuna ricerca testuale"
               }
+            />
+
+            <Select
+              options={areaOptions}
+              value={area}
+              onChange={(value) => setArea(value as WorkArea | "")}
+              placeholder="Seleziona ambito..."
             />
           </div>
         </Container>
