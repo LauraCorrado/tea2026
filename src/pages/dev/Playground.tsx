@@ -16,6 +16,7 @@ import {
   LoadingState,
   SearchInput,
   Select,
+  EmptyState,
 } from "@/components/ui";
 import testHero from "@/assets/images/testHero.webp";
 import testProgetto1 from "@/assets/images/testProgetto1.webp";
@@ -884,7 +885,7 @@ export function Playground() {
         </Container>
       </Section>
 
-      {/* SEARCH INPUT e SELECT */}
+      {/* SEARCH INPUT, SELECT e NOT FOUND */}
       <Section variant="alternative">
         <Container size="full">
           <SectionHeader
@@ -910,6 +911,17 @@ export function Playground() {
               placeholder="Seleziona ambito..."
             />
           </div>
+
+          <EmptyState
+          className="my-3"
+            title="Nessun lavoro trovato"
+            description="Prova a modificare i filtri o i termini di ricerca."
+            action={
+              <Button variant="secondary" color="red" size="sm">
+                Elimina filtri
+              </Button>
+            }
+          />
         </Container>
       </Section>
     </main>
