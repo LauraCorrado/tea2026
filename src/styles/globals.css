@@ -16,6 +16,11 @@ body {
   min-width: 320px;
 }
 
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 @layer base {
   button:not(:disabled) {
     cursor: pointer;
