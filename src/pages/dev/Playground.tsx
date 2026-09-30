@@ -13,6 +13,7 @@ import {
   Logo,
   SocialLinks,
   LangSelector,
+  LoadingState,
 } from "@/components/ui";
 import testHero from "@/assets/images/testHero.webp";
 import testProgetto1 from "@/assets/images/testProgetto1.webp";
@@ -840,6 +841,7 @@ export function Playground() {
           </div>
         </Container>
       </Section>
+
       {/* LOCALIZZAZIONE */}
       <Section variant="alternative">
         <Container size="full">
@@ -850,6 +852,24 @@ export function Playground() {
             value={language}
             onChange={setLanguage}
           />
+        </Container>
+      </Section>
+
+      {/* LOADING STATE */}
+      <Section variant="alternative">
+        <Container size="full">
+          <SectionHeader
+            title="Loading States"
+            description="Stato visivo utilizzato durante il caricamento di dati o contenuti"
+          />
+
+          <div className="mt-8 flex flex-wrap items-center gap-12">
+            <LoadingState size="sm" />
+
+            <LoadingState size="md" label="Caricamento contenuti..." />
+
+            <LoadingState size="lg" label="Caricamento risultati..." />
+          </div>
         </Container>
       </Section>
     </main>
