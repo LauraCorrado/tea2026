@@ -14,6 +14,7 @@ import {
   SocialLinks,
   LangSelector,
   LoadingState,
+  SearchInput,
 } from "@/components/ui";
 import testHero from "@/assets/images/testHero.webp";
 import testProgetto1 from "@/assets/images/testProgetto1.webp";
@@ -31,6 +32,8 @@ export function Playground() {
   const [projectOpen, setProjectOpen] = useState(false);
   //! state per lingua
   const [language, setLanguage] = useState("it");
+  //! state per search input
+  const [search, setSearch] = useState("");
 
   //! items carosello
   const carouselItems = [
@@ -869,6 +872,28 @@ export function Playground() {
             <LoadingState size="md" label="Caricamento contenuti..." />
 
             <LoadingState size="lg" label="Caricamento risultati..." />
+          </div>
+        </Container>
+      </Section>
+
+      {/* SEARCH INPUT */}
+      <Section variant="alternative">
+        <Container size="full">
+          <SectionHeader
+            title="Search Input"
+            description="Campo di ricerca testuale per filtrare contenuti e risultati"
+          />
+          <div className="mt-8 max-w-xl">
+            <SearchInput
+              value={search}
+              onChange={setSearch}
+              placeholder="Ricerca un nostro lavoro"
+              helperText={
+                search
+                  ? `Ricerca corrente: ${search}`
+                  : "Nessuna ricerca testuale"
+              }
+            />
           </div>
         </Container>
       </Section>
