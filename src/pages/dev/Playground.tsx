@@ -18,7 +18,7 @@ import {
   Select,
   EmptyState,
 } from "@/components/ui";
-import { ProductCard } from "@/components/features";
+import { ProductCard, CaseStudyCard } from "@/components/features";
 import testHero from "@/assets/images/testHero.webp";
 import testProgetto1 from "@/assets/images/testProgetto1.webp";
 import testProgetto2 from "@/assets/images/testProgetto2.webp";
@@ -981,6 +981,50 @@ export function Playground() {
               }
             />
           </div>
+        </Container>
+      </Section>
+
+      {/* CASE STUDY */}
+      <Section variant="alternative">
+        <Container size="md">
+          <SectionHeader title="Case Study cards" />
+          <CaseStudyCard
+            className="my-3"
+            image={{
+              src: testHero,
+              alt: "MuDiMa",
+            }}
+            badges={[
+              <Badge key="accessibilita" color="orange">
+                Gamification
+              </Badge>,
+            ]}
+            title="MuDiMa"
+            description="Esperienza ludica al Museo Diocesano Matronei Altamura, pensato per bambini. Lorem ipsum dolor sit amet."
+            action={
+              <Button variant="secondary" color="orange" size="sm">
+                Approfondisci
+              </Button>
+            }
+          />
+          <CaseStudyCard
+            imagePosition="right"
+            className="my-3"
+            image={{
+              src: testProgetto2,
+              alt: "Studio di Fattibilità",
+            }}
+            badges={[
+              <Badge key="management" color="blue">
+                Project Management
+              </Badge>,
+              <Badge key="statistica" color="red">
+                Data Analysis
+              </Badge>,
+            ]}
+            title="Studio di Fattibilità"
+            description="Miglioramento della conoscenza del territorio attraverso un'adeguata azione di monitoraggio e implementazione sicurezza fisica."
+          />
         </Container>
       </Section>
     </main>
