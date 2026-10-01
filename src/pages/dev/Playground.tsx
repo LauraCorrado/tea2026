@@ -18,7 +18,11 @@ import {
   Select,
   EmptyState,
 } from "@/components/ui";
-import { ProductCard, CaseStudyCard } from "@/components/features";
+import {
+  ProductCard,
+  CaseStudyCard,
+  CompetenceCard,
+} from "@/components/features";
 import testHero from "@/assets/images/testHero.webp";
 import testProgetto1 from "@/assets/images/testProgetto1.webp";
 import testProgetto2 from "@/assets/images/testProgetto2.webp";
@@ -29,6 +33,7 @@ import { workAreaConfig } from "@/types/workArea";
 import { teaSocialLinks } from "@/data/socialLinks";
 import { languages } from "@/data/languages";
 import { PatentAccordion } from "@/components/features/PatentAccordion/PatentAccordion";
+import { CompetenceGrid } from "@/components/features/CompetenceGrid/CompetenceGrid";
 
 export function Playground() {
   //! State per la modale
@@ -1059,32 +1064,111 @@ export function Playground() {
               description="Descrizione sintetica del brevetto e del problema affrontato."
               pdfUrl="/documents/brevetto.pdf"
             />
-
-            <PatentAccordion
-              type="community-trademark"
-              name="AIVES"
-              number="EU 000000000"
-              year={2024}
-              documentationUrl="https://example.com"
-            />
-
-            <PatentAccordion
-              type="international-patent"
-              name="Sistema multisensoriale per la fruizione culturale"
-              number="WO 2026 / 000000"
-              year={2026}
-              description="Descrizione sintetica del brevetto e del problema affrontato."
-              pdfUrl="/documents/brevetto.pdf"
-            />
-
-            <PatentAccordion
-              type="community-trademark"
-              name="AIVES"
-              number="EU 000000000"
-              year={2024}
-              documentationUrl="https://example.com"
-            />
           </div>
+        </Container>
+      </Section>
+
+      {/* COMPETENZE */}
+      <Section variant="alternative">
+        <Container size="full">
+          <SectionHeader title="Competenze Card" align="center" />
+          <CompetenceGrid>
+            <CompetenceCard
+              title="Data Analytics & Statistics"
+              color="red"
+              image={{
+                src: testProgetto1,
+                alt: "Visualizzazione di dati e analisi statistiche",
+              }}
+              description={
+                <>
+                  Analisi, interpretazione e modellazione dei dati per
+                  trasformare informazioni complesse in conoscenza utile,
+                  supportando ricerca, valutazione e processi decisionali.
+                </>
+              }
+            />
+
+            <CompetenceCard
+              title="GIS & WebGIS"
+              color="green"
+              image={{
+                src: testProgetto2,
+                alt: "Mappatura digitale e sistemi GIS",
+              }}
+              description={
+                <>
+                  Progettazione di sistemi GIS e WebGIS per organizzare,
+                  visualizzare e interrogare dati geografici, rendendo leggibili
+                  relazioni territoriali e informazioni complesse.
+                </>
+              }
+            />
+            <CompetenceCard
+              title="Project Management"
+              image={{
+                src: testProgetto3,
+                alt: "Coordinamento e gestione di progetto",
+              }}
+              description={
+                <>
+                  Pianificazione, coordinamento e monitoraggio di progetti
+                  complessi, mettendo in relazione competenze diverse,
+                  obiettivi, tempi, risorse e partner.
+                </>
+              }
+            />
+            <CompetenceCard
+              title="Software Development"
+              color="orange"
+              image={{
+                src: testHero,
+                alt: "Sviluppo di soluzioni software e applicazioni digitali",
+              }}
+              description={
+                <>
+                  Progettazione e sviluppo di applicazioni, piattaforme e
+                  strumenti digitali su misura, con attenzione a usabilità,
+                  accessibilità e integrazione con tecnologie e contenuti.
+                </>
+              }
+            />
+            <CompetenceCard
+              title="Visual Storytelling"
+              color="orange"
+              image={{
+                src: testProgetto2,
+                alt: "L'arte di raccontare una storia attraverso l'uso di immagini",
+              }}
+              description={
+                <>
+                  Creazione di contenuti visivi e multimediali per raccontare
+                  storie, concetti o informazioni in modo coinvolgente e
+                  memorabile, utilizzando immagini, video, grafica e design.
+                </>
+              }
+            />
+
+            <CompetenceCard
+              title="Digital Fabrication & Craftsmanship"
+              color="blue"
+              image={{
+                src: testHero,
+                alt: "Progettazione e realizzazione di oggetti fisici attraverso tecnologie digitali e processi artigianali",
+              }}
+              description={
+                <>
+                  Combinazione di tecnologie digitali e competenze artigianali
+                  per progettare e realizzare oggetti fisici, utilizzando
+                  strumenti come stampa 3D, taglio laser e lavorazione manuale
+                  per creare prodotti unici e personalizzati.e e realizzare
+                  oggetti fisici, utilizzando strumenti come stampa 3D, taglio
+                  laser e lavorazione manuale per creare prodotti unici e
+                  personalizzati.
+                </>
+              }
+            />
+          </CompetenceGrid>
         </Container>
       </Section>
     </main>
