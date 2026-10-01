@@ -28,6 +28,7 @@ import type { WorkArea } from "@/types/workArea";
 import { workAreaConfig } from "@/types/workArea";
 import { teaSocialLinks } from "@/data/socialLinks";
 import { languages } from "@/data/languages";
+import { PatentAccordion } from "@/components/features/PatentAccordion/PatentAccordion";
 
 export function Playground() {
   //! State per la modale
@@ -1025,6 +1026,65 @@ export function Playground() {
             title="Studio di Fattibilità"
             description="Miglioramento della conoscenza del territorio attraverso un'adeguata azione di monitoraggio e implementazione sicurezza fisica."
           />
+        </Container>
+      </Section>
+
+      {/* BREVETTI */}
+      <Section variant="default">
+        <Container size="md">
+          <SectionHeader title="Brevetti" />
+          <div className="space-y-3">
+            <PatentAccordion
+              type="international-patent"
+              name="Sistema multisensoriale per la fruizione culturale"
+              number="WO 2026 / 000000"
+              year={2026}
+              description="Descrizione sintetica del brevetto e del problema affrontato."
+              pdfUrl="/documents/brevetto.pdf"
+            />
+
+            <PatentAccordion
+              type="community-trademark"
+              name="AIVES"
+              number="EU 000000000"
+              year={2024}
+              documentationUrl="https://example.com"
+            />
+
+            <PatentAccordion
+              type="international-patent"
+              name="Sistema multisensoriale per la fruizione culturale"
+              number="WO 2026 / 000000"
+              year={2026}
+              description="Descrizione sintetica del brevetto e del problema affrontato."
+              pdfUrl="/documents/brevetto.pdf"
+            />
+
+            <PatentAccordion
+              type="community-trademark"
+              name="AIVES"
+              number="EU 000000000"
+              year={2024}
+              documentationUrl="https://example.com"
+            />
+
+            <PatentAccordion
+              type="international-patent"
+              name="Sistema multisensoriale per la fruizione culturale"
+              number="WO 2026 / 000000"
+              year={2026}
+              description="Descrizione sintetica del brevetto e del problema affrontato."
+              pdfUrl="/documents/brevetto.pdf"
+            />
+
+            <PatentAccordion
+              type="community-trademark"
+              name="AIVES"
+              number="EU 000000000"
+              year={2024}
+              documentationUrl="https://example.com"
+            />
+          </div>
         </Container>
       </Section>
     </main>
