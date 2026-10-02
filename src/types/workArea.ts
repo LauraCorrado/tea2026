@@ -1,4 +1,4 @@
-import type { BadgeColor } from "@/components/ui/Badge";
+import type { BadgeColor } from "@/components/ui/Badge/Badge.types";
 
 export type WorkArea =
   | "analisi-statistica"

@@ -4,4 +4,5 @@ export * from "./PatentAccordion"
 export * from "./CompetenceCard"
 export * from "./PublicationAccordion"
 export * from "./Timeline"
-export * from "./AccessibilityControls";
+export * from "./AccessibilityControls"
+export * from "./InteractiveHero"
