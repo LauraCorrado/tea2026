@@ -26,6 +26,7 @@ import {
   type TimelineItem,
   Timeline,
 } from "@/components/features";
+import { OptionBanner } from "@/components/layout";
 import testHero from "@/assets/images/testHero.webp";
 import testProgetto1 from "@/assets/images/testProgetto1.webp";
 import testProgetto2 from "@/assets/images/testProgetto2.webp";
@@ -207,6 +208,7 @@ export function Playground() {
 
   return (
     <main className="min-h-screen bg-white">
+      <OptionBanner />
       <h1 className="mb-8 text-3xl font-bold px-10 pt-10 text-center text-tea-red">
         Test <span className="text-tea-orange">componenti</span>{" "}
         <span className="text-tea-green">TEA</span>
