@@ -9,6 +9,7 @@ export function LangSelector({
   value,
   onChange,
   className = "",
+  placement = "bottom",
   ...props
 }: LangSelectorProps) {
   const [open, setOpen] = useState(false);
@@ -59,15 +60,19 @@ export function LangSelector({
       {open && (
         <div
           role="listbox"
-          className="
-            absolute bottom-full right-0 z-20 mt-2
-            min-w-full
-            overflow-hidden
-            rounded-md
-            border border-black/10
-            bg-white
-            shadow-lg
-          "
+          className={`
+  absolute
+  right-0
+  z-20
+  min-w-full
+  overflow-hidden
+  rounded-md
+  border border-black/10
+  bg-white
+  shadow-lg
+
+  ${placement === "top" ? "bottom-full mb-2" : "top-full mt-2"}
+`}
         >
           {languages.map((language) => (
             <button

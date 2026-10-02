@@ -11,4 +11,6 @@ export interface LangSelectorProps
     languages: readonly LanguageOption[];
     value: string;
     onChange: (language: string) => void;
+    placement?: "top" | "bottom";
+    className?: string;
 }
