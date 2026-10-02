@@ -23,6 +23,8 @@ import {
   ProductCard,
   CaseStudyCard,
   CompetenceCard,
+  type TimelineItem,
+  Timeline,
 } from "@/components/features";
 import testHero from "@/assets/images/testHero.webp";
 import testProgetto1 from "@/assets/images/testProgetto1.webp";
@@ -177,6 +179,31 @@ export function Playground() {
     value,
     label: config.label,
   }));
+  //! prova timeline
+  const timelineItems = [
+    {
+      id: "2026-gaia",
+      year: 2026,
+      title: "Progetto GAIA",
+      description:
+        "Ricerca e sviluppo di soluzioni multisensoriali inclusive dedicate ai bambini nello spettro autistico.",
+      image: {
+        src: testProgetto1,
+        alt: "Progetto GAIA",
+      },
+    },
+    {
+      id: "2024-progetto",
+      year: 2024,
+      title: "Nuovo progetto TEA",
+      description:
+        "Una tappa significativa nello sviluppo di nuove soluzioni tecnologiche.",
+      image: {
+        src: testProgetto2,
+        alt: "Progetto TEA",
+      },
+    },
+  ] satisfies TimelineItem[];
 
   return (
     <main className="min-h-screen bg-white">
@@ -1218,6 +1245,16 @@ export function Playground() {
               }
             />
           </CompetenceGrid>
+        </Container>
+      </Section>
+
+      {/* TIMELINE */}
+      <Section variant="alternative">
+        <Container size="md">
+          <SectionHeader title="Timeline Card" align="center" />
+          <div className="space-y-6 my-3">
+            <Timeline items={timelineItems} />
+          </div>
         </Container>
       </Section>
     </main>
