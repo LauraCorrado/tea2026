@@ -45,70 +45,9 @@ export function Timeline({
       return;
     }
 
-    currentSpeedRef.current = Math.max(currentSpeedRef.current, 1);
-
+    currentSpeedRef.current = autoScrollSpeed;
     targetSpeedRef.current = autoScrollSpeed;
   }, [isPaused, autoScrollSpeed]);
-
-  useEffect(() => {
-    const viewportNode = viewportRef.current;
-    const setNode = setRef.current;
-
-    if (!viewportNode || !setNode) {
-      return;
-    }
-    const viewport = viewportNode;
-    const set = setNode;
-
-    let frameId = 0;
-    let previousTime = performance.now();
-
-    const initializePosition = () => {
-      const loopWidth = set.offsetWidth;
-
-      if (loopWidth > 0) {
-        viewport.scrollLeft = loopWidth;
-      }
-    };
-
-    initializePosition();
-
-    function animate(time: number) {
-      const deltaTime = Math.min(time - previousTime, 50);
-
-      previousTime = time;
-
-      currentSpeedRef.current +=
-        (targetSpeedRef.current - currentSpeedRef.current) * 0.04;
-
-      if (
-        !isDraggingRef.current &&
-        !isManualScrollingRef.current &&
-        Math.abs(currentSpeedRef.current) > 0.01
-      ) {
-        viewport.scrollLeft += (currentSpeedRef.current * deltaTime) / 1000;
-      }
-
-      const loopWidth = set.offsetWidth;
-
-      if (loopWidth > 0) {
-        if (viewport.scrollLeft >= loopWidth * 2) {
-          viewport.scrollLeft -= loopWidth;
-        }
-        if (viewport.scrollLeft <= 0) {
-          viewport.scrollLeft += loopWidth;
-        }
-      }
-
-      frameId = requestAnimationFrame(animate);
-    }
-
-    frameId = requestAnimationFrame(animate);
-
-    return () => {
-      cancelAnimationFrame(frameId);
-    };
-  }, []);
 
   function handlePointerDown(event: React.PointerEvent<HTMLDivElement>) {
     const viewport = viewportRef.current;
@@ -283,12 +222,12 @@ export function Timeline({
     return null;
   }
 
-  function renderItems(prefix: string, hidden = false) {
+  function renderItems(prefix: string) {
     return items.map((item) => (
       <TimelineCard
         key={`${prefix}-${item.id}`}
         item={item}
-        onClick={hidden ? () => {} : handleCardClick}
+        onClick={handleCardClick}
       />
     ));
   }
@@ -367,7 +306,6 @@ export function Timeline({
         >
           <div className="flex w-max">
             <div
-              aria-hidden="true"
               className="
       flex
       shrink-0
@@ -376,11 +314,10 @@ export function Timeline({
       pr-5
     "
             >
-              {renderItems("before-2", true)}
+              {renderItems("before-2")}
             </div>
 
             <div
-              aria-hidden="true"
               className="
       flex
       shrink-0
@@ -389,7 +326,7 @@ export function Timeline({
       pr-5
     "
             >
-              {renderItems("before-1", true)}
+              {renderItems("before-1")}
             </div>
 
             <div
@@ -406,7 +343,6 @@ export function Timeline({
             </div>
 
             <div
-              aria-hidden="true"
               className="
       flex
       shrink-0
@@ -415,11 +351,10 @@ export function Timeline({
       pr-5
     "
             >
-              {renderItems("after-1", true)}
+              {renderItems("after-1")}
             </div>
 
             <div
-              aria-hidden="true"
               className="
       flex
       shrink-0
@@ -428,7 +363,7 @@ export function Timeline({
       pr-5
     "
             >
-              {renderItems("after-2", true)}
+              {renderItems("after-2")}
             </div>
           </div>
         </div>
