@@ -25,7 +25,9 @@ import {
   CompetenceCard,
   type TimelineItem,
   Timeline,
+  InteractiveHero,
 } from "@/components/features";
+import { OptionBanner } from "@/components/layout";
 import testHero from "@/assets/images/testHero.webp";
 import testProgetto1 from "@/assets/images/testProgetto1.webp";
 import testProgetto2 from "@/assets/images/testProgetto2.webp";
@@ -34,6 +36,7 @@ import { useState } from "react";
 import type { WorkArea } from "@/types/workArea";
 import { workAreaConfig } from "@/types/workArea";
 import { teaSocialLinks } from "@/data/socialLinks";
+import { heroAreas } from "@/data/heroAreas";
 import { languages } from "@/data/languages";
 import { PatentAccordion } from "@/components/features/PatentAccordion/PatentAccordion";
 import { CompetenceGrid } from "@/components/features/CompetenceGrid/CompetenceGrid";
@@ -207,11 +210,24 @@ export function Playground() {
 
   return (
     <main className="min-h-screen bg-white">
+      <OptionBanner />
       <h1 className="mb-8 text-3xl font-bold px-10 pt-10 text-center text-tea-red">
         Test <span className="text-tea-orange">componenti</span>{" "}
         <span className="text-tea-green">TEA</span>
         <span className="text-tea-blue">!</span>
       </h1>
+
+      {/* INTERACTIVE HERO */}
+      <h2 className="p-10 text-2xl font-semibold">Interactive Hero</h2>
+
+      <InteractiveHero
+        videoSrc="/videos/testRec.mp4"
+        videoPoster={testHero}
+        eyebrow="TEA"
+        title="Interactive Hero"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        areas={heroAreas}
+      />
 
       {/* PAGE HERO */}
       <h2 className="text-2xl font-semibold p-10">Esempi Page Hero</h2>

@@ -1,4 +1,5 @@
-import { useRef, type PointerEvent } from "react";
+import type { PointerEvent } from "react";
+
 import type { IconButtonAnimation, IconButtonProps } from "./IconButton.types";
 
 const baseClasses =
@@ -7,7 +8,7 @@ const baseClasses =
   "transition-[border-color,transform,opacity] duration-300 " +
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tea-blue " +
   "focus-visible:ring-offset-2 " +
-  "enabled:active:scale-95 " +
+  "active:scale-95 " +
   "disabled:cursor-not-allowed disabled:opacity-40";
 
 const sizeClasses = {
@@ -17,65 +18,55 @@ const sizeClasses = {
 };
 
 const animationClasses: Record<IconButtonAnimation, string> = {
-  glow: "enabled:hover:border-transparent enabled:hover:scale-105 enabled:hover:text-white",
-  rotate: "enabled:hover:border-tea-black/40",
+  glow: "hover:border-transparent hover:scale-105 hover:text-white",
+
+  rotate: "hover:border-tea-black/40",
+
   draw: "",
+
   none: "",
 };
 
-const iconAnimationClasses = {
+const iconAnimationClasses: Record<IconButtonAnimation, string> = {
   glow: "",
 
-  rotate:
-    "transition-transform duration-300 group-enabled:group-hover:rotate-90",
+  rotate: "transition-transform duration-300 group-hover:rotate-90",
 
-  draw: "icon-button-draw", //principalmente per il menu btn
+  draw: "icon-button-draw",
 
   none: "",
 };
 
-export function IconButton({
-  icon,
-  label,
-  size = "md",
-  animation = "none",
-  className = "",
-  type = "button",
-  disabled,
-  ...props
-}: IconButtonProps) {
-  const buttonRef = useRef<HTMLButtonElement>(null); // direct reference to the button element in DOM
-  function handlePointerMove(event: PointerEvent<HTMLButtonElement>) {
-    // when cursor moves over the button
-    if (disabled || animation !== "glow") return;
+export function IconButton(props: IconButtonProps) {
+  const size = props.size ?? "md";
+  const animation = props.animation ?? "none";
+  const className = props.className ?? "";
 
-    const button = buttonRef.current;
-    if (!button) return;
+  const classes = `
+    ${baseClasses}
+    ${sizeClasses[size]}
+    ${animationClasses[animation]}
+    ${className}
+  `;
 
-    // get the position and size of the button in the viewport
-    const rect = button.getBoundingClientRect();
+  function handlePointerMove(event: PointerEvent<HTMLElement>) {
+    if (animation !== "glow") return;
+
+    const element = event.currentTarget;
+
+    const rect = element.getBoundingClientRect();
+
     const x = event.clientX - rect.left;
+
     const y = event.clientY - rect.top;
 
-    button.style.setProperty("--mouse-x", `${x}px`);
-    button.style.setProperty("--mouse-y", `${y}px`);
+    element.style.setProperty("--mouse-x", `${x}px`);
+
+    element.style.setProperty("--mouse-y", `${y}px`);
   }
 
-  return (
-    <button
-      {...props}
-      ref={buttonRef}
-      type={type}
-      aria-label={label}
-      disabled={disabled}
-      onPointerMove={handlePointerMove}
-      className={`
-        ${baseClasses}
-        ${sizeClasses[size]}
-        ${animationClasses[animation]}
-        ${className}
-      `}
-    >
+  const content = (
+    <>
       {animation === "glow" && (
         <span aria-hidden="true" className="icon-button-glow" />
       )}
@@ -86,8 +77,68 @@ export function IconButton({
           ${iconAnimationClasses[animation]}
         `}
       >
-        {icon}
+        {props.icon}
       </span>
+    </>
+  );
+
+  /*
+   * LINK
+   */
+  if (props.as === "a") {
+    const {
+      as,
+      icon,
+      label,
+      size: _size,
+      animation: _animation,
+      className: _className,
+      onPointerMove,
+      ...anchorProps
+    } = props;
+
+    return (
+      <a
+        {...anchorProps}
+        aria-label={label}
+        className={classes}
+        onPointerMove={(event) => {
+          handlePointerMove(event);
+          onPointerMove?.(event);
+        }}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  /*
+   * BUTTON
+   */
+  const {
+    as,
+    icon,
+    label,
+    size: _size,
+    animation: _animation,
+    className: _className,
+    type = "button",
+    onPointerMove,
+    ...buttonProps
+  } = props;
+
+  return (
+    <button
+      {...buttonProps}
+      type={type}
+      aria-label={label}
+      className={classes}
+      onPointerMove={(event) => {
+        handlePointerMove(event);
+        onPointerMove?.(event);
+      }}
+    >
+      {content}
     </button>
   );
 }
