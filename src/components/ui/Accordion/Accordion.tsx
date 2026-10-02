@@ -49,7 +49,7 @@ export function Accordion({
             text-xl font-semibold
             tracking-tight
             text-tea-blue
-            md:text-2xl
+            md:text-xl
           "
         >
           {title}

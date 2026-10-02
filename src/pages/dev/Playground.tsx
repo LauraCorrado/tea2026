@@ -17,6 +17,7 @@ import {
   SearchInput,
   Select,
   EmptyState,
+  Accordion,
 } from "@/components/ui";
 import {
   ProductCard,
@@ -34,6 +35,7 @@ import { teaSocialLinks } from "@/data/socialLinks";
 import { languages } from "@/data/languages";
 import { PatentAccordion } from "@/components/features/PatentAccordion/PatentAccordion";
 import { CompetenceGrid } from "@/components/features/CompetenceGrid/CompetenceGrid";
+import { PublicationAccordion } from "@/components/features/PublicationAccordion/PublicationAccordion";
 
 export function Playground() {
   //! State per la modale
@@ -1034,11 +1036,14 @@ export function Playground() {
         </Container>
       </Section>
 
-      {/* BREVETTI */}
+      {/* ACCORDION */}
       <Section variant="default">
         <Container size="md">
-          <SectionHeader title="Brevetti" />
-          <div className="space-y-3">
+          <SectionHeader
+            title="Accordion"
+            description="Varie possibilità d'uso di un accordion per sito TEA"
+          />
+          <div className="space-y-3 my-3">
             <PatentAccordion
               type="international-patent"
               name="Sistema multisensoriale per la fruizione culturale"
@@ -1056,13 +1061,57 @@ export function Playground() {
               documentationUrl="https://example.com"
             />
 
-            <PatentAccordion
-              type="international-patent"
-              name="Sistema multisensoriale per la fruizione culturale"
-              number="WO 2026 / 000000"
-              year={2026}
-              description="Descrizione sintetica del brevetto e del problema affrontato."
-              pdfUrl="/documents/brevetto.pdf"
+            <Accordion title="Accordion aperto di default" defaultOpen>
+              <p className="text-sm leading-relaxed text-black/65">
+                Questo elemento viene mostrato già aperto al caricamento della
+                pagina.
+              </p>
+            </Accordion>
+
+            <Accordion title="Contenuto più articolato">
+              <div className="space-y-4">
+                <p className="text-sm leading-relaxed text-black/65">
+                  L'accordion può contenere più elementi e non soltanto un
+                  singolo paragrafo.
+                </p>
+
+                <ul className="list-disc space-y-2 pl-5 text-sm text-black/65">
+                  <li>Testo descrittivo</li>
+                  <li>Elenchi</li>
+                  <li>Componenti UI</li>
+                  <li>Azioni e collegamenti</li>
+                </ul>
+
+                <Button variant="secondary" color="blue" size="sm">
+                  Azione
+                </Button>
+              </div>
+            </Accordion>
+
+            <Accordion title="Accordion con badge">
+              <div className="flex flex-wrap gap-2">
+                <Badge color="blue">Ricerca</Badge>
+
+                <Badge color="green">Tecnologia</Badge>
+
+                <Badge color="orange">Accessibilità</Badge>
+              </div>
+
+              <p className="mt-4 text-sm leading-relaxed text-black/65">
+                Anche altri componenti UI possono essere inseriti liberamente
+                nel contenuto.
+              </p>
+            </Accordion>
+
+            <PublicationAccordion
+              title="Titolo pubblicazione"
+              description={
+                <>
+                  Descrizione della pubblicazione, con eventuali dettagli
+                  aggiuntivi e informazioni utili per l'utente.
+                </>
+              }
+              pdfUrl="/documents/publications/prova.pdf"
             />
           </div>
         </Container>
