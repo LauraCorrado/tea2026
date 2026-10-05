@@ -3,47 +3,11 @@ import { useAccessibility } from "@/hooks/useAccessibility";
 
 import type { AccessibilityControlsProps } from "./AccessibilityControls.types";
 
-// const defaultSettings: AccessibilitySettings = {
-//   reduceMotion: false,
-//   lowVision: false,
-//   adhdFriendly: false,
-//   cognitiveSupport: false,
-//   seniorMode: false,
-
-//   highContrast: false,
-//   darkMode: false,
-
-//   contentScale: 100,
-//   highlightHeadings: false,
-//   fontScale: 100,
-//   lineHeight: 1.5,
-//   letterSpacing: 0,
-
-//   largeCursor: false,
-//   readingMask: false,
-//   readingGuide: false,
-// };
-
 export function AccessibilityControls({
   className = "",
 }: AccessibilityControlsProps) {
-  // const [settings, setSettings] =
-  //   useState<AccessibilitySettings>(defaultSettings);
-  const { settings, updateSetting, resetSettings } = useAccessibility();
-
-  //   function updateSetting<K extends keyof AccessibilitySettings>(
-  //   key: K,
-  //   value: AccessibilitySettings[K],
-  // ) {
-  //   setSettings((current) => ({
-  //     ...current,
-  //     [key]: value,
-  //   }));
-  // }
-
-  //   function resetSettings() {
-  //     setSettings(defaultSettings);
-  //   }
+  const { settings, updateSetting, resetSettings, applyPreset } =
+    useAccessibility();
 
   return (
     <div
@@ -66,30 +30,41 @@ export function AccessibilityControls({
             onChange={(checked) => updateSetting("reduceMotion", checked)}
           />
 
-          {/*
-          <AccessibilityToggle
-            label="Supporto per ipovisione"
-            checked={settings.lowVision}
-            onChange={(checked) => updateSetting("lowVision", checked)}
-          />
+          <Button
+            variant="secondary"
+            color="blue"
+            size="sm"
+            onClick={() => applyPreset("lowVision")}
+          >
+            Supporto per ipovisione
+          </Button>
 
-          <AccessibilityToggle
-            label="ADHD friendly"
-            checked={settings.adhdFriendly}
-            onChange={(checked) => updateSetting("adhdFriendly", checked)}
-          />
+          <Button
+            variant="secondary"
+            color="orange"
+            size="sm"
+            onClick={() => applyPreset("cognitiveSupport")}
+          >
+            Supporto cognitivo e alla lettura
+          </Button>
 
-          <AccessibilityToggle
-            label="Supporto cognitivo e alla lettura"
-            checked={settings.cognitiveSupport}
-            onChange={(checked) => updateSetting("cognitiveSupport", checked)}
-          />
+          <Button
+            variant="secondary"
+            color="green"
+            size="sm"
+            onClick={() => applyPreset("reducedDistractions")}
+          >
+            Riduzione distrazioni
+          </Button>
 
-          <AccessibilityToggle
-            label="Supporto per persone anziane"
-            checked={settings.seniorMode}
-            onChange={(checked) => updateSetting("seniorMode", checked)}
-          /> */}
+          <Button
+            variant="secondary"
+            color="red"
+            size="sm"
+            onClick={() => applyPreset("senior")}
+          >
+            Supporto per persone anziane
+          </Button>
         </div>
       </section>
 

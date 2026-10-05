@@ -11,6 +11,10 @@ import {
   loadAccessibilitySettings,
   saveAccessibilitySettings,
 } from "./accessibility.storage";
+import {
+  accessibilityPresets,
+  type AccessibilityPresetName,
+} from "./accessibility.presets";
 
 import type { AccessibilitySettings } from "./accessibility.types";
 
@@ -23,6 +27,7 @@ interface AccessibilityContextValue {
   ) => void;
 
   resetSettings: () => void;
+  applyPreset: (preset: AccessibilityPresetName) => void;
 }
 
 export const AccessibilityContext =
@@ -53,6 +58,13 @@ export function AccessibilityProvider({
     setSettings(defaultAccessibilitySettings);
   }
 
+  function applyPreset(preset: AccessibilityPresetName) {
+    setSettings((current) => ({
+      ...current,
+      ...accessibilityPresets[preset],
+    }));
+  }
+
   useEffect(() => {
     saveAccessibilitySettings(settings);
   }, [settings]);
@@ -62,6 +74,7 @@ export function AccessibilityProvider({
       settings,
       updateSetting,
       resetSettings,
+      applyPreset,
     }),
     [settings],
   );
