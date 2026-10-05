@@ -13,4 +13,6 @@ export interface SearchInputProps
     onClear?: () => void;
     onSubmit?: (value: string) => void;
     helperText?: ReactNode;
+    label?: string;
+    hideLabel?: boolean;
 }

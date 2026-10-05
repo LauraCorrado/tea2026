@@ -8,13 +8,32 @@ export function Select({
   onChange,
   placeholder = "Seleziona...",
   helperText,
+  label,
+  hideLabel = false,
   className = "",
+  id,
   ...props
 }: SelectProps) {
+  const selectId = id ?? "select-input";
+
   return (
     <div className={`w-full ${className}`}>
+      {label && (
+        <label
+          htmlFor={selectId}
+          className={
+            hideLabel
+              ? "sr-only"
+              : "mb-2 ms-1 block text-sm font-medium text-tea-blue"
+          }
+        >
+          {label}
+        </label>
+      )}
+
       <div className="relative">
         <select
+          id={selectId}
           value={value}
           onChange={(event) => onChange(event.target.value)}
           className="

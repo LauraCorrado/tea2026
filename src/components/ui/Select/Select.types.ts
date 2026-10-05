@@ -18,4 +18,6 @@ export interface SelectProps
     onChange: (value: string) => void;
     placeholder?: string;
     helperText?: ReactNode;
+    label?: string;
+    hideLabel?: boolean;
 }
