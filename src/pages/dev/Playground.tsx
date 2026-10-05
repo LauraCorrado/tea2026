@@ -27,13 +27,15 @@ import {
   Timeline,
   InteractiveHero,
   ArchiveFilters,
+  type AboutHeroSlide,
+  AboutHero,
 } from "@/components/features";
 // LAYOUT
 import { OptionBanner } from "@/components/layout";
-import testHero from "@/assets/images/testHero.webp";
-import testProgetto1 from "@/assets/images/testProgetto1.webp";
-import testProgetto2 from "@/assets/images/testProgetto2.webp";
-import testProgetto3 from "@/assets/images/testProgetto3.webp";
+import testHero from "@/assets/images/decorative/testHero.webp";
+import testProgetto1 from "@/assets/images/decorative/testProgetto1.webp";
+import testProgetto2 from "@/assets/images/decorative/testProgetto2.webp";
+import testProgetto3 from "@/assets/images/decorative/testProgetto3.webp";
 import { useState } from "react";
 import type { WorkArea } from "@/types/workArea";
 import { workAreaConfig } from "@/types/workArea";
@@ -217,6 +219,45 @@ export function Playground() {
     { value: "2025", label: "2025" },
     { value: "2024", label: "2024" },
   ];
+  //! abouthero slides
+  const aboutHeroSlides = [
+    // {
+    //   id: "intro",
+    //   layout: "intro",
+    //   title: "In un mondo di tecnologia, vendiamo poesia",
+    //   description: "TEA porta la tecnologia dentro un orizzonte umano, sensibile e creativo",
+    // },
+    {
+      id: "slide1",
+      title: "In un mondo di tecnologia, noi vendiamo poesia",
+      description:
+        "TEA porta la tecnologia dentro un orizzonte umano, sensibile e creativo. L’innovazione diventa uno strumento per costruire esperienze capaci di emozionare, coinvolgere e trasformare idee in qualcosa da vivere. La poesia restituisce centralità all’esperienza umana.",
+      image: {
+        src: testProgetto3,
+        alt: "Attività e progetti TEA",
+      },
+    },
+    {
+      id: "slide2",
+      title: "Un’evoluzione lunga 30 anni",
+      description:
+        "TEA nasce nel 1996 dalla consulenza statistica e da un principio che accompagna tutta la sua storia: dietro ogni dato esiste una storia da raccontare. Nel tempo questo approccio incontra il mondo dei beni culturali, dando origine a soluzioni come @MMIRA per l’Imaging Multispettrale e il restauro virtuale e, dal 2015, AIVES per l’accessibilità multisensoriale. Da qui prende forma un percorso sempre più orientato all’accessibilità e al Design for All.",
+      image: {
+        src: testHero,
+        alt: "Attività e progetti TEA",
+      },
+    },
+    {
+      id: "slide3",
+      title: "Nuove storie da scoprire",
+      description:
+        "Oggi TEA continua a progettare soluzioni capaci di abbattere le barriere e rendere cultura, conoscenza ed esperienze accessibili a tutti.",
+      image: {
+        src: testProgetto1,
+        alt: "Attività di ricerca e sviluppo TEA",
+      },
+    },
+  ] satisfies AboutHeroSlide[];
 
   return (
     <main className="min-h-screen bg-white">
@@ -238,6 +279,10 @@ export function Playground() {
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         areas={heroAreas}
       />
+
+      {/* ABOUT HERO */}
+      <h2 className="p-10 text-2xl font-semibold">About Hero</h2>
+      <AboutHero slides={aboutHeroSlides} />
 
       {/* PAGE HERO */}
       <h2 className="text-2xl font-semibold p-10">Esempi Page Hero</h2>
@@ -433,10 +478,11 @@ export function Playground() {
       </Section>
 
       {/* BUTTONS */}
-      <section className="space-y-6 p-10">
-        <h2 className="text-2xl font-semibold">Buttons</h2>
-
+      <Section>
         <Container size="full">
+          <SectionHeader title="Buttons" />
+        </Container>
+        <Container size="full" className="mb-6">
           <div className="flex flex-wrap gap-4">
             <Button variant="primary" color="blue">
               Primary / Blue Primary
@@ -447,7 +493,7 @@ export function Playground() {
           </div>
         </Container>
 
-        <Container size="full">
+        <Container size="full" className="mb-6">
           <div className="flex flex-wrap gap-4">
             <Button variant="primary" color="black">
               Black primary
@@ -458,7 +504,7 @@ export function Playground() {
           </div>
         </Container>
 
-        <Container size="full">
+        <Container size="full" className="mb-6">
           <div className="flex flex-wrap gap-4">
             <Button variant="primary" color="green">
               Green primary
@@ -469,7 +515,7 @@ export function Playground() {
           </div>
         </Container>
 
-        <Container size="full">
+        <Container size="full" className="mb-6">
           <div className="flex flex-wrap gap-4">
             <Button variant="primary" color="orange">
               Orange primary
@@ -480,7 +526,7 @@ export function Playground() {
           </div>
         </Container>
 
-        <Container size="full">
+        <Container size="full" className="mb-6">
           <div className="flex flex-wrap gap-4">
             <Button variant="primary" color="red">
               Red primary
@@ -491,7 +537,7 @@ export function Playground() {
           </div>
         </Container>
 
-        <Container size="full">
+        <Container size="full" className="mb-6">
           <div className="flex flex-wrap gap-4 bg-gray-800 p-2">
             <Button variant="primary" color="white">
               White primary
@@ -502,7 +548,7 @@ export function Playground() {
           </div>
         </Container>
 
-        <Container size="full">
+        <Container size="full" className="mb-6">
           <div className="flex flex-wrap items-center gap-4">
             <Button size="sm">Small</Button>
             <Button size="md">Medium</Button>
@@ -510,10 +556,10 @@ export function Playground() {
           </div>
         </Container>
 
-        <Container size="full">
+        <Container size="full" className="mb-6">
           <Button disabled>Disabled</Button>
         </Container>
-      </section>
+      </Section>
 
       {/* BUTTONS CONTROLLO INTERFACCIA */}
       <Section variant="alternative">
