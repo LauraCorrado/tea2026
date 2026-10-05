@@ -66,6 +66,28 @@ export function AccessibilityProvider({
     [settings],
   );
 
+  useEffect(() => {
+    const root = document.documentElement;
+
+    root.dataset.reduceMotion = String(settings.reduceMotion);
+    root.dataset.highContrast = String(settings.highContrast);
+    root.dataset.darkMode = String(settings.darkMode);
+    root.dataset.highlightHeadings = String(settings.highlightHeadings);
+    root.dataset.largeCursor = String(settings.largeCursor);
+
+    root.style.setProperty(
+      "--a11y-font-scale",
+      String(settings.fontScale / 100),
+    );
+
+    root.style.setProperty("--a11y-line-height", String(settings.lineHeight));
+
+    root.style.setProperty(
+      "--a11y-letter-spacing",
+      `${settings.letterSpacing}em`,
+    );
+  }, [settings]);
+
   return (
     <AccessibilityContext.Provider value={value}>
       {children}

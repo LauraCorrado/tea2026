@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+:root {
+  --a11y-font-scale: 1;
+  --a11y-line-height: 1.5;
+  --a11y-letter-spacing: 0em;
+}
+
 @theme {
   --color-tea-orange: #f77f00;
   --color-tea-green: #009e49;
@@ -12,14 +18,57 @@ html {
   scroll-behavior: smooth;
 }
 
+html[data-reduce-motion="true"] *,
+html[data-reduce-motion="true"] *::before,
+html[data-reduce-motion="true"] *::after {
+  scroll-behavior: auto !important;
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+html[data-highlight-headings="true"] :is(h1, h2, h3, h4, h5, h6) {
+  outline: 3px solid var(--color-tea-blue);
+  outline-offset: 4px;
+}
+
+html[data-high-contrast="true"] {
+  --site-bg: #ffffff;
+  --site-text: #000000;
+}
+
+html[data-dark-mode="true"] {
+  --site-bg: #111111;
+  --site-text: #ffffff;
+}
+
 body {
   min-width: 320px;
+  font-size: calc(1rem * var(--a11y-font-scale));
+  line-height: var(--a11y-line-height);
+  letter-spacing: var(--a11y-letter-spacing);
+  background: var(--site-bg, #ffffff);
+  color: var(--site-text, #000000);
 }
 
 input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
   appearance: none;
 }
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ANIMAZIONI */
 
 @keyframes about-hero-from-right {
   from {
@@ -31,7 +80,6 @@ input[type="search"]::-webkit-search-cancel-button {
   }
 }
 
-/* ANIMAZIONI */
 @keyframes about-hero-from-left {
   from {
     transform: translateX(-60px);
@@ -188,6 +236,7 @@ input[type="search"]::-webkit-search-cancel-button {
   }
 
   @media (prefers-reduced-motion: reduce) {
+
     .about-hero-slide-right,
     .about-hero-slide-left {
       animation: none;
