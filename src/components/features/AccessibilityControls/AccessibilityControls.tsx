@@ -1,52 +1,49 @@
-import { useState } from "react";
-
 import { Button } from "@/components/ui";
+import { useAccessibility } from "@/hooks/useAccessibility";
 
-import type {
-  AccessibilityControlsProps,
-  AccessibilitySettings,
-} from "./AccessibilityControls.types";
+import type { AccessibilityControlsProps } from "./AccessibilityControls.types";
 
-const defaultSettings: AccessibilitySettings = {
-  reduceMotion: false,
-  lowVision: false,
-  adhdFriendly: false,
-  cognitiveSupport: false,
-  seniorMode: false,
+// const defaultSettings: AccessibilitySettings = {
+//   reduceMotion: false,
+//   lowVision: false,
+//   adhdFriendly: false,
+//   cognitiveSupport: false,
+//   seniorMode: false,
 
-  highContrast: false,
-  darkMode: false,
+//   highContrast: false,
+//   darkMode: false,
 
-  contentScale: 100,
-  highlightHeadings: false,
-  fontScale: 100,
-  lineHeight: 1.5,
-  letterSpacing: 0,
+//   contentScale: 100,
+//   highlightHeadings: false,
+//   fontScale: 100,
+//   lineHeight: 1.5,
+//   letterSpacing: 0,
 
-  largeCursor: false,
-  readingMask: false,
-  readingGuide: false,
-};
+//   largeCursor: false,
+//   readingMask: false,
+//   readingGuide: false,
+// };
 
 export function AccessibilityControls({
   className = "",
 }: AccessibilityControlsProps) {
-  const [settings, setSettings] =
-    useState<AccessibilitySettings>(defaultSettings);
+  // const [settings, setSettings] =
+  //   useState<AccessibilitySettings>(defaultSettings);
+  const { settings, updateSetting, resetSettings } = useAccessibility();
 
-  function updateSetting<K extends keyof AccessibilitySettings>(
-    key: K,
-    value: AccessibilitySettings[K],
-  ) {
-    setSettings((current) => ({
-      ...current,
-      [key]: value,
-    }));
-  }
+  //   function updateSetting<K extends keyof AccessibilitySettings>(
+  //   key: K,
+  //   value: AccessibilitySettings[K],
+  // ) {
+  //   setSettings((current) => ({
+  //     ...current,
+  //     [key]: value,
+  //   }));
+  // }
 
-  function resetSettings() {
-    setSettings(defaultSettings);
-  }
+  //   function resetSettings() {
+  //     setSettings(defaultSettings);
+  //   }
 
   return (
     <div
@@ -69,6 +66,7 @@ export function AccessibilityControls({
             onChange={(checked) => updateSetting("reduceMotion", checked)}
           />
 
+          {/*
           <AccessibilityToggle
             label="Supporto per ipovisione"
             checked={settings.lowVision}
@@ -91,7 +89,7 @@ export function AccessibilityControls({
             label="Supporto per persone anziane"
             checked={settings.seniorMode}
             onChange={(checked) => updateSetting("seniorMode", checked)}
-          />
+          /> */}
         </div>
       </section>
 
@@ -123,7 +121,7 @@ export function AccessibilityControls({
         </h4>
 
         <div className="mt-4 space-y-5">
-          <AccessibilityRange
+          {/* <AccessibilityRange
             label="Scala contenuti"
             value={settings.contentScale}
             min={80}
@@ -131,7 +129,7 @@ export function AccessibilityControls({
             step={5}
             suffix="%"
             onChange={(value) => updateSetting("contentScale", value)}
-          />
+          /> */}
 
           <AccessibilityToggle
             label="Evidenzia titoli"
