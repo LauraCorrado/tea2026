@@ -21,6 +21,27 @@ input[type="search"]::-webkit-search-cancel-button {
   appearance: none;
 }
 
+@keyframes about-hero-from-right {
+  from {
+    transform: translateX(60px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ANIMAZIONI */
+@keyframes about-hero-from-left {
+  from {
+    transform: translateX(-60px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
 @layer base {
   button:not(:disabled) {
     cursor: pointer;
@@ -134,6 +155,23 @@ input[type="search"]::-webkit-search-cancel-button {
 
   .lightbox-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+
+  /* ABOUT HERO */
+  .about-hero-slide-right {
+    animation: about-hero-from-right 2500ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .about-hero-slide-left {
+    animation: about-hero-from-left 2500ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    .about-hero-slide-right,
+    .about-hero-slide-left {
+      animation: none;
+    }
   }
 }
 

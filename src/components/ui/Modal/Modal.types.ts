@@ -7,6 +7,10 @@ export interface ModalImage {
     alt: string;
 }
 
+export type ModalVariant =
+    | "default"
+    | "story";
+
 export interface ModalProps {
     open: boolean;
     onClose: () => void;
@@ -21,6 +25,8 @@ export interface ModalProps {
 
     actions?: ReactNode;
     children?: ReactNode;
+
+    variant?: ModalVariant;
 
     size?: ModalSize;
     showCloseButton?: boolean;

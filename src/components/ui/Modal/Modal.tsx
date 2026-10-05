@@ -24,6 +24,7 @@ export function Modal({
   gallery,
   actions,
   children,
+  variant = "default",
   size = "lg",
   showCloseButton = true,
   closeOnOverlayClick = true,
@@ -316,88 +317,143 @@ export function Modal({
           </div>
         )}
 
-        <div className="p-6 md:p-8">
-          {eyebrow && (
-            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-tea-blue">
-              {eyebrow}
-            </p>
-          )}
+        {variant === "story" ? (
+          <div
+            className="
+      flex
+      min-h-88
+      flex-col
+      justify-center
+      gap-6
+      p-8
 
-          {title && (
-            <h2 id={titleId} className="text-3xl font-semibold tracking-tight">
-              {title}
-            </h2>
-          )}
+      md:p-12
+    "
+          >
+            {title && (
+              <h2
+                id={titleId}
+                className="
+          max-w-4xl
+          text-3xl
+          font-bold
+          leading-tight
+          text-tea-blue
 
-          {period && (
-            <p className="mt-2 text-sm font-medium opacity-60">{period}</p>
-          )}
-
-          {description && (
-            <div className="mt-4 max-w-3xl leading-relaxed opacity-80">
-              {description}
-            </div>
-          )}
-
-          {gallery && gallery.length > 0 && (
-            <div
-              ref={galleryRef}
-              className={`
-      modal-gallery-scrollbar
-      mt-6 flex gap-4 overflow-x-auto pb-3
-      
-      touch-pan-x overscroll-x-contain
-      select-none
-      ${isGalleryDragging ? "cursor-grabbing" : "cursor-grab"}
-    `}
-              onPointerDown={handleGalleryPointerDown}
-              onPointerMove={handleGalleryPointerMove}
-              onPointerUp={handleGalleryPointerUp}
-              onPointerCancel={handleGalleryPointerUp}
-            >
-              {gallery.map((item, index) => (
-                <button
-                  key={`${item.src}-${index}`}
-                  type="button"
-                  onClick={() => {
-                    if (galleryDidDrag.current) {
-                      galleryDidDrag.current = false;
-                      return;
-                    }
-
-                    openImage(item);
-                  }}
-                  className="
-          aspect-4/3
-          w-[80%] shrink-0
-          overflow-hidden rounded-lg
-          snap-start
-          sm:w-[45%]
-          lg:w-[32%]
+          md:text-4xl
         "
-                  aria-label={`Ingrandisci immagine: ${item.alt}`}
-                >
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    draggable={false}
+              >
+                {title}
+              </h2>
+            )}
+
+            {eyebrow && <p className="text-tea-blue">{eyebrow}</p>}
+
+            {description && (
+              <div
+                className="
+          max-w-4xl
+          text-lg
+          leading-relaxed
+          text-tea-black
+
+          md:text-xl
+        "
+              >
+                {description}
+              </div>
+            )}
+
+            {children && <div>{children}</div>}
+
+            {actions && <div className="flex flex-wrap gap-3">{actions}</div>}
+          </div>
+        ) : (
+          <div className="p-6 md:p-8">
+            {eyebrow && (
+              <p className="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-tea-blue">
+                {eyebrow}
+              </p>
+            )}
+
+            {title && (
+              <h2
+                id={titleId}
+                className="text-3xl font-semibold tracking-tight"
+              >
+                {title}
+              </h2>
+            )}
+
+            {period && (
+              <p className="mt-2 text-sm font-medium opacity-60">{period}</p>
+            )}
+
+            {description && (
+              <div className="mt-4 max-w-3xl leading-relaxed opacity-80">
+                {description}
+              </div>
+            )}
+
+            {gallery && gallery.length > 0 && (
+              <div
+                ref={galleryRef}
+                className={`
+          modal-gallery-scrollbar
+          mt-6 flex gap-4 overflow-x-auto pb-3
+          touch-pan-x overscroll-x-contain
+          select-none
+          ${isGalleryDragging ? "cursor-grabbing" : "cursor-grab"}
+        `}
+                onPointerDown={handleGalleryPointerDown}
+                onPointerMove={handleGalleryPointerMove}
+                onPointerUp={handleGalleryPointerUp}
+                onPointerCancel={handleGalleryPointerUp}
+              >
+                {gallery.map((item, index) => (
+                  <button
+                    key={`${item.src}-${index}`}
+                    type="button"
+                    onClick={() => {
+                      if (galleryDidDrag.current) {
+                        galleryDidDrag.current = false;
+                        return;
+                      }
+
+                      openImage(item);
+                    }}
                     className="
-            h-full w-full object-cover
-            transition-transform duration-300
-            hover:scale-105
-          "
-                  />
-                </button>
-              ))}
-            </div>
-          )}
+              aspect-4/3
+              w-[80%] shrink-0
+              overflow-hidden rounded-lg
+              snap-start
+              sm:w-[45%]
+              lg:w-[32%]
+            "
+                    aria-label={`Ingrandisci immagine: ${item.alt}`}
+                  >
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      draggable={false}
+                      className="
+                h-full w-full object-cover
+                transition-transform duration-300
+                hover:scale-105
+              "
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
 
-          {children && <div className="mt-6">{children}</div>}
+            {children && <div className="mt-6">{children}</div>}
 
-          {actions && (
-            <div className="mt-8 flex flex-wrap gap-3">{actions}</div>
-          )}
-        </div>
+            {actions && (
+              <div className="mt-8 flex flex-wrap gap-3">{actions}</div>
+            )}
+          </div>
+        )}
       </div>
       {selectedImage && (
         <div
