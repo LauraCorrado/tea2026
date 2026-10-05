@@ -1,4 +1,5 @@
 import { ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
+// UI
 import {
   Button,
   Container,
@@ -14,11 +15,10 @@ import {
   SocialLinks,
   LangSelector,
   LoadingState,
-  SearchInput,
-  Select,
   EmptyState,
   Accordion,
 } from "@/components/ui";
+// FEATURES
 import {
   ProductCard,
   CaseStudyCard,
@@ -26,7 +26,9 @@ import {
   type TimelineItem,
   Timeline,
   InteractiveHero,
+  ArchiveFilters,
 } from "@/components/features";
+// LAYOUT
 import { OptionBanner } from "@/components/layout";
 import testHero from "@/assets/images/testHero.webp";
 import testProgetto1 from "@/assets/images/testProgetto1.webp";
@@ -52,6 +54,8 @@ export function Playground() {
   const [search, setSearch] = useState("");
   //! state per select
   const [area, setArea] = useState<WorkArea | "">("");
+  //! state per select anno
+  const [year, setYear] = useState("");
 
   //! items carosello
   const carouselItems = [
@@ -207,6 +211,12 @@ export function Playground() {
       },
     },
   ] satisfies TimelineItem[];
+  //! prova select anno
+  const yearOptions = [
+    { value: "2026", label: "2026" },
+    { value: "2025", label: "2025" },
+    { value: "2024", label: "2024" },
+  ];
 
   return (
     <main className="min-h-screen bg-white">
@@ -937,32 +947,24 @@ export function Playground() {
         </Container>
       </Section>
 
-      {/* SEARCH INPUT, SELECT e NOT FOUND */}
+      {/* FILTRO ARCHIVIO TEA + EMPTY STATE */}
       <Section variant="alternative">
         <Container size="full">
           <SectionHeader
             title="Controlli di ricerca"
-            description="Campo di ricerca testuale e campo select"
+            description="Campo di ricerca testuale e campi select"
           />
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
-            <SearchInput
-              value={search}
-              onChange={setSearch}
-              placeholder="Ricerca un nostro lavoro"
-              helperText={
-                search
-                  ? `Ricerca corrente: ${search}`
-                  : "Nessuna ricerca testuale"
-              }
-            />
-
-            <Select
-              options={areaOptions}
-              value={area}
-              onChange={(value) => setArea(value as WorkArea | "")}
-              placeholder="Seleziona ambito..."
-            />
-          </div>
+          <ArchiveFilters
+            className="mt-8"
+            search={search}
+            onSearchChange={setSearch}
+            area={area}
+            onAreaChange={(value) => setArea(value as WorkArea | "")}
+            areaOptions={areaOptions}
+            year={year}
+            onYearChange={setYear}
+            yearOptions={yearOptions}
+          />
 
           <EmptyState
             className="my-3"
