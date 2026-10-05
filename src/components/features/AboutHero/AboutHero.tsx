@@ -6,9 +6,12 @@ import { CarouselControls } from "@/components/ui/Carousel";
 
 import type { AboutHeroProps } from "./AboutHero.types";
 
+import decorativeAbout from "@/assets/images/decorative/decorativeAbout.webp";
+
 export function AboutHero({
   slides,
-  descriptionMaxLength = 220,
+  descriptionMaxLength = 400,
+  backgroundVariant = "wave",
   className = "",
   ...props
 }: AboutHeroProps) {
@@ -26,7 +29,6 @@ export function AboutHero({
   const canNext = currentIndex < total - 1;
 
   const description = currentSlide.description ?? "";
-
   const hasLongDescription = description.length > descriptionMaxLength;
 
   const visibleDescription = hasLongDescription
@@ -35,7 +37,6 @@ export function AboutHero({
 
   function previous() {
     if (!canPrevious) return;
-
     setDirection("left");
     setModalOpen(false);
     setCurrentIndex((current) => current - 1);
@@ -43,21 +44,20 @@ export function AboutHero({
 
   function next() {
     if (!canNext) return;
-
     setDirection("right");
     setModalOpen(false);
     setCurrentIndex((current) => current + 1);
   }
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLElement>) {
-    if (event.key === "ArrowLeft") {
-      previous();
-    }
-
-    if (event.key === "ArrowRight") {
-      next();
-    }
+    if (event.key === "ArrowLeft") previous();
+    if (event.key === "ArrowRight") next();
   }
+
+  const sectionBackgroundClass =
+    backgroundVariant === "gradient"
+      ? "about-hero-bg-gradient"
+      : "about-hero-bg-wave";
 
   return (
     <section
@@ -65,7 +65,8 @@ export function AboutHero({
         relative
         w-full
         overflow-hidden
-        py-5
+        py-10
+        ${sectionBackgroundClass}
         ${className}
       `}
       tabIndex={0}
@@ -74,73 +75,95 @@ export function AboutHero({
       onKeyDown={handleKeyDown}
       {...props}
     >
+      {backgroundVariant === "wave" && (
+        <>
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 z-0 overflow-hidden"
+          >
+            <img
+              src={decorativeAbout}
+              alt=""
+              className="
+          h-full
+          w-full
+          object-cover
+          object-top
+          opacity-30
+        "
+            />
+          </div>
+
+          <div
+            aria-hidden="true"
+            className="
+        absolute
+        inset-0
+        z-0
+        bg-white/55
+      "
+          />
+        </>
+      )}
       <div
         key={currentSlide.id}
         className={`
-    mx-auto
-    grid
-    w-full
-    max-w-7xl
-    items-center
-    gap-8
-    lg:grid-cols-2
+          relative
+          z-10
+          mx-auto
+          grid
+          w-full
+          max-w-7xl
+          items-center
+          gap-10
+          px-6
+          lg:grid-cols-2
+          lg:px-10
 
-    ${
-      direction === "right" ? "about-hero-slide-right" : "about-hero-slide-left"
-    }
-  `}
+          ${
+            direction === "right"
+              ? "about-hero-slide-right"
+              : "about-hero-slide-left"
+          }
+        `}
       >
-        {/* CONTENUTO */}
-        <div className="flex flex-col gap-4">
-          <h1 className="text-4xl font-bold text-tea-blue">
+        <div className="flex flex-col gap-5">
+          <h1 className="text-4xl font-bold leading-tight text-tea-black md:text-5xl">
             {currentSlide.title}
           </h1>
 
           {visibleDescription && (
-            <p className="text-lg text-gray-700">{visibleDescription}</p>
+            <p className="max-w-2xl text-lg leading-relaxed text-tea-black/80">
+              {visibleDescription}
+            </p>
           )}
 
           {hasLongDescription && (
             <div>
               <IconButton
                 icon={<Plus size={18} />}
-                label={`Approfondisci ${currentSlide.title}`}
+                label={`Continua la lettura della slide "${currentSlide.title}"`}
                 onClick={() => setModalOpen(true)}
-                className="text-tea-blue hover:text-white hover:bg-tea-blue transition-all duration-100"
-                title="Continua a leggere"
+                className="bg-white/80 text-tea-blue border-tea-blue hover:text-white/80 hover:bg-tea-blue backdrop-blur-sm"
+                title={`Continua a leggere`}
               />
             </div>
           )}
         </div>
 
-        {/* IMMAGINE */}
         {currentSlide.image && (
-          <div className="overflow-hidden rounded-xl">
+          <div className="relative z-10 overflow-hidden rounded-2xl shadow-xl">
             <img
               src={currentSlide.image.src}
               alt={currentSlide.image.alt}
-              className="
-          aspect-4/3
-          h-full
-          w-full
-          object-cover
-        "
+              className="aspect-4/3 h-full w-full object-cover"
             />
           </div>
         )}
       </div>
 
-      {/* CONTROLLI */}
-      <div
-        className="
-          mx-auto
-          flex
-          w-full
-          max-w-7xl
-          justify-end
-        "
-      >
-        <div className="mt-5 w-fit">
+      <div className="relative z-10 mx-auto mt-8 flex w-full max-w-7xl justify-end px-6 lg:px-10">
+        <div className="w-fit">
           <CarouselControls
             currentIndex={currentIndex}
             total={total}
@@ -154,7 +177,6 @@ export function AboutHero({
         </div>
       </div>
 
-      {/* APPROFONDIMENTO */}
       <Modal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
@@ -168,11 +190,8 @@ export function AboutHero({
 }
 
 function truncateText(text: string, maxLength: number) {
-  if (text.length <= maxLength) {
-    return text;
-  }
+  if (text.length <= maxLength) return text;
 
   const truncated = text.slice(0, maxLength).replace(/\s+\S*$/, "");
-
-  return `${truncated}…`;
+  return `${truncated} …`;
 }

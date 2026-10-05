@@ -3,4 +3,4 @@ export { CarouselControls } from "./CarouselControls";
 
 export type {
     CarouselProps,
-} from "./Carousel.types";
+} from "./Carousel.types"

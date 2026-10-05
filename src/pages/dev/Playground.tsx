@@ -32,10 +32,10 @@ import {
 } from "@/components/features";
 // LAYOUT
 import { OptionBanner } from "@/components/layout";
-import testHero from "@/assets/images/testHero.webp";
-import testProgetto1 from "@/assets/images/testProgetto1.webp";
-import testProgetto2 from "@/assets/images/testProgetto2.webp";
-import testProgetto3 from "@/assets/images/testProgetto3.webp";
+import testHero from "@/assets/images/decorative/testHero.webp";
+import testProgetto1 from "@/assets/images/decorative/testProgetto1.webp";
+import testProgetto2 from "@/assets/images/decorative/testProgetto2.webp";
+import testProgetto3 from "@/assets/images/decorative/testProgetto3.webp";
 import { useState } from "react";
 import type { WorkArea } from "@/types/workArea";
 import { workAreaConfig } from "@/types/workArea";
@@ -247,7 +247,7 @@ export function Playground() {
         alt: "Attività e progetti TEA",
       },
     },
-        {
+    {
       id: "slide3",
       title: "Nuove storie da scoprire",
       description:
@@ -478,10 +478,11 @@ export function Playground() {
       </Section>
 
       {/* BUTTONS */}
-      <section className="space-y-6 p-10">
-        <h2 className="text-2xl font-semibold">Buttons</h2>
-
+      <Section>
         <Container size="full">
+          <SectionHeader title="Buttons" />
+        </Container>
+        <Container size="full" className="mb-6">
           <div className="flex flex-wrap gap-4">
             <Button variant="primary" color="blue">
               Primary / Blue Primary
@@ -492,7 +493,7 @@ export function Playground() {
           </div>
         </Container>
 
-        <Container size="full">
+        <Container size="full" className="mb-6">
           <div className="flex flex-wrap gap-4">
             <Button variant="primary" color="black">
               Black primary
@@ -503,7 +504,7 @@ export function Playground() {
           </div>
         </Container>
 
-        <Container size="full">
+        <Container size="full" className="mb-6">
           <div className="flex flex-wrap gap-4">
             <Button variant="primary" color="green">
               Green primary
@@ -514,7 +515,7 @@ export function Playground() {
           </div>
         </Container>
 
-        <Container size="full">
+        <Container size="full" className="mb-6">
           <div className="flex flex-wrap gap-4">
             <Button variant="primary" color="orange">
               Orange primary
@@ -525,7 +526,7 @@ export function Playground() {
           </div>
         </Container>
 
-        <Container size="full">
+        <Container size="full" className="mb-6">
           <div className="flex flex-wrap gap-4">
             <Button variant="primary" color="red">
               Red primary
@@ -536,7 +537,7 @@ export function Playground() {
           </div>
         </Container>
 
-        <Container size="full">
+        <Container size="full" className="mb-6">
           <div className="flex flex-wrap gap-4 bg-gray-800 p-2">
             <Button variant="primary" color="white">
               White primary
@@ -547,7 +548,7 @@ export function Playground() {
           </div>
         </Container>
 
-        <Container size="full">
+        <Container size="full" className="mb-6">
           <div className="flex flex-wrap items-center gap-4">
             <Button size="sm">Small</Button>
             <Button size="md">Medium</Button>
@@ -555,10 +556,10 @@ export function Playground() {
           </div>
         </Container>
 
-        <Container size="full">
+        <Container size="full" className="mb-6">
           <Button disabled>Disabled</Button>
         </Container>
-      </section>
+      </Section>
 
       {/* BUTTONS CONTROLLO INTERFACCIA */}
       <Section variant="alternative">
