@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { Plus } from "lucide-react";
 
-import { IconButton, Modal } from "@/components/ui";
 import { CarouselControls } from "@/components/ui/Carousel";
 
 import type { AboutHeroProps } from "./AboutHero.types";
@@ -10,13 +8,11 @@ import decorativeAbout from "@/assets/images/decorative/decorativeAbout.webp";
 
 export function AboutHero({
   slides,
-  descriptionMaxLength = 400,
   backgroundVariant = "wave",
   className = "",
   ...props
 }: AboutHeroProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [modalOpen, setModalOpen] = useState(false);
   const [direction, setDirection] = useState<"left" | "right">("right");
 
   const total = slides.length;
@@ -28,30 +24,28 @@ export function AboutHero({
   const canPrevious = currentIndex > 0;
   const canNext = currentIndex < total - 1;
 
-  const description = currentSlide.description ?? "";
-  const hasLongDescription = description.length > descriptionMaxLength;
-
-  const visibleDescription = hasLongDescription
-    ? truncateText(description, descriptionMaxLength)
-    : description;
-
   function previous() {
     if (!canPrevious) return;
+
     setDirection("left");
-    setModalOpen(false);
     setCurrentIndex((current) => current - 1);
   }
 
   function next() {
     if (!canNext) return;
+
     setDirection("right");
-    setModalOpen(false);
     setCurrentIndex((current) => current + 1);
   }
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLElement>) {
-    if (event.key === "ArrowLeft") previous();
-    if (event.key === "ArrowRight") next();
+    if (event.key === "ArrowLeft") {
+      previous();
+    }
+
+    if (event.key === "ArrowRight") {
+      next();
+    }
   }
 
   const sectionBackgroundClass =
@@ -85,26 +79,27 @@ export function AboutHero({
               src={decorativeAbout}
               alt=""
               className="
-          h-full
-          w-full
-          object-cover
-          object-top
-          opacity-30
-        "
+                h-full
+                w-full
+                object-cover
+                object-top
+                opacity-30
+              "
             />
           </div>
 
           <div
             aria-hidden="true"
             className="
-        absolute
-        inset-0
-        z-0
-        bg-white/55
-      "
+              absolute
+              inset-0
+              z-0
+              bg-white/55
+            "
           />
         </>
       )}
+
       <div
         key={currentSlide.id}
         className={`
@@ -117,6 +112,7 @@ export function AboutHero({
           items-center
           gap-10
           px-6
+
           lg:grid-cols-2
           lg:px-10
 
@@ -128,41 +124,73 @@ export function AboutHero({
         `}
       >
         <div className="flex flex-col gap-5">
-          <h1 className="text-4xl font-bold leading-tight text-tea-black md:text-5xl">
+          <h1
+            className="
+              text-4xl
+              font-bold
+              leading-tight
+              text-tea-black
+
+              md:text-5xl
+            "
+          >
             {currentSlide.title}
           </h1>
 
-          {visibleDescription && (
-            <p className="max-w-2xl text-lg leading-relaxed text-tea-black/80">
-              {visibleDescription}
-            </p>
-          )}
-
-          {hasLongDescription && (
-            <div>
-              <IconButton
-                icon={<Plus size={18} />}
-                label={`Continua la lettura della slide "${currentSlide.title}"`}
-                onClick={() => setModalOpen(true)}
-                className="bg-white/80 text-tea-blue border-tea-blue hover:text-white/80 hover:bg-tea-blue backdrop-blur-sm"
-                title={`Continua a leggere`}
-              />
+          {currentSlide.description && (
+            <div
+              className="
+                max-w-2xl
+                text-lg
+                leading-relaxed
+                text-tea-black/80
+                trac
+              "
+            >
+              {currentSlide.description}
             </div>
           )}
         </div>
 
         {currentSlide.image && (
-          <div className="relative z-10 overflow-hidden rounded-2xl shadow-xl">
+          <div
+            className="
+              relative
+              z-10
+              overflow-hidden
+              rounded-2xl
+              shadow-xl
+            "
+          >
             <img
               src={currentSlide.image.src}
               alt={currentSlide.image.alt}
-              className="aspect-4/3 h-full w-full object-cover"
+              className="
+                aspect-4/3
+                h-full
+                w-full
+                object-cover
+              "
             />
           </div>
         )}
       </div>
 
-      <div className="relative z-10 mx-auto mt-8 flex w-full max-w-7xl justify-end px-6 lg:px-10">
+      <div
+        className="
+          relative
+          z-10
+          mx-auto
+          mt-8
+          flex
+          w-full
+          max-w-7xl
+          justify-end
+          px-6
+
+          lg:px-10
+        "
+      >
         <div className="w-fit">
           <CarouselControls
             currentIndex={currentIndex}
@@ -176,22 +204,6 @@ export function AboutHero({
           />
         </div>
       </div>
-
-      <Modal
-        open={modalOpen}
-        onClose={() => setModalOpen(false)}
-        variant="story"
-        title={currentSlide.title}
-        description={currentSlide.description}
-        size="lg"
-      />
     </section>
   );
-}
-
-function truncateText(text: string, maxLength: number) {
-  if (text.length <= maxLength) return text;
-
-  const truncated = text.slice(0, maxLength).replace(/\s+\S*$/, "");
-  return `${truncated} …`;
 }

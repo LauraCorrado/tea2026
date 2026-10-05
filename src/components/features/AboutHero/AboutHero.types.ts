@@ -1,9 +1,10 @@
-import type { HTMLAttributes } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 
 export interface AboutHeroSlide {
     id: string;
-    title: string;
-    description?: string;
+    title: ReactNode;
+    description?: ReactNode;
+
     image?: {
         src: string;
         alt: string;
@@ -13,6 +14,5 @@ export interface AboutHeroSlide {
 export interface AboutHeroProps
     extends HTMLAttributes<HTMLElement> {
     slides: readonly AboutHeroSlide[];
-    descriptionMaxLength?: number;
     backgroundVariant?: "gradient" | "wave";
 }
