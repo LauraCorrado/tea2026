@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SlidersHorizontal, X, Mail, Phone } from "lucide-react";
 import { IoAccessibilitySharp, IoLanguage, IoCall } from "react-icons/io5";
 import { AccessibilityControls } from "@/components/features";
-import { IconButton, LangSelector } from "@/components/ui";
+import { IconButton, LangSelector, Accordion } from "@/components/ui";
 import { languages } from "@/data/languages.ts";
 
 export function OptionBanner() {
@@ -62,7 +62,7 @@ export function OptionBanner() {
           flex
           h-dvh
           w-full
-          max-w-sm
+          max-w-md
           flex-col
 
           bg-white
@@ -106,78 +106,79 @@ export function OptionBanner() {
             onClick={() => setOpen(false)}
           />
         </div>
-
         <div
           className="
-            flex-1
-            space-y-8
-            overflow-y-auto
-            p-5
-          "
+    flex-1
+    space-y-4
+    overflow-y-auto
+    p-5
+  "
         >
-          <section>
-            <div className="flex items-center gap-3">
-              <section>
-                <div className="flex items-center gap-3">
-                  <IoLanguage
-                    size={20}
-                    className="text-tea-green"
-                    aria-hidden="true"
-                  />
+          <Accordion
+            title={
+              <div className="flex items-center gap-3">
+                <IoLanguage
+                  size={20}
+                  className="text-tea-green"
+                  aria-hidden="true"
+                />
 
-                  <h3 className="font-semibold text-lg tracking-wide">
-                    Cambia lingua
-                  </h3>
-                </div>
+                <span className="font-semibold tracking-wide text-tea-black">
+                  Cambia lingua
+                </span>
+              </div>
+            }
+          >
+            <LangSelector
+              languages={languages}
+              value={language}
+              onChange={setLanguage}
+              placement="bottom"
+            />
+          </Accordion>
 
-                <div className="mt-4">
-                  <LangSelector
-                    languages={languages}
-                    value={language}
-                    onChange={setLanguage}
-                    placement="bottom"
-                  />
-                </div>
-              </section>
-            </div>
-          </section>
-          <section>
-            <div className="flex items-center gap-3">
-              <IoAccessibilitySharp
-                size={20}
-                className="text-tea-orange"
-                aria-hidden="true"
-              />
+          <Accordion
+            defaultOpen
+            title={
+              <div className="flex items-center gap-3">
+                <IoAccessibilitySharp
+                  size={20}
+                  className="text-tea-orange"
+                  aria-hidden="true"
+                />
 
-              <h3 className="font-semibold text-lg tracking-wide">
-                Regolazioni per l'accessibilità
-              </h3>
-            </div>
-
+                <span className="font-semibold tracking-wide text-tea-black">
+                  Regolazioni per l'accessibilità
+                </span>
+              </div>
+            }
+          >
             <p
               className="
-                mt-2
-                text-md
-                leading-relaxed
-                text-black/60
-              "
+        text-md
+        leading-relaxed
+        text-black/60
+      "
             >
               Personalizza le modalità di visualizzazione del sito in base alle
               tue esigenze e preferenze.
             </p>
+
             <AccessibilityControls />
-          </section>
+          </Accordion>
 
-          <section>
+          <Accordion
+            title={
+              <div className="flex items-center gap-3">
+                <IoCall size={20} className="text-tea-red" aria-hidden="true" />
+
+                <span className="font-semibold tracking-wide text-tea-black">
+                  Contatti rapidi
+                </span>
+              </div>
+            }
+          >
             <div className="flex items-center gap-3">
-              <IoCall size={20} className="text-tea-red" aria-hidden="true" />
-
-              <h3 className="text-lg font-semibold tracking-wide">
-                Contatti rapidi
-              </h3>
-            </div>
-
-            <div className="mt-4 flex items-center gap-3">
               <IconButton
                 as="a"
                 href="mailto:info@teacz.com?cc=elena@teacz.com"
@@ -202,7 +203,7 @@ export function OptionBanner() {
 
               <span className="text-sm text-black/70">+39 349.3056593</span>
             </div>
-          </section>
+          </Accordion>
         </div>
       </aside>
     </>
