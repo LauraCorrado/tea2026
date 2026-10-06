@@ -18,30 +18,6 @@ html {
   scroll-behavior: smooth;
 }
 
-html[data-reduce-motion="true"] *,
-html[data-reduce-motion="true"] *::before,
-html[data-reduce-motion="true"] *::after {
-  scroll-behavior: auto !important;
-  animation-duration: 0.01ms !important;
-  animation-iteration-count: 1 !important;
-  transition-duration: 0.01ms !important;
-}
-
-html[data-highlight-headings="true"] :is(h1, h2, h3, h4, h5, h6) {
-  outline: 3px solid var(--color-tea-blue);
-  outline-offset: 4px;
-}
-
-html[data-high-contrast="true"] {
-  --site-bg: #ffffff;
-  --site-text: #000000;
-}
-
-html[data-dark-mode="true"] {
-  --site-bg: #111111;
-  --site-text: #ffffff;
-}
-
 body {
   min-width: 320px;
   font-size: calc(1rem * var(--a11y-font-scale));
@@ -56,6 +32,38 @@ input[type="search"]::-webkit-search-cancel-button {
   appearance: none;
 }
 
+/* ! ACCESSIBILITA */
+/* Riduzione movimento */
+html[data-reduce-motion="true"] *,
+html[data-reduce-motion="true"] *::before,
+html[data-reduce-motion="true"] *::after {
+  scroll-behavior: auto !important;
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* Evidenziazione titoli */
+html[data-highlight-headings="true"] :is(h1, h2, h3, h4, h5, h6) {
+  outline: 5px solid var(--color-tea-red);
+  outline-offset: 4px;
+  border-radius: 8px;
+  padding: 2px;
+}
+
+/* HC */
+html[data-high-contrast="true"] {
+  --site-bg: #ffffff;
+  --site-text: #000000;
+}
+
+/* Modalità notte */
+html[data-dark-mode="true"] {
+  --site-bg: #111111;
+  --site-text: #ffffff;
+}
+
+/* Preferenze di sistema */
 @media (prefers-reduced-motion: reduce) {
 
   *,
@@ -68,8 +76,44 @@ input[type="search"]::-webkit-search-cancel-button {
   }
 }
 
-/* ANIMAZIONI */
+/* Cursor grande */
+html[data-large-cursor="true"] body {
+  cursor:
+    url("../assets/cursors/large-cursor.svg") 6 3,
+    auto;
+}
 
+html[data-large-cursor="true"]:is(a,
+  button:not(:disabled),
+  select:not(:disabled),
+  summary,
+  [role="button"],
+  [role="link"]) {
+  cursor:
+    url("../assets/cursors/large-pointer.svg") 16 4,
+    pointer;
+}
+
+html[data-large-cursor="true"]:is(button:disabled,
+  input:disabled,
+  select:disabled,
+  textarea:disabled) {
+  cursor:
+    url("../assets/cursors/large-not-allowed.svg") 16 16,
+    not-allowed;
+}
+
+html[data-large-cursor="true"]:is(input[type="text"],
+  input[type="email"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="password"],
+  textarea):not(:disabled) {
+  cursor: text;
+}
+
+/* !ANIMAZIONI */
 @keyframes about-hero-from-right {
   from {
     transform: translateX(60px);
@@ -112,11 +156,11 @@ input[type="search"]::-webkit-search-cancel-button {
         rgb(255 255 255 / 0.45) 0%,
         transparent 30%),
       conic-gradient(from 180deg,
-        rgb(53 148 214 / 0.70),
-        rgb(53 184 112 / 0.70),
-        rgb(249 155 58 / 0.70),
-        rgb(224 79 60 / 0.70),
-        rgb(53 148 214 / 0.70));
+        rgb(53 148 214 / 0.7),
+        rgb(53 184 112 / 0.7),
+        rgb(249 155 58 / 0.7),
+        rgb(224 79 60 / 0.7),
+        rgb(53 148 214 / 0.7));
   }
 
   .icon-button:not(:disabled):hover .icon-button-glow {
@@ -175,6 +219,7 @@ input[type="search"]::-webkit-search-cancel-button {
   }
 
   /* MODALE */
+
   .modal-gallery-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: var(--color-tea-blue) transparent;
@@ -216,23 +261,17 @@ input[type="search"]::-webkit-search-cancel-button {
 
   .about-hero-bg-gradient {
     background:
-      radial-gradient(circle at top left, rgb(255 255 255 / 0.12), transparent 30%),
-      linear-gradient(135deg, #0072c6 0%, #005ca0 45%, #003f73 100%);
+      radial-gradient(circle at top left,
+        rgb(255 255 255 / 0.12),
+        transparent 30%),
+      linear-gradient(135deg,
+        #0072c6 0%,
+        #005ca0 45%,
+        #003f73 100%);
   }
 
   .about-hero-bg-wave {
     background: #f7f4ef;
-  }
-
-  .about-hero-squiggle {
-    position: absolute;
-    top: -1.5rem;
-    left: -3rem;
-    width: 22rem;
-    height: auto;
-    color: rgb(247 127 0 / 0.9);
-    z-index: 0;
-    pointer-events: none;
   }
 
   @media (prefers-reduced-motion: reduce) {
