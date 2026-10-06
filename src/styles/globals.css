@@ -83,33 +83,42 @@ html[data-large-cursor="true"] body {
     auto;
 }
 
-html[data-large-cursor="true"]:is(a,
+html[data-large-cursor="true"]
+:is(
+  a,
   button:not(:disabled),
   select:not(:disabled),
   summary,
   [role="button"],
-  [role="link"]) {
+  [role="link"]
+) {
   cursor:
     url("../assets/cursors/large-pointer.svg") 16 4,
     pointer;
 }
 
-html[data-large-cursor="true"]:is(button:disabled,
+html[data-large-cursor="true"]
+:is(
+  button:disabled,
   input:disabled,
   select:disabled,
-  textarea:disabled) {
+  textarea:disabled
+) {
   cursor:
     url("../assets/cursors/large-not-allowed.svg") 16 16,
     not-allowed;
 }
 
-html[data-large-cursor="true"]:is(input[type="text"],
+html[data-large-cursor="true"]
+:is(
+  input[type="text"],
   input[type="email"],
   input[type="search"],
   input[type="tel"],
   input[type="url"],
   input[type="password"],
-  textarea):not(:disabled) {
+  textarea
+):not(:disabled) {
   cursor: text;
 }
 
@@ -141,7 +150,6 @@ html[data-large-cursor="true"]:is(input[type="text"],
 }
 
 @layer components {
-
   /* ICON BUTTON */
   .icon-button-glow {
     position: absolute;
@@ -275,7 +283,6 @@ html[data-large-cursor="true"]:is(input[type="text"],
   }
 
   @media (prefers-reduced-motion: reduce) {
-
     .about-hero-slide-right,
     .about-hero-slide-left {
       animation: none;
