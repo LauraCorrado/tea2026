@@ -30,7 +30,7 @@ export function SearchInput({
           className={
             hideLabel
               ? "sr-only"
-              : "mb-2 ms-1 block text-sm font-medium text-tea-blue"
+              : "mb-2 ms-1 block text-sm font-medium text-site-blue"
           }
         >
           {label}
@@ -43,9 +43,11 @@ export function SearchInput({
           aria-hidden="true"
           className="
             pointer-events-none
-            absolute left-3 top-1/2
+            absolute
+            left-3
+            top-1/2
             -translate-y-1/2
-            text-black/50
+            text-site-soft
           "
         />
 
@@ -56,19 +58,30 @@ export function SearchInput({
           onChange={(event) => onChange(event.target.value)}
           placeholder={placeholder}
           className="
-            h-11 w-full
+            h-11
+            w-full
             rounded-md
-            border border-black/20
-            bg-white
-            pl-10 pr-10
+
+            border
+            border-site-border
+            bg-site-surface
+
+            pl-10
+            pr-10
+
             text-sm
+            text-site-text
+
             outline-none
             transition-colors
-            placeholder:text-black/40
-            hover:border-black/40
-            focus:border-tea-blue
+
+            placeholder:text-site-soft
+
+            hover:border-site-border-strong
+
+            focus:border-site-blue
             focus:ring-2
-            focus:ring-tea-blue/20
+            focus:ring-site-blue/20
           "
           {...props}
         />
@@ -79,26 +92,35 @@ export function SearchInput({
             onClick={handleClear}
             aria-label="Cancella ricerca"
             className="
-              absolute right-3 top-1/2
+              absolute
+              right-3
+              top-1/2
               -translate-y-1/2
+
               rounded-full
               p-1
-              text-black/50
+
+              text-site-soft
+
               transition-colors
-              hover:bg-black/5
-              hover:text-black
+
+              hover:bg-site-surface-alt
+              hover:text-site-blue
+
               focus-visible:outline-none
               focus-visible:ring-2
-              focus-visible:ring-tea-blue
+              focus-visible:ring-site-blue
+              focus-visible:ring-offset-2
+              focus-visible:ring-offset-site-surface
             "
           >
-            <X size={16} aria-hidden="true" color="#0072c6" />
+            <X size={16} aria-hidden="true" />
           </button>
         )}
       </div>
 
       {helperText && (
-        <p className="mt-2 text-sm text-tea-black/70">{helperText}</p>
+        <p className="mt-2 text-sm text-site-muted">{helperText}</p>
       )}
     </div>
   );

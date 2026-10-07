@@ -22,8 +22,11 @@ export function TimelineCard({
         overflow-hidden
         rounded-2xl
 
-        border border-black/10
-        bg-white
+        border
+        border-site-border
+
+        bg-site-surface
+        text-site-text
 
         shadow-sm
 
@@ -41,7 +44,8 @@ export function TimelineCard({
             alt={item.image.alt}
             draggable={false}
             className="
-              h-full w-full
+              h-full
+              w-full
               object-cover
               transition-transform
               duration-500
@@ -51,7 +55,9 @@ export function TimelineCard({
           <div
             aria-hidden="true"
             className="
-              absolute inset-0
+              absolute
+              inset-0
+
               bg-linear-to-t
               from-black/30
               to-transparent
@@ -66,7 +72,7 @@ export function TimelineCard({
             text-sm
             font-semibold
             tracking-wide
-            text-tea-blue
+            text-site-blue
           "
         >
           {item.year}
@@ -79,7 +85,7 @@ export function TimelineCard({
             font-semibold
             leading-tight
             tracking-tight
-            text-tea-black
+            text-site-text
           "
         >
           {item.title}

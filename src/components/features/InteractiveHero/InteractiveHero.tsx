@@ -26,9 +26,6 @@ export function InteractiveHero({
     setActiveArea(null);
   }
 
-  /*
-   * ESC chiude il pannello.
-   */
   useEffect(() => {
     if (!activeArea) return;
 
@@ -48,10 +45,12 @@ export function InteractiveHero({
   return (
     <section
       className={`
+        interactive-hero
         relative
         isolate
         w-full
         overflow-hidden
+
         lg:min-h-[80vh]
 
         ${className}
@@ -83,58 +82,60 @@ export function InteractiveHero({
         <source src={videoSrc} type="video/mp4" />
       </video>
 
-      {/* OVERLAY */}
+      {/* OVERLAY COLORE */}
       <div
         aria-hidden="true"
         className="
-    absolute
-    inset-0
-    -z-10
-    bg-tea-blue/35
-  "
+          absolute
+          inset-0
+          -z-10
+          bg-tea-blue/35
+        "
       />
 
+      {/* OVERLAY LEGGIBILITÀ */}
       <div
         aria-hidden="true"
         className="
-    absolute
-    inset-0
-    -z-10
-    bg-linear-to-r
-    from-black/65
-    via-black/25
-    to-transparent
-  "
+          absolute
+          inset-0
+          -z-10
+
+          bg-linear-to-r
+          from-black/65
+          via-black/25
+          to-transparent
+        "
       />
 
       <div
         className="
-    mx-auto
-    flex
-    w-full
-    max-w-7xl
-    items-center
+          mx-auto
+          flex
+          w-full
+          max-w-7xl
+          items-center
 
-    px-5
-    py-10
+          px-5
+          py-10
 
-    sm:px-6
-    sm:py-12
+          sm:px-6
+          sm:py-12
 
-    lg:min-h-[80vh]
-    lg:px-10
-    lg:py-20
-  "
+          lg:min-h-[80vh]
+          lg:px-10
+          lg:py-20
+        "
       >
         <div
           className="
             grid
-    w-full
-    gap-8
+            w-full
+            gap-8
 
-    lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]
-    lg:items-center
-    lg:gap-12
+            lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]
+            lg:items-center
+            lg:gap-12
           "
         >
           <div
@@ -159,17 +160,17 @@ export function InteractiveHero({
             <h1
               className="
                 mt-3
-    max-w-xl
+                max-w-xl
 
-    text-3xl
-    font-semibold
-    leading-tight
-    tracking-tight
-    text-white
+                text-3xl
+                font-semibold
+                leading-tight
+                tracking-tight
+                text-white
 
-    sm:text-4xl
-    md:text-5xl
-    lg:text-6xl
+                sm:text-4xl
+                md:text-5xl
+                lg:text-6xl
               "
             >
               {title}
@@ -180,10 +181,13 @@ export function InteractiveHero({
                 className="
                   mt-5
                   max-w-xl
+
                   text-lg
                   leading-relaxed
                   text-white/90
-                  text-shadow-black text-shadow-md
+
+                  text-shadow-black
+                  text-shadow-md
                 "
               >
                 {description}

@@ -1,7 +1,7 @@
 import type { PageHeroOverlay, PageHeroProps } from "./PageHero.types";
 
 const baseClasses =
-  "relative isolate flex min-h-[55vh] md:min-h-[60vh] lg:min-h-[70vh]  w-full items-end overflow-hidden";
+  "relative isolate flex min-h-[55vh] w-full items-end overflow-hidden md:min-h-[60vh] lg:min-h-[70vh]";
 
 const overlayClasses: Record<PageHeroOverlay, string> = {
   blue: "bg-tea-blue/70",

@@ -266,19 +266,20 @@ export function Timeline({
           className="
             w-full
 
-            overflow-x-hidden
-            overflow-y-visible
+  overflow-x-hidden
+  overflow-y-visible
 
-            cursor-grab
-            select-none
-            touch-pan-y
+  cursor-grab
+  select-none
+  touch-pan-y
 
-            active:cursor-grabbing
+  active:cursor-grabbing
 
-            focus-visible:outline-none
-            focus-visible:ring-2
-            focus-visible:ring-tea-blue
-            focus-visible:ring-offset-4
+  focus-visible:outline-none
+  focus-visible:ring-2
+  focus-visible:ring-site-blue
+  focus-visible:ring-offset-4
+  focus-visible:ring-offset-site-bg
           "
           onPointerEnter={(event) => {
             if (event.pointerType === "mouse") {
@@ -385,23 +386,23 @@ export function Timeline({
             <div className="mt-6">
               <p
                 className="
-                  text-xs
-                  font-semibold
-                  uppercase
-                  tracking-[0.16em]
-                  text-black/40
-                "
+        text-xs
+        font-semibold
+        uppercase
+        tracking-[0.16em]
+        text-site-soft
+      "
               >
                 Committente
               </p>
 
               <p
                 className="
-                  mt-1
-                  text-sm
-                  font-medium
-                  text-black/70
-                "
+        mt-1
+        text-sm
+        font-medium
+        text-site-muted
+      "
               >
                 {activeItem.client}
               </p>

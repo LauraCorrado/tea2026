@@ -19,16 +19,16 @@ export function ReadingGuide() {
     <div
       aria-hidden="true"
       className="
-    pointer-events-none
-    fixed
-    left-0
-    z-60
-    h-12
-    w-full
-    border-y-4
-    border-tea-blue
-    bg-tea-blue/5
-  "
+        pointer-events-none
+        fixed
+        left-0
+        z-60
+        h-12
+        w-full
+        border-y-4
+        border-site-blue
+        bg-site-blue/5
+      "
       style={{
         top: `${y - 20}px`,
       }}

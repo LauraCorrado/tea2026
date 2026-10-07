@@ -17,10 +17,14 @@ export function Accordion({
       className={`
         overflow-hidden
         rounded-xl
-        border border-black/10
-        bg-white
-        transition-colors duration-300
-        ${open ? "border-tea-blue/40" : ""}
+        border
+        border-site-border
+        bg-site-surface
+        text-site-text
+        transition-colors
+        duration-300
+
+        ${open ? "border-site-blue/50" : ""}
         ${className}
       `}
       {...props}
@@ -30,25 +34,31 @@ export function Accordion({
         onClick={() => setOpen((current) => !current)}
         aria-expanded={open}
         className="
-          flex w-full
-          items-center justify-between
+          flex
+          w-full
+          items-center
+          justify-between
           gap-6
           p-6
           text-left
+
           transition-colors
-          hover:bg-black/2
+
+          hover:bg-site-surface-alt
 
           focus-visible:outline-none
           focus-visible:ring-2
           focus-visible:ring-inset
-          focus-visible:ring-tea-blue
+          focus-visible:ring-site-blue
         "
       >
         <div
           className="
-            text-xl font-semibold
+            text-xl
+            font-semibold
             tracking-tight
-            text-tea-blue
+            text-site-blue
+
             md:text-base
           "
         >
@@ -60,8 +70,10 @@ export function Accordion({
           aria-hidden="true"
           className={`
             shrink-0
-            text-tea-blue
-            transition-transform duration-300
+            text-site-blue
+            transition-transform
+            duration-300
+
             ${open ? "rotate-180" : ""}
           `}
         />
@@ -70,8 +82,11 @@ export function Accordion({
       {open && (
         <div
           className="
-            border-t border-black/10
-            px-6 pb-6 pt-5
+            border-t
+            border-site-border
+            px-6
+            pb-6
+            pt-5
           "
         >
           {children}

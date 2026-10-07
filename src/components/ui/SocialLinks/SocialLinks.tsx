@@ -63,22 +63,31 @@ export function SocialLinks({
             rel="noopener noreferrer"
             aria-label={label ?? `Visita ${platformLabels[platform]}`}
             className={`
-              inline-flex items-center justify-center
+              inline-flex
+              items-center
+              justify-center
+
               rounded-full
-              border border-current
-              transition-all duration-200
-              hover:bg-tea-orange hover:text-white
+              border
+              border-current
+              text-site-text
+
+              transition-all
+              duration-200
+
+              hover:bg-site-orange-strong
+              hover:text-site-on-orange-strong
+
               focus-visible:outline-none
               focus-visible:ring-2
-              focus-visible:ring-tea-orange
+              focus-visible:ring-site-orange
               focus-visible:ring-offset-2
+              focus-visible:ring-offset-site-surface
+
               ${sizeClasses[size]}
             `}
           >
-            <Icon
-              size={iconSizes[size]}
-              aria-hidden="true"
-            />
+            <Icon size={iconSizes[size]} aria-hidden="true" />
           </a>
         );
       })}

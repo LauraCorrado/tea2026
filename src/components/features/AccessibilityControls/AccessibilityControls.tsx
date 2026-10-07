@@ -13,23 +13,24 @@ export function AccessibilityControls({
     <div
       className={`
         mt-6
-        space-y-8
+        space-y-10
+        text-site-text
         ${className}
       `}
     >
-      {/* PROFILI RAPIDI */}
+      {/* PRESET */}
       <section>
-        <h4 className="font-semibold text-tea-black underline underline-offset-4">
-          Profili rapidi
-        </h4>
+        <div className="mb-4">
+          <h3 className="text-lg font-semibold tracking-tight text-site-text">
+            Preset
+          </h3>
 
-        <div className="mt-4 grid gap-3">
-          <AccessibilityToggle
-            label="Riduzione movimento e trigger visivi"
-            checked={settings.reduceMotion}
-            onChange={(checked) => updateSetting("reduceMotion", checked)}
-          />
+          <p className="mt-1 text-sm leading-relaxed text-site-muted">
+            Applica rapidamente una configurazione predefinita
+          </p>
+        </div>
 
+        <div className="grid gap-3">
           <Button
             variant="secondary"
             color="blue"
@@ -68,105 +69,128 @@ export function AccessibilityControls({
         </div>
       </section>
 
-      {/* COLORI */}
+      {/* AVANZATE */}
       <section>
-        <h4 className="font-semibold text-tea-black underline underline-offset-4">
-          Colori
-        </h4>
+        <div className="mb-6 border-t border-site-border pt-6">
+          <h3 className="text-lg font-semibold tracking-tight text-site-text">
+            Impostazioni avanzate
+          </h3>
 
-        <div className="mt-4 grid gap-3">
-          <AccessibilityToggle
-            label="Alto contrasto"
-            checked={settings.highContrast}
-            onChange={(checked) => updateSetting("highContrast", checked)}
-          />
-
-          <AccessibilityToggle
-            label="Modalità notte"
-            checked={settings.darkMode}
-            onChange={(checked) => updateSetting("darkMode", checked)}
-          />
+          <p className="mt-1 text-sm leading-relaxed text-site-muted">
+            Agisci sulle singole configurazioni
+          </p>
         </div>
-      </section>
 
-      {/* CONTENUTI */}
-      <section>
-        <h4 className="font-semibold text-tea-black underline underline-offset-4">
-          Contenuti
-        </h4>
+        <div className="space-y-8">
+          {/* COLORI */}
+          <section>
+            <h4 className="font-semibold text-site-text">
+              Colori e animazioni
+            </h4>
 
-        <div className="mt-4 space-y-5">
-          {/* <AccessibilityRange
-            label="Scala contenuti"
-            value={settings.contentScale}
-            min={80}
-            max={130}
-            step={5}
-            suffix="%"
-            onChange={(value) => updateSetting("contentScale", value)}
-          /> */}
+            <div className="mt-4 grid gap-3">
+              <AccessibilityToggle
+                label="Riduzione movimento e trigger visivi"
+                checked={settings.reduceMotion}
+                onChange={(checked) =>
+                  updateSetting("reduceMotion", checked)
+                }
+              />
 
-          <AccessibilityToggle
-            label="Evidenzia titoli"
-            checked={settings.highlightHeadings}
-            onChange={(checked) => updateSetting("highlightHeadings", checked)}
-          />
+              <AccessibilityToggle
+                label="Modalità notte"
+                checked={settings.darkMode}
+                onChange={(checked) =>
+                  updateSetting("darkMode", checked)
+                }
+              />
+            </div>
+          </section>
 
-          <AccessibilityRange
-            label="Dimensione caratteri"
-            value={settings.fontScale}
-            min={80}
-            max={140}
-            step={5}
-            suffix="%"
-            onChange={(value) => updateSetting("fontScale", value)}
-          />
+          {/* CONTENUTI */}
+          <section>
+            <h4 className="font-semibold text-site-text">
+              Contenuti
+            </h4>
 
-          <AccessibilityRange
-            label="Interlinea"
-            value={settings.lineHeight}
-            min={1.2}
-            max={2}
-            step={0.1}
-            onChange={(value) => updateSetting("lineHeight", value)}
-          />
+            <div className="mt-4 space-y-5">
+              <AccessibilityToggle
+                label="Evidenzia titoli"
+                checked={settings.highlightHeadings}
+                onChange={(checked) =>
+                  updateSetting("highlightHeadings", checked)
+                }
+              />
 
-          <AccessibilityRange
-            label="Spaziatura lettere"
-            value={settings.letterSpacing}
-            min={0}
-            max={0.2}
-            step={0.01}
-            suffix="em"
-            onChange={(value) => updateSetting("letterSpacing", value)}
-          />
-        </div>
-      </section>
+              <AccessibilityRange
+                label="Dimensione caratteri"
+                value={settings.fontScale}
+                min={80}
+                max={140}
+                step={5}
+                suffix="%"
+                onChange={(value) =>
+                  updateSetting("fontScale", value)
+                }
+              />
 
-      {/* ORIENTAMENTO */}
-      <section>
-        <h4 className="font-semibold text-tea-black underline underline-offset-4">
-          Orientamento
-        </h4>
+              <AccessibilityRange
+                label="Interlinea"
+                value={settings.lineHeight}
+                min={1.2}
+                max={2}
+                step={0.1}
+                onChange={(value) =>
+                  updateSetting("lineHeight", value)
+                }
+              />
 
-        <div className="mt-4 grid gap-3">
-          <AccessibilityToggle
-            label="Grande cursore nero"
-            checked={settings.largeCursor}
-            onChange={(checked) => updateSetting("largeCursor", checked)}
-          />
+              <AccessibilityRange
+                label="Spaziatura lettere"
+                value={settings.letterSpacing}
+                min={0}
+                max={0.2}
+                step={0.01}
+                suffix="em"
+                onChange={(value) =>
+                  updateSetting("letterSpacing", value)
+                }
+              />
+            </div>
+          </section>
 
-          <AccessibilityToggle
-            label="Maschera per la lettura"
-            checked={settings.readingMask}
-            onChange={(checked) => updateSetting("readingMask", checked)}
-          />
+          {/* ORIENTAMENTO */}
+          <section>
+            <h4 className="font-semibold text-site-text">
+              Orientamento nella pagina
+            </h4>
 
-          <AccessibilityToggle
-            label="Guida alla lettura"
-            checked={settings.readingGuide}
-            onChange={(checked) => updateSetting("readingGuide", checked)}
-          />
+            <div className="mt-4 grid gap-3">
+              <AccessibilityToggle
+                label="Grande cursore nero"
+                checked={settings.largeCursor}
+                onChange={(checked) =>
+                  updateSetting("largeCursor", checked)
+                }
+              />
+
+              <AccessibilityToggle
+                label="Maschera per la lettura"
+                checked={settings.readingMask}
+                onChange={(checked) =>
+                  updateSetting("readingMask", checked)
+                }
+              />
+
+              <AccessibilityToggle
+                label="Guida per lettura"
+                checked={settings.readingGuide}
+                onChange={(checked) =>
+                  updateSetting("readingGuide", checked)
+                }
+              />
+            </div>
+          </section>
         </div>
       </section>
 
@@ -177,7 +201,7 @@ export function AccessibilityControls({
           items-center
           gap-3
           border-t
-          border-black/10
+          border-site-border
           pt-5
         "
       >
@@ -223,21 +247,36 @@ function AccessibilityToggle({
         items-center
         justify-between
         gap-4
+
         rounded-lg
+
         border
-        border-black/10
+        border-site-border
+
         p-3
+
+        text-site-text
+
+        transition-colors
+
+        hover:border-site-blue
+        hover:bg-site-blue/80
+        hover:text-site-on-blue
       "
     >
-      <span className="text-sm font-medium">{label}</span>
+      <span className="text-sm font-medium">
+        {label}
+      </span>
 
       <input
         type="checkbox"
         checked={checked}
-        onChange={(event) => onChange(event.target.checked)}
+        onChange={(event) =>
+          onChange(event.target.checked)
+        }
         className="
           size-4
-          accent-tea-blue
+          accent-site-blue
         "
       />
     </label>
@@ -274,9 +313,11 @@ function AccessibilityRange({
           gap-4
         "
       >
-        <span className="text-sm font-medium">{label}</span>
+        <span className="text-sm font-medium">
+          {label}
+        </span>
 
-        <span className="text-xs text-black/50">
+        <span className="text-xs text-site-soft">
           {value}
           {suffix}
         </span>
@@ -288,8 +329,13 @@ function AccessibilityRange({
         max={max}
         step={step}
         value={value}
-        onChange={(event) => onChange(Number(event.target.value))}
-        className="w-full accent-tea-blue"
+        onChange={(event) =>
+          onChange(Number(event.target.value))
+        }
+        className="
+          w-full
+          accent-site-blue
+        "
       />
     </label>
   );
@@ -297,14 +343,14 @@ function AccessibilityRange({
 
 {
   /* // ? REGOLARE ESPERIENZA DI NAVIGAZIONE:
-              - SICUREZZA EPILESSIA (RIDUZIONE MOVIMENTO E TRIGGER VISIVI)
+              
               - SUPPORTO PER IPOVISIONE (AUMENTO CONTRASTO)
               - ADHDH FRIENDLY (RIDUZIONE DISTRAZIONI)
               - SUPPORTO COGNITIVO E ALLA LETTURA (SEMPLIFICAZIONE NAVIGAZIONE E LETTURA)
               - PERSONE ANZIANE (MIGLIORAMENTO VISIBILITà E COMFORT DI LETTURA)
     // ? REGOLARE I COLORI:
-              - ALTO CONTRASTO
               - MODALITA NOTTE
+              - SICUREZZA EPILESSIA (RIDUZIONE MOVIMENTO E TRIGGER VISIVI)
     // ? REGOLARE I CONTENUTI:
               - SCALA CONTENUTI
               - EVIDENZIA TITOLI

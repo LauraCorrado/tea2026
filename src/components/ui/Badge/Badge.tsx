@@ -4,19 +4,19 @@ const baseClasses =
   "inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold";
 
 const filledClasses: Record<BadgeColor, string> = {
-  blue: "bg-tea-blue text-white",
-  green: "bg-tea-green text-white",
-  orange: "bg-tea-orange text-white",
-  red: "bg-tea-red text-white",
-  black: "bg-tea-black text-white",
+  blue: "bg-site-blue text-site-on-blue",
+  green: "bg-site-green text-site-on-green",
+  orange: "bg-site-orange text-site-on-orange",
+  red: "bg-site-red text-site-on-red",
+  black: "bg-site-neutral text-site-on-neutral",
 };
 
 const outlinedClasses: Record<BadgeColor, string> = {
-  blue: "border border-tea-blue text-tea-blue",
-  green: "border border-tea-green text-tea-green",
-  orange: "border border-tea-orange text-tea-orange",
-  red: "border border-tea-red text-tea-red",
-  black: "border border-tea-black text-tea-black",
+  blue: "border border-site-blue text-site-blue",
+  green: "border border-site-green text-site-green",
+  orange: "border border-site-orange text-site-orange",
+  red: "border border-site-red text-site-red",
+  black: "border border-site-neutral text-site-neutral",
 };
 
 const variantClasses: Record<BadgeVariant, Record<BadgeColor, string>> = {

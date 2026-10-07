@@ -87,8 +87,8 @@ export function CompetenceCard({
       <div
         className="
           grid
+          min-h-75
           w-full
-        min-h-75
           transform-3d
 
           transition-transform
@@ -133,8 +133,9 @@ export function CompetenceCard({
 
             focus-visible:outline-none
             focus-visible:ring-2
-            focus-visible:ring-tea-blue
+            focus-visible:ring-site-blue
             focus-visible:ring-offset-4
+            focus-visible:ring-offset-site-bg
 
             ${isFlipped ? "pointer-events-none" : ""}
           `}
@@ -144,8 +145,10 @@ export function CompetenceCard({
               src={image.src}
               alt={image.alt}
               className="
-                absolute inset-0
-                h-full w-full
+                absolute
+                inset-0
+                h-full
+                w-full
                 object-cover
               "
             />
@@ -153,7 +156,8 @@ export function CompetenceCard({
             <div
               aria-hidden="true"
               className="
-                absolute inset-0
+                absolute
+                inset-0
 
                 bg-linear-to-t
                 from-black/80
@@ -164,7 +168,8 @@ export function CompetenceCard({
 
             <div
               className="
-                relative z-10
+                relative
+                z-10
 
                 flex
                 w-full
@@ -176,7 +181,8 @@ export function CompetenceCard({
             >
               <div
                 className="
-                  flex flex-1
+                  flex
+                  flex-1
                   items-center
                   justify-center
                 "
@@ -265,6 +271,7 @@ export function CompetenceCard({
             focus-visible:ring-2
             focus-visible:ring-white
             focus-visible:ring-offset-4
+            focus-visible:ring-offset-site-bg
 
             ${!isFlipped ? "pointer-events-none" : ""}
           `}
@@ -298,7 +305,6 @@ export function CompetenceCard({
           <div
             className="
               mt-6
-
               flex
               items-center
               justify-center

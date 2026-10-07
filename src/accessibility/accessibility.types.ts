@@ -1,6 +1,5 @@
 export interface AccessibilitySettings {
     reduceMotion: boolean;
-    highContrast: boolean;
     darkMode: boolean;
     highlightHeadings: boolean;
     fontScale: number;

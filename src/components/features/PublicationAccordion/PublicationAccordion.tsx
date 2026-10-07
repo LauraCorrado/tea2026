@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { ChevronDown, Download, ArrowRight } from "lucide-react";
 
-import type { PublicationAccordionProps } from "./PublicationAccordion.types";
 import { Button } from "@/components";
+import type { PublicationAccordionProps } from "./PublicationAccordion.types";
 
 export function PublicationAccordion({
   title,
@@ -19,46 +19,56 @@ export function PublicationAccordion({
       className={`
         overflow-hidden
         rounded-xl
-        border border-black/10
-        bg-white
-        transition-colors duration-300
-        ${open ? "border-tea-blue/40" : ""}
+
+        border
+        border-site-border
+
+        bg-site-surface
+        text-site-text
+
+        transition-colors
+        duration-300
+
+        ${open ? "border-site-blue/40" : ""}
         ${className}
       `}
       {...props}
     >
       <div
         className="
-    flex
-    items-center
-    gap-4
-    p-5
-  "
+          flex
+          items-center
+          gap-4
+          p-5
+        "
       >
         <button
           type="button"
           onClick={() => setOpen((current) => !current)}
           aria-expanded={open}
           className="
-      min-w-0
-      flex-1
-      text-left
+            min-w-0
+            flex-1
+            text-left
 
-      focus-visible:outline-none
-      focus-visible:ring-2
-      focus-visible:ring-tea-blue
-      focus-visible:ring-offset-2
-    "
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-site-blue
+            focus-visible:ring-offset-2
+            focus-visible:ring-offset-site-surface
+          "
         >
           <h3
             className="
-        min-w-0
-        text-lg
-        font-semibold
-        tracking-tight
-        text-tea-blue
-        md:text-xl
-      "
+              min-w-0
+
+              text-lg
+              font-semibold
+              tracking-tight
+              text-site-blue
+
+              md:text-xl
+            "
           >
             {title}
           </h3>
@@ -72,25 +82,30 @@ export function PublicationAccordion({
               typeof title === "string" ? title : "pubblicazione"
             }`}
             className="
-        inline-flex
-        size-10
-        items-center
-        justify-center
-        rounded-full
+              inline-flex
+              size-10
+              items-center
+              justify-center
 
-        border border-tea-red
-        text-tea-red
+              rounded-full
 
-        transition-colors duration-300
+              border
+              border-site-red
 
-        hover:bg-tea-red
-        hover:text-white
+              text-site-red
 
-        focus-visible:outline-none
-        focus-visible:ring-2
-        focus-visible:ring-tea-red
-        focus-visible:ring-offset-2
-      "
+              transition-colors
+              duration-300
+
+              hover:bg-site-red
+              hover:text-site-on-red
+
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-site-red
+              focus-visible:ring-offset-2
+              focus-visible:ring-offset-site-surface
+            "
           >
             <Download size={18} aria-hidden="true" />
           </a>
@@ -101,31 +116,36 @@ export function PublicationAccordion({
             aria-expanded={open}
             aria-label={open ? "Chiudi pubblicazione" : "Apri pubblicazione"}
             className="
-        inline-flex
-        size-10
-        items-center
-        justify-center
-        rounded-full
+              inline-flex
+              size-10
+              items-center
+              justify-center
 
-        text-tea-blue
+              rounded-full
 
-        transition-colors duration-300
+              text-site-blue
 
-        hover:bg-tea-blue/5
+              transition-colors
+              duration-300
 
-        focus-visible:outline-none
-        focus-visible:ring-2
-        focus-visible:ring-tea-blue
-        focus-visible:ring-offset-2
-      "
+              hover:bg-site-blue/10
+
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-site-blue
+              focus-visible:ring-offset-2
+              focus-visible:ring-offset-site-surface
+            "
           >
             <ChevronDown
               size={20}
               aria-hidden="true"
               className={`
-          transition-transform duration-300
-          ${open ? "rotate-180" : ""}
-        `}
+                transition-transform
+                duration-300
+
+                ${open ? "rotate-180" : ""}
+              `}
             />
           </button>
         </div>
@@ -134,7 +154,9 @@ export function PublicationAccordion({
       {open && (
         <div
           className="
-            border-t border-black/10
+            border-t
+            border-site-border
+
             px-5
             pb-5
             pt-4
@@ -146,7 +168,7 @@ export function PublicationAccordion({
                 max-w-3xl
                 text-sm
                 leading-relaxed
-                text-black/65
+                text-site-muted
               "
             >
               {description}

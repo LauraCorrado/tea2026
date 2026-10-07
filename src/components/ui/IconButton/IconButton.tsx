@@ -1,15 +1,17 @@
 import type { PointerEvent } from "react";
 
-import type { IconButtonAnimation, IconButtonProps } from "./IconButton.types";
+import type {
+  IconButtonAnimation,
+  IconButtonProps,
+} from "./IconButton.types";
 
 const baseClasses =
   "group icon-button relative inline-flex items-center justify-center overflow-hidden " +
-  "rounded-full border border-tea-black/20 bg-transparent text-tea-black " +
-  "transition-[border-color,transform,opacity] duration-300 " +
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tea-blue " +
-  "focus-visible:ring-offset-2 " +
-  "active:scale-95 " +
-  "disabled:cursor-not-allowed disabled:opacity-40";
+  "rounded-full border border-site-border-strong text-site-text " +
+  "transition-[border-color,background-color,color,transform,opacity] duration-300 " +
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-site-blue " +
+  "focus-visible:ring-offset-2 focus-visible:ring-offset-site-surface " +
+  "active:scale-95 disabled:cursor-not-allowed disabled:opacity-40";
 
 const sizeClasses = {
   sm: "h-9 w-9",
@@ -18,9 +20,11 @@ const sizeClasses = {
 };
 
 const animationClasses: Record<IconButtonAnimation, string> = {
-  glow: "hover:border-transparent hover:scale-105 hover:text-white",
+  glow:
+    "hover:border-transparent hover:scale-105 hover:text-white",
 
-  rotate: "hover:border-tea-black/40",
+  rotate:
+    "hover:border-site-border-strong",
 
   draw: "",
 
@@ -30,7 +34,8 @@ const animationClasses: Record<IconButtonAnimation, string> = {
 const iconAnimationClasses: Record<IconButtonAnimation, string> = {
   glow: "",
 
-  rotate: "transition-transform duration-300 group-hover:rotate-90",
+  rotate:
+    "transition-transform duration-300 group-hover:rotate-90",
 
   draw: "icon-button-draw",
 
@@ -53,15 +58,12 @@ export function IconButton(props: IconButtonProps) {
     if (animation !== "glow") return;
 
     const element = event.currentTarget;
-
     const rect = element.getBoundingClientRect();
 
     const x = event.clientX - rect.left;
-
     const y = event.clientY - rect.top;
 
     element.style.setProperty("--mouse-x", `${x}px`);
-
     element.style.setProperty("--mouse-y", `${y}px`);
   }
 
@@ -82,9 +84,6 @@ export function IconButton(props: IconButtonProps) {
     </>
   );
 
-  /*
-   * LINK
-   */
   if (props.as === "a") {
     const {
       as,
@@ -112,9 +111,6 @@ export function IconButton(props: IconButtonProps) {
     );
   }
 
-  /*
-   * BUTTON
-   */
   const {
     as,
     icon,

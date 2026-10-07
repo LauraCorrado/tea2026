@@ -1,17 +1,119 @@
 @import "tailwindcss";
 
 :root {
+  /* Accessibilità */
   --a11y-font-scale: 1;
   --a11y-line-height: 1.5;
   --a11y-letter-spacing: 0em;
+
+  /* Superfici */
+  --site-bg: #ffffff;
+  --site-surface: #ffffff;
+  --site-surface-alt: #f3f4f6;
+  --site-surface-elevated: #ffffff;
+
+  /* Testo */
+  --site-text: #111111;
+  --site-text-muted: #4b5563;
+  --site-text-soft: #6b7280;
+
+  /* Bordi */
+  --site-border: #e5e7eb;
+  --site-border-strong: #cbd5e1;
+
+  /* Colori UI */
+  --site-blue: #0072c6;
+  --site-green: #009e49;
+  --site-orange: #f77f00;
+  --site-orange-strong: #bd5b00;
+  --site-red: #d81e05;
+
+  /* Testo sopra colori UI */
+  --site-on-blue: #ffffff;
+  --site-on-green: #2b1a00;
+  --site-on-orange: #2b1a00;
+  --site-on-orange-strong: #ffffff;
+  --site-on-red: #ffffff;
+
+  /* Azione neutra */
+  --site-neutral: #000000;
+  --site-on-neutral: #ffffff;
 }
 
 @theme {
+  /* Palette ufficiale TEA: non cambia */
   --color-tea-orange: #f77f00;
   --color-tea-green: #009e49;
   --color-tea-red: #d81e05;
   --color-tea-blue: #0072c6;
   --color-tea-black: #000000;
+}
+
+@theme inline {
+  /* Superfici */
+  --color-site-bg: var(--site-bg);
+  --color-site-surface: var(--site-surface);
+  --color-site-surface-alt: var(--site-surface-alt);
+  --color-site-surface-elevated: var(--site-surface-elevated);
+
+  /* Testo */
+  --color-site-text: var(--site-text);
+  --color-site-muted: var(--site-text-muted);
+  --color-site-soft: var(--site-text-soft);
+
+  /* Bordi */
+  --color-site-border: var(--site-border);
+  --color-site-border-strong: var(--site-border-strong);
+
+  /* Accent */
+  --color-site-blue: var(--site-blue);
+  --color-site-green: var(--site-green);
+  --color-site-orange: var(--site-orange);
+  --color-site-orange-strong: var(--site-orange-strong);
+  --color-site-red: var(--site-red);
+
+  /* Testo sugli accent */
+  --color-site-on-blue: var(--site-on-blue);
+  --color-site-on-green: var(--site-on-green);
+  --color-site-on-orange: var(--site-on-orange);
+  --color-site-on-orange-strong: var(--site-on-orange-strong);
+  --color-site-on-red: var(--site-on-red);
+
+  /* Neutro */
+  --color-site-neutral: var(--site-neutral);
+  --color-site-on-neutral: var(--site-on-neutral);
+}
+
+/* Modalità notte */
+html[data-dark-mode="true"] {
+  color-scheme: dark;
+
+  --site-bg: #080b10;
+  --site-surface: #10151c;
+  --site-surface-alt: #171e27;
+  --site-surface-elevated: #202936;
+
+  --site-text: #f8fafc;
+  --site-text-muted: #cbd5e1;
+  --site-text-soft: #94a3b8;
+
+  --site-border: #293442;
+  --site-border-strong: #475569;
+
+  --site-blue: #36b9ff;
+  --site-green: #31e981;
+  --site-orange: #ffb13b;
+  --site-orange-strong: #ffb35c;
+  --site-red: #ff5c5c;
+
+  --site-on-blue: #071018;
+  --site-on-green: #071018;
+  --site-on-orange: #071018;
+    --site-on-orange-strong: #071018;
+  --site-on-red: #071018;
+
+  --site-neutral: #f8fafc;
+  --site-on-neutral: #080b10;
 }
 
 html {
@@ -23,8 +125,13 @@ body {
   font-size: calc(1rem * var(--a11y-font-scale));
   line-height: var(--a11y-line-height);
   letter-spacing: var(--a11y-letter-spacing);
-  background: var(--site-bg, #ffffff);
-  color: var(--site-text, #000000);
+
+  background-color: var(--site-bg);
+  color: var(--site-text);
+
+  transition:
+    background-color 250ms ease,
+    color 250ms ease;
 }
 
 input[type="search"]::-webkit-search-cancel-button {
@@ -49,18 +156,6 @@ html[data-highlight-headings="true"] :is(h1, h2, h3, h4, h5, h6) {
   outline-offset: 4px;
   border-radius: 8px;
   padding: 2px;
-}
-
-/* HC */
-html[data-high-contrast="true"] {
-  --site-bg: #ffffff;
-  --site-text: #000000;
-}
-
-/* Modalità notte */
-html[data-dark-mode="true"] {
-  --site-bg: #111111;
-  --site-text: #ffffff;
 }
 
 /* Preferenze di sistema */
@@ -153,22 +248,26 @@ html[data-large-cursor="true"]
   /* ICON BUTTON */
   .icon-button-glow {
     position: absolute;
-    inset: -4px;
-    opacity: 0;
-    filter: blur(6px);
+  inset: -4px;
+  opacity: 0;
+  filter: blur(6px);
 
-    transition: opacity 250ms ease;
+  transition: opacity 250ms ease;
 
-    background:
-      radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-        rgb(255 255 255 / 0.45) 0%,
-        transparent 30%),
-      conic-gradient(from 180deg,
-        rgb(53 148 214 / 0.7),
-        rgb(53 184 112 / 0.7),
-        rgb(249 155 58 / 0.7),
-        rgb(224 79 60 / 0.7),
-        rgb(53 148 214 / 0.7));
+  background:
+    radial-gradient(
+      circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgb(255 255 255 / 0.45) 0%,
+      transparent 30%
+    ),
+    conic-gradient(
+      from 180deg,
+      color-mix(in srgb, var(--site-blue) 70%, transparent),
+      color-mix(in srgb, var(--site-green) 70%, transparent),
+      color-mix(in srgb, var(--site-orange) 70%, transparent),
+      color-mix(in srgb, var(--site-red) 70%, transparent),
+      color-mix(in srgb, var(--site-blue) 70%, transparent)
+    );
   }
 
   .icon-button:not(:disabled):hover .icon-button-glow {
@@ -230,7 +329,7 @@ html[data-large-cursor="true"]
 
   .modal-gallery-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: var(--color-tea-blue) transparent;
+    scrollbar-color: var(--site-blue) transparent;
   }
 
   .modal-gallery-scrollbar::-webkit-scrollbar {
@@ -279,7 +378,7 @@ html[data-large-cursor="true"]
   }
 
   .about-hero-bg-wave {
-    background: #f7f4ef;
+    background: var(--site-surface-alt);
   }
 
   @media (prefers-reduced-motion: reduce) {

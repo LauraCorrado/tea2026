@@ -13,39 +13,73 @@ const sizeClasses = {
 };
 
 const primaryColorClasses: Record<ButtonColor, string> = {
-  blue: "bg-tea-blue text-white hover:bg-tea-blue/80 active:bg-tea-blue/80 focus-visible:ring-tea-blue",
+  blue:
+    "bg-site-blue text-site-on-blue " +
+    "hover:bg-site-blue/80 active:bg-site-blue/80 " +
+    "focus-visible:ring-site-blue",
 
   green:
-    "bg-tea-green text-white hover:bg-tea-green/80 active:bg-tea-green/80 focus-visible:ring-tea-green",
+    "bg-site-green text-site-on-green " +
+    "hover:bg-site-green/80 active:bg-site-green/80 " +
+    "focus-visible:ring-site-green",
 
   orange:
-    "bg-tea-orange text-white hover:bg-tea-orange/80 active:bg-tea-orange/80 focus-visible:ring-tea-orange",
+    "bg-site-orange text-site-on-orange " +
+    "hover:bg-site-orange/80 active:bg-site-orange/80 " +
+    "focus-visible:ring-site-orange",
 
-  red: "bg-tea-red text-white hover:bg-tea-red/80 active:bg-tea-red/80 focus-visible:ring-tea-red",
+  red:
+    "bg-site-red text-site-on-red " +
+    "hover:bg-site-red/80 active:bg-site-red/80 " +
+    "focus-visible:ring-site-red",
 
   black:
-    "bg-tea-black text-white hover:bg-tea-black/80 active:bg-tea-black/80 focus-visible:ring-tea-black",
+    "bg-site-neutral text-site-on-neutral " +
+    "hover:bg-site-neutral/80 active:bg-site-neutral/80 " +
+    "focus-visible:ring-site-neutral",
 
   white:
-    "bg-white text-black hover:bg-white/80 active:bg-white/80 focus-visible:ring-tea-black",
+    "bg-white text-black " +
+    "hover:bg-white/80 active:bg-white/80 " +
+    "focus-visible:ring-white",
 };
 
 const secondaryColorClasses: Record<ButtonColor, string> = {
-  blue: "border border-tea-blue bg-transparent text-tea-blue hover:bg-tea-blue/70 hover:border-transparent hover:text-white active:bg-tea-blue active:text-white focus-visible:ring-tea-blue",
+  blue:
+    "border border-site-blue bg-transparent text-site-blue " +
+    "hover:border-transparent hover:bg-site-blue/80 hover:text-site-on-blue " +
+    "active:bg-site-blue active:text-site-on-blue " +
+    "focus-visible:ring-site-blue",
 
   green:
-    "border border-tea-green bg-transparent text-tea-green hover:bg-tea-green/70 hover:border-transparent hover:text-white active:bg-tea-green active:text-white focus-visible:ring-tea-green",
+    "border border-site-green bg-transparent text-site-green " +
+    "hover:border-transparent hover:bg-site-green/80 hover:text-site-on-green " +
+    "active:bg-site-green active:text-site-on-green " +
+    "focus-visible:ring-site-green",
 
   orange:
-    "border border-tea-orange bg-transparent text-tea-orange hover:bg-tea-orange/70 hover:border-transparent hover:text-white active:bg-tea-orange active:text-white focus-visible:ring-tea-orange",
+    "border border-site-orange bg-transparent text-site-orange " +
+    "hover:border-transparent hover:bg-site-orange/80 hover:text-site-on-orange " +
+    "active:bg-site-orange active:text-site-on-orange " +
+    "focus-visible:ring-site-orange",
 
-  red: "border border-tea-red bg-transparent text-tea-red hover:bg-tea-red/70 hover:border-transparent hover:text-white active:bg-tea-red active:text-white focus-visible:ring-tea-red",
+  red:
+    "border border-site-red bg-transparent text-site-red " +
+    "hover:border-transparent hover:bg-site-red/80 hover:text-site-on-red " +
+    "active:bg-site-red active:text-site-on-red " +
+    "focus-visible:ring-site-red",
 
   black:
-    "border border-tea-black bg-transparent text-tea-black hover:bg-tea-black/70 hover:border-transparent hover:text-white active:bg-tea-black active:text-white focus-visible:ring-tea-black",
+    "border border-site-neutral bg-transparent text-site-neutral " +
+    "hover:border-transparent hover:bg-site-neutral/80 hover:text-site-on-neutral " +
+    "active:bg-site-neutral active:text-site-on-neutral " +
+    "focus-visible:ring-site-neutral",
 
   white:
-    "border border-white bg-transparent text-white hover:bg-white/70 hover:border-transparent hover:text-black active:bg-black active:text-white focus-visible:ring-tea-black",
+    "border border-white bg-transparent text-white " +
+    "hover:border-transparent hover:bg-white/80 hover:text-black " +
+    "active:bg-white active:text-black " +
+    "focus-visible:ring-white",
 };
 
 const variantClasses: Record<ButtonVariant, Record<ButtonColor, string>> = {

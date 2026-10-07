@@ -287,14 +287,19 @@ export function Modal({
         aria-modal="true"
         aria-labelledby={title ? titleId : undefined}
         className={`
-          relative
-          max-h-[90vh] w-full
-          overflow-y-auto
-          rounded-xl bg-white
-          shadow-xl
-          ${sizeClasses[size]}
-          ${className}
-        `}
+    relative
+    max-h-[90vh] w-full
+    overflow-y-auto
+    rounded-xl
+
+    bg-site-surface
+    text-site-text
+
+    shadow-xl
+
+    ${sizeClasses[size]}
+    ${className}
+  `}
       >
         {showCloseButton && (
           <div className="absolute right-4 top-4 z-10">
@@ -334,31 +339,31 @@ export function Modal({
               <h2
                 id={titleId}
                 className="
-          max-w-4xl
-          text-3xl
-          font-bold
-          leading-tight
-          text-tea-blue
+      max-w-4xl
+      text-3xl
+      font-bold
+      leading-tight
+      text-site-blue
 
-          md:text-4xl
-        "
+      md:text-4xl
+    "
               >
                 {title}
               </h2>
             )}
 
-            {eyebrow && <p className="text-tea-blue">{eyebrow}</p>}
+            {eyebrow && <p className="text-site-blue">{eyebrow}</p>}
 
             {description && (
               <div
                 className="
-          max-w-4xl
-          text-lg
-          leading-relaxed
-          text-tea-black
+      max-w-4xl
+      text-lg
+      leading-relaxed
+      text-site-text
 
-          md:text-xl
-        "
+      md:text-xl
+    "
               >
                 {description}
               </div>
@@ -371,7 +376,7 @@ export function Modal({
         ) : (
           <div className="p-6 md:p-8">
             {eyebrow && (
-              <p className="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-tea-blue">
+              <p className="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-site-blue">
                 {eyebrow}
               </p>
             )}
@@ -512,11 +517,22 @@ export function Modal({
 
             <div
               className="
-          absolute bottom-4 left-1/2
-          flex -translate-x-1/2 items-center gap-2
-          rounded-full
-          bg-white/95 p-2
-          shadow-lg backdrop-blur-sm
+          absolute
+    bottom-4
+    left-1/2
+
+    flex
+    -translate-x-1/2
+    items-center
+    gap-2
+
+    rounded-full
+    bg-site-surface/95
+    p-2
+
+    text-site-text
+    shadow-lg
+    backdrop-blur-sm
         "
             >
               <IconButton
@@ -530,9 +546,12 @@ export function Modal({
 
               <span
                 className="
-            min-w-12 text-center
-            text-sm font-medium text-tea-black
-          "
+    min-w-12
+    text-center
+    text-sm
+    font-medium
+    text-site-text
+  "
                 aria-live="polite"
               >
                 {Math.round(zoom * 100)}%
@@ -547,7 +566,10 @@ export function Modal({
                 }
               />
 
-              <span aria-hidden="true" className="mx-1 h-6 w-px bg-black/15" />
+              <span
+                aria-hidden="true"
+                className="mx-1 h-6 w-px bg-site-border-strong"
+              />
 
               <IconButton
                 icon={<X size={18} />}

@@ -83,7 +83,6 @@ export function AccessibilityProvider({
     const root = document.documentElement;
 
     root.dataset.reduceMotion = String(settings.reduceMotion);
-    root.dataset.highContrast = String(settings.highContrast);
     root.dataset.darkMode = String(settings.darkMode);
     root.dataset.highlightHeadings = String(settings.highlightHeadings);
     root.dataset.largeCursor = String(settings.largeCursor);

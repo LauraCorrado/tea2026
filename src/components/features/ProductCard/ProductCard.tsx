@@ -1,11 +1,11 @@
 import type { ProductCardAccent, ProductCardProps } from "./ProductCard.types";
 
 const accentClasses: Record<ProductCardAccent, string> = {
-  blue: "bg-tea-blue",
-  green: "bg-tea-green",
-  orange: "bg-tea-orange",
-  red: "bg-tea-red",
-  black: "bg-tea-black",
+  blue: "bg-site-blue",
+  green: "bg-site-green",
+  orange: "bg-site-orange",
+  red: "bg-site-red",
+  black: "bg-site-neutral",
   white: "bg-white",
 };
 
@@ -27,8 +27,10 @@ export function ProductCard({
   return (
     <article
       className={`
-        flex flex-col
+        flex
+        flex-col
         items-center
+
         ${reverse}
         ${className}
       `}
@@ -40,6 +42,7 @@ export function ProductCard({
           w-full
           overflow-hidden
           rounded-2xl
+
           lg:w-[68%]
         "
       >
@@ -50,17 +53,26 @@ export function ProductCard({
             aspect-4/3
             w-full
             object-cover
+
             transition-transform
             duration-500
+
             hover:scale-[1.02]
           "
         />
+
         <span
           aria-hidden="true"
           className={`
-            absolute top-0 right-0
-            h-1.5 w-70
+            absolute
+            right-0
+            top-0
+
+            h-1.5
+            w-70
+
             rounded-b-lg
+
             ${accentClasses[accent]}
           `}
         />
@@ -68,9 +80,15 @@ export function ProductCard({
         <span
           aria-hidden="true"
           className={`
-            absolute bottom-0 left-0
-            h-1.5 w-70
-             rounded-t-lg
+            absolute
+            bottom-0
+            left-0
+
+            h-1.5
+            w-70
+
+            rounded-t-lg
+
             ${accentClasses[accent]}
           `}
         />
@@ -78,26 +96,41 @@ export function ProductCard({
 
       <div
         className={`
-          relative z-10
-          mx-5 -mt-10
+          relative
+          z-10
+
+          mx-5
+          -mt-10
+
           w-[calc(100%-2.5rem)]
+
           rounded-2xl
-          bg-white
+          bg-site-surface
           p-7
+          text-site-text
+
           shadow-xl
+
           lg:mx-0
           lg:mt-0
           lg:w-[38%]
           lg:p-9
+
           ${overlap}
         `}
       >
         <span
           aria-hidden="true"
           className={`
-            absolute left-0 top-8
-            h-20 w-1
+            absolute
+            left-0
+            top-8
+
+            h-20
+            w-1
+
             rounded-r-full
+
             ${accentClasses[accent]}
           `}
         />
@@ -108,7 +141,15 @@ export function ProductCard({
           <h3 className="text-2xl font-semibold tracking-tight">{title}</h3>
         )}
 
-        <div className="mt-3 leading-relaxed text-black/65">{description}</div>
+        <div
+          className="
+            mt-3
+            leading-relaxed
+            text-site-muted
+          "
+        >
+          {description}
+        </div>
 
         {action && <div className="mt-6">{action}</div>}
       </div>

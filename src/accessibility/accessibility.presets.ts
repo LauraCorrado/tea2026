@@ -11,7 +11,6 @@ export const accessibilityPresets: Record<
     Partial<AccessibilitySettings>
 > = {
     lowVision: {
-        highContrast: true,
         fontScale: 125,
         lineHeight: 1.7,
         letterSpacing: 0.02,
@@ -36,7 +35,6 @@ export const accessibilityPresets: Record<
         fontScale: 120,
         lineHeight: 1.7,
         letterSpacing: 0.01,
-        highContrast: true,
         largeCursor: true,
     },
 }

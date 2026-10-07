@@ -1,4 +1,3 @@
-// respons: title, eventuale eyebrow / subtitle, opzionale descrizione,allineamento configurabile, possibilità classi custom
 import type {
   SectionHeaderAlign,
   SectionHeaderProps,
@@ -30,12 +29,12 @@ export function SectionHeader({
           <span
             aria-hidden="true"
             className="
-        absolute left-0 top-0
-        h-3 w-3
-        rounded-tl-md
-        border-l-2 border-t-2
-        border-tea-blue
-      "
+              absolute left-0 top-0
+              h-3 w-3
+              rounded-tl-md
+              border-l-2 border-t-2
+              border-site-blue
+            "
           />
 
           <p className="text-sm font-semibold uppercase tracking-[0.18em]">
@@ -45,16 +44,17 @@ export function SectionHeader({
           <span
             aria-hidden="true"
             className="
-        absolute bottom-0 right-0
-        h-3 w-3
-        rounded-br-md
-        border-b-2 border-r-2
-        border-tea-orange
-      "
+              absolute bottom-0 right-0
+              h-3 w-3
+              rounded-br-md
+              border-b-2 border-r-2
+              border-site-orange
+            "
           />
         </div>
       )}
-      <h2 className="text-3xl font-semibold tracking-tight md:text-4xl mb-3">
+
+      <h2 className="mb-3 text-3xl font-semibold tracking-tight md:text-4xl">
         {title}
       </h2>
 
