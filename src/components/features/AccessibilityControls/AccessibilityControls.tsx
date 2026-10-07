@@ -1,12 +1,17 @@
 import { Button } from "@/components/ui";
 import { useAccessibility } from "@/hooks/useAccessibility";
+import { IoMdMoon } from "react-icons/io";
+import {
+  accessibilityPresetOrder,
+  accessibilityPresets,
+} from "@/accessibility/accessibility.presets";
 
 import type { AccessibilityControlsProps } from "./AccessibilityControls.types";
 
 export function AccessibilityControls({
   className = "",
 }: AccessibilityControlsProps) {
-  const { settings, updateSetting, resetSettings, applyPreset } =
+  const { settings, activePreset, updateSetting, resetSettings, togglePreset } =
     useAccessibility();
 
   return (
@@ -30,42 +35,37 @@ export function AccessibilityControls({
           </p>
         </div>
 
-        <div className="grid gap-3">
-          <Button
-            variant="secondary"
-            color="blue"
-            size="sm"
-            onClick={() => applyPreset("lowVision")}
-          >
-            Supporto per ipovisione
-          </Button>
+        <div className="grid gap-4">
+          {accessibilityPresetOrder.map((presetName) => {
+            const preset = accessibilityPresets[presetName];
 
-          <Button
-            variant="secondary"
-            color="orange"
-            size="sm"
-            onClick={() => applyPreset("cognitiveSupport")}
-          >
-            Supporto cognitivo e alla lettura
-          </Button>
+            const active = activePreset === presetName;
 
-          <Button
-            variant="secondary"
-            color="green"
-            size="sm"
-            onClick={() => applyPreset("reducedDistractions")}
-          >
-            Riduzione distrazioni
-          </Button>
+            return (
+              <div key={presetName}>
+                <Button
+                  variant={active ? "primary" : "secondary"}
+                  color={preset.color}
+                  size="sm"
+                  aria-pressed={active}
+                  onClick={() => togglePreset(presetName)}
+                >
+                  {preset.label}
+                </Button>
 
-          <Button
-            variant="secondary"
-            color="red"
-            size="sm"
-            onClick={() => applyPreset("senior")}
-          >
-            Supporto per persone anziane
-          </Button>
+                <p
+                  className="
+                mt-1.5
+                text-xs
+                leading-relaxed
+                text-site-soft
+              "
+                >
+                  {preset.description}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </section>
 
@@ -92,26 +92,23 @@ export function AccessibilityControls({
               <AccessibilityToggle
                 label="Riduzione movimento e trigger visivi"
                 checked={settings.reduceMotion}
-                onChange={(checked) =>
-                  updateSetting("reduceMotion", checked)
-                }
+                onChange={(checked) => updateSetting("reduceMotion", checked)}
               />
 
               <AccessibilityToggle
                 label="Modalità notte"
-                checked={settings.darkMode}
-                onChange={(checked) =>
-                  updateSetting("darkMode", checked)
+                icon={
+                    <IoMdMoon size={16} aria-hidden="true" className="text-site-orange" />
                 }
+                checked={settings.darkMode}
+                onChange={(checked) => updateSetting("darkMode", checked)}
               />
             </div>
           </section>
 
           {/* CONTENUTI */}
           <section>
-            <h4 className="font-semibold text-site-text">
-              Contenuti
-            </h4>
+            <h4 className="font-semibold text-site-text">Contenuti</h4>
 
             <div className="mt-4 space-y-5">
               <AccessibilityToggle
@@ -129,9 +126,7 @@ export function AccessibilityControls({
                 max={140}
                 step={5}
                 suffix="%"
-                onChange={(value) =>
-                  updateSetting("fontScale", value)
-                }
+                onChange={(value) => updateSetting("fontScale", value)}
               />
 
               <AccessibilityRange
@@ -140,9 +135,7 @@ export function AccessibilityControls({
                 min={1.2}
                 max={2}
                 step={0.1}
-                onChange={(value) =>
-                  updateSetting("lineHeight", value)
-                }
+                onChange={(value) => updateSetting("lineHeight", value)}
               />
 
               <AccessibilityRange
@@ -152,9 +145,7 @@ export function AccessibilityControls({
                 max={0.2}
                 step={0.01}
                 suffix="em"
-                onChange={(value) =>
-                  updateSetting("letterSpacing", value)
-                }
+                onChange={(value) => updateSetting("letterSpacing", value)}
               />
             </div>
           </section>
@@ -169,25 +160,19 @@ export function AccessibilityControls({
               <AccessibilityToggle
                 label="Grande cursore nero"
                 checked={settings.largeCursor}
-                onChange={(checked) =>
-                  updateSetting("largeCursor", checked)
-                }
+                onChange={(checked) => updateSetting("largeCursor", checked)}
               />
 
               <AccessibilityToggle
                 label="Maschera per la lettura"
                 checked={settings.readingMask}
-                onChange={(checked) =>
-                  updateSetting("readingMask", checked)
-                }
+                onChange={(checked) => updateSetting("readingMask", checked)}
               />
 
               <AccessibilityToggle
                 label="Guida per lettura"
                 checked={settings.readingGuide}
-                onChange={(checked) =>
-                  updateSetting("readingGuide", checked)
-                }
+                onChange={(checked) => updateSetting("readingGuide", checked)}
               />
             </div>
           </section>
@@ -207,7 +192,7 @@ export function AccessibilityControls({
       >
         <Button
           variant="secondary"
-          color="black"
+          color="red"
           size="sm"
           onClick={resetSettings}
         >
@@ -232,12 +217,14 @@ interface AccessibilityToggleProps {
   label: string;
   checked: boolean;
   onChange: (checked: boolean) => void;
+  icon?: React.ReactNode;
 }
 
 function AccessibilityToggle({
   label,
   checked,
   onChange,
+  icon,
 }: AccessibilityToggleProps) {
   return (
     <label
@@ -247,33 +234,26 @@ function AccessibilityToggle({
         items-center
         justify-between
         gap-4
-
         rounded-lg
-
         border
         border-site-border
-
         p-3
-
         text-site-text
-
         transition-colors
-
         hover:border-site-blue
         hover:bg-site-blue/80
         hover:text-site-on-blue
       "
     >
-      <span className="text-sm font-medium">
+      <span className="flex items-center gap-2 text-sm font-medium">
+        {icon}
         {label}
       </span>
 
       <input
         type="checkbox"
         checked={checked}
-        onChange={(event) =>
-          onChange(event.target.checked)
-        }
+        onChange={(event) => onChange(event.target.checked)}
         className="
           size-4
           accent-site-blue
@@ -313,9 +293,7 @@ function AccessibilityRange({
           gap-4
         "
       >
-        <span className="text-sm font-medium">
-          {label}
-        </span>
+        <span className="text-sm font-medium">{label}</span>
 
         <span className="text-xs text-site-soft">
           {value}
@@ -329,9 +307,7 @@ function AccessibilityRange({
         max={max}
         step={step}
         value={value}
-        onChange={(event) =>
-          onChange(Number(event.target.value))
-        }
+        onChange={(event) => onChange(Number(event.target.value))}
         className="
           w-full
           accent-site-blue

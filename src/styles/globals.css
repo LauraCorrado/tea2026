@@ -6,6 +6,21 @@
   --a11y-line-height: 1.5;
   --a11y-letter-spacing: 0em;
 
+  /* Scala tipografica Tailwind adattata */
+  --text-xs: calc(0.75rem * var(--a11y-font-scale));
+  --text-sm: calc(0.875rem * var(--a11y-font-scale));
+  --text-base: calc(1rem * var(--a11y-font-scale));
+  --text-lg: calc(1.125rem * var(--a11y-font-scale));
+  --text-xl: calc(1.25rem * var(--a11y-font-scale));
+  --text-2xl: calc(1.5rem * var(--a11y-font-scale));
+  --text-3xl: calc(1.875rem * var(--a11y-font-scale));
+  --text-4xl: calc(2.25rem * var(--a11y-font-scale));
+  --text-5xl: calc(3rem * var(--a11y-font-scale));
+  --text-6xl: calc(3.75rem * var(--a11y-font-scale));
+  --text-7xl: calc(4.5rem * var(--a11y-font-scale));
+  --text-8xl: calc(6rem * var(--a11y-font-scale));
+  --text-9xl: calc(8rem * var(--a11y-font-scale));
+
   /* Superfici */
   --site-bg: #ffffff;
   --site-surface: #ffffff;
@@ -215,6 +230,15 @@ html[data-large-cursor="true"]
   textarea
 ):not(:disabled) {
   cursor: text;
+}
+
+/* interlinea e letter spacing */
+html[data-line-height-adjusted="true"] body * {
+  line-height: var(--a11y-line-height) !important;
+}
+
+html[data-letter-spacing-adjusted="true"] body * {
+  letter-spacing: var(--a11y-letter-spacing) !important;
 }
 
 /* !ANIMAZIONI */
