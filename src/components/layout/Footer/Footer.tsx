@@ -23,20 +23,23 @@ export function Footer() {
       <div
         className="
           mx-auto
-          grid
-          w-full
-          max-w-7xl
-          gap-10
-          px-4
-          py-12
+    grid
+    w-full
+    max-w-7xl
+    gap-10
+    px-4
+    py-12
 
-          sm:px-6
+    text-center
 
-          md:grid-cols-2
+    sm:px-6
 
-          lg:grid-cols-4
-          lg:px-8
-          lg:py-16
+    md:grid-cols-2
+    md:text-left
+
+    lg:grid-cols-4
+    lg:px-8
+    lg:py-16
         "
       >
         <div>
@@ -76,7 +79,7 @@ export function Footer() {
             multispettrale, nell’edutainment e nella gamification.
           </p>
 
-          <div className="mt-6">
+          <div className="flex flex-col items-center md:items-start mt-6">
             <SocialLinks links={teaSocialLinks} size="sm" />
           </div>
         </div>
@@ -144,7 +147,7 @@ export function Footer() {
               text-site-muted
             "
           >
-            <div className="flex items-start gap-3">
+            <div className="flex items-start justify-center gap-3 md:justify-start">
               <Mail
                 size={18}
                 aria-hidden="true"
@@ -178,7 +181,7 @@ export function Footer() {
               </div>
             </div>
 
-            <div className="flex items-start gap-3">
+            <div className="flex items-start justify-center gap-3 md:justify-start">
               <Phone
                 size={18}
                 aria-hidden="true"
@@ -194,7 +197,7 @@ export function Footer() {
               </a>
             </div>
 
-            <div className="flex items-start gap-3">
+            <div className="flex items-start justify-center gap-3 md:justify-start">
               <MapPin
                 size={18}
                 aria-hidden="true"
@@ -212,7 +215,7 @@ export function Footer() {
               </address>
             </div>
 
-            <div className="flex items-start gap-3">
+            <div className="flex items-start justify-center gap-3 md:justify-start">
               <ReceiptText
                 size={18}
                 aria-hidden="true"
