@@ -5,10 +5,10 @@ import { Button, IconButton } from "@/components/ui";
 import type { HeroInfoPanelProps } from "./HeroInfoPanel.types";
 
 const accentClasses = {
-  blue: "bg-tea-blue",
-  green: "bg-tea-green",
-  orange: "bg-tea-orange",
-  red: "bg-tea-red",
+  blue: "bg-site-blue",
+  green: "bg-site-green",
+  orange: "bg-site-orange",
+  red: "bg-site-red",
 };
 
 export function HeroInfoPanel({ area, onClose }: HeroInfoPanelProps) {
@@ -30,10 +30,10 @@ export function HeroInfoPanel({ area, onClose }: HeroInfoPanelProps) {
         overflow-hidden
         rounded-2xl
 
-        bg-white/95
+        bg-site-surface/95
         p-7
 
-        text-tea-black
+        text-site-text
 
         shadow-2xl
         backdrop-blur-md
@@ -47,8 +47,9 @@ export function HeroInfoPanel({ area, onClose }: HeroInfoPanelProps) {
           absolute
           left-0
           top-0
-          h-full
+          h-48
           w-1.5
+          rounded-e-lg
 
           ${accentClasses[area.color]}
         `}
@@ -91,7 +92,7 @@ export function HeroInfoPanel({ area, onClose }: HeroInfoPanelProps) {
             max-w-xl
             text-base
             leading-relaxed
-            text-black/65
+            text-site-muted
 
             md:text-lg
           "

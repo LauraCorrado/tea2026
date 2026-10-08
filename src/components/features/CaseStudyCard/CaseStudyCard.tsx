@@ -11,6 +11,7 @@ export function CaseStudyCard({
   ...props
 }: CaseStudyCardProps) {
   const isImageRight = imagePosition === "right";
+
   return (
     <article
       className={`
@@ -29,17 +30,21 @@ export function CaseStudyCard({
           overflow-hidden
           rounded-2xl
           md:min-h-105
-              ${isImageRight ? "md:order-2" : "md:order-1"}
+
+          ${isImageRight ? "md:order-2" : "md:order-1"}
         `}
       >
         <img
           src={image.src}
           alt={image.alt}
           className="
-            absolute inset-0
-            h-full w-full
+            absolute
+            inset-0
+            h-full
+            w-full
             object-cover
-            transition-transform duration-500
+            transition-transform
+            duration-500
             group-hover:scale-[1.03]
           "
         />
@@ -47,16 +52,20 @@ export function CaseStudyCard({
         <div
           aria-hidden="true"
           className="
-            absolute inset-0
+            absolute
+            inset-0
             bg-black/35
           "
         />
 
         <div
           className="
-            absolute inset-0
+            absolute
+            inset-0
             z-10
-            flex items-center justify-center
+            flex
+            items-center
+            justify-center
             p-6
             text-center
           "
@@ -64,10 +73,14 @@ export function CaseStudyCard({
           <h3
             className="
               max-w-lg
-              text-3xl font-semibold
-              leading-tight tracking-tight
+              text-3xl
+              font-semibold
+              leading-tight
+              tracking-tight
               text-white
-              text-shadow-lg text-shadow-tea-black/20
+              text-shadow-lg
+              text-shadow-tea-black/20
+
               md:text-4xl
             "
           >
@@ -77,21 +90,36 @@ export function CaseStudyCard({
       </div>
 
       <div
-        className={`relative z-10
-          flex flex-col
+        className={`
+          relative
+          z-10
+
+          flex
+          flex-col
           justify-center
-          bg-white
+
+          bg-site-surface
+          text-site-text
+
           p-6
           shadow-xl
-          md:-ml-8
+
           md:rounded-2xl
           md:p-8
-          lg:p-10 ${
-            isImageRight ? "md:order-1 md:-mr-8" : "md:order-2 md:-ml-8"
-          }`}
+
+          lg:p-10
+
+          ${
+            isImageRight
+              ? "md:order-1 md:-mr-8"
+              : "md:order-2 md:-ml-8"
+          }
+        `}
       >
         {badges && badges.length > 0 && (
-          <div className="mb-5 flex flex-wrap gap-2">{badges}</div>
+          <div className="mb-5 flex flex-wrap gap-2">
+            {badges}
+          </div>
         )}
 
         {description && (
@@ -100,14 +128,18 @@ export function CaseStudyCard({
               max-w-xl
               text-base
               leading-relaxed
-              text-black/65
+              text-site-muted
             "
           >
             {description}
           </div>
         )}
 
-        {action && <div className="mt-7">{action}</div>}
+        {action && (
+          <div className="mt-7">
+            {action}
+          </div>
+        )}
       </div>
     </article>
   );

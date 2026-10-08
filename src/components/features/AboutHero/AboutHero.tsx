@@ -53,6 +53,9 @@ export function AboutHero({
       ? "about-hero-bg-gradient"
       : "about-hero-bg-wave";
 
+  const contentTextClass =
+    backgroundVariant === "gradient" ? "text-white" : "text-site-text";
+
   return (
     <section
       className={`
@@ -61,6 +64,7 @@ export function AboutHero({
         overflow-hidden
         py-10
         ${sectionBackgroundClass}
+        ${contentTextClass}
         ${className}
       `}
       tabIndex={0}
@@ -94,7 +98,7 @@ export function AboutHero({
               absolute
               inset-0
               z-0
-              bg-white/55
+              bg-site-surface/55
             "
           />
         </>
@@ -129,7 +133,6 @@ export function AboutHero({
               text-4xl
               font-bold
               leading-tight
-              text-tea-black
 
               md:text-5xl
             "
@@ -143,8 +146,7 @@ export function AboutHero({
                 max-w-2xl
                 text-lg
                 leading-relaxed
-                text-tea-black/80
-                trac
+                opacity-80
               "
             >
               {currentSlide.description}

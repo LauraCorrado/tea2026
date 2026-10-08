@@ -1190,7 +1190,7 @@ export function Playground() {
             />
 
             <Accordion title="Accordion aperto di default" defaultOpen>
-              <p className="text-sm leading-relaxed text-black/65">
+              <p className="text-sm leading-relaxed">
                 Questo elemento viene mostrato già aperto al caricamento della
                 pagina.
               </p>
@@ -1198,12 +1198,12 @@ export function Playground() {
 
             <Accordion title="Contenuto più articolato">
               <div className="space-y-4">
-                <p className="text-sm leading-relaxed text-black/65">
+                <p className="text-sm leading-relaxed">
                   L'accordion può contenere più elementi e non soltanto un
                   singolo paragrafo.
                 </p>
 
-                <ul className="list-disc space-y-2 pl-5 text-sm text-black/65">
+                <ul className="list-disc space-y-2 pl-5 text-sm">
                   <li>Testo descrittivo</li>
                   <li>Elenchi</li>
                   <li>Componenti UI</li>
@@ -1225,7 +1225,7 @@ export function Playground() {
                 <Badge color="orange">Accessibilità</Badge>
               </div>
 
-              <p className="mt-4 text-sm leading-relaxed text-black/65">
+              <p className="mt-4 text-sm leading-relaxed">
                 Anche altri componenti UI possono essere inseriti liberamente
                 nel contenuto.
               </p>

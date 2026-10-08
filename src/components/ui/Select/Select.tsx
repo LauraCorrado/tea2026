@@ -24,7 +24,7 @@ export function Select({
           className={
             hideLabel
               ? "sr-only"
-              : "mb-2 ms-1 block text-sm font-medium text-tea-blue"
+              : "mb-2 ms-1 block text-sm font-medium text-site-blue"
           }
         >
           {label}
@@ -37,19 +37,29 @@ export function Select({
           value={value}
           onChange={(event) => onChange(event.target.value)}
           className="
-            h-11 w-full
+            h-11
+            w-full
             appearance-none
             rounded-md
-            border border-black/20
-            bg-white
-            px-3 pr-10
+
+            border
+            border-site-border
+            bg-site-surface
+
+            px-3
+            pr-10
+
             text-sm
+            text-site-text
+
             outline-none
             transition-colors
-            hover:border-black/40
-            focus:border-tea-blue
+
+            hover:border-site-border-strong
+
+            focus:border-site-blue
             focus:ring-2
-            focus:ring-tea-blue/20
+            focus:ring-site-blue/20
           "
           {...props}
         >
@@ -67,15 +77,17 @@ export function Select({
           aria-hidden="true"
           className="
             pointer-events-none
-            absolute right-3 top-1/2
+            absolute
+            right-3
+            top-1/2
             -translate-y-1/2
-            text-tea-blue
+            text-site-blue
           "
         />
       </div>
 
       {helperText && (
-        <p className="mt-2 text-sm text-tea-black/70">{helperText}</p>
+        <p className="mt-2 text-sm text-site-muted">{helperText}</p>
       )}
     </div>
   );

@@ -1,25 +1,29 @@
 import {
   createContext,
   useEffect,
-  useMemo,
+  useLayoutEffect,
   useState,
   type ReactNode,
 } from "react";
 
 import { defaultAccessibilitySettings } from "./accessibility.defaults";
-import {
-  loadAccessibilitySettings,
-  saveAccessibilitySettings,
-} from "./accessibility.storage";
+
 import {
   accessibilityPresets,
   type AccessibilityPresetName,
 } from "./accessibility.presets";
 
+import {
+  loadAccessibilityState,
+  saveAccessibilityState,
+} from "./accessibility.storage";
+
 import type { AccessibilitySettings } from "./accessibility.types";
 
 interface AccessibilityContextValue {
   settings: AccessibilitySettings;
+
+  activePreset: AccessibilityPresetName | null;
 
   updateSetting: <K extends keyof AccessibilitySettings>(
     key: K,
@@ -27,7 +31,8 @@ interface AccessibilityContextValue {
   ) => void;
 
   resetSettings: () => void;
-  applyPreset: (preset: AccessibilityPresetName) => void;
+
+  togglePreset: (preset: AccessibilityPresetName) => void;
 }
 
 export const AccessibilityContext =
@@ -40,9 +45,23 @@ interface AccessibilityProviderProps {
 export function AccessibilityProvider({
   children,
 }: AccessibilityProviderProps) {
-  const [settings, setSettings] = useState<AccessibilitySettings>(() => {
-    return loadAccessibilitySettings() ?? defaultAccessibilitySettings;
+  const [initialState] = useState(() => {
+    return loadAccessibilityState();
   });
+
+  const [settings, setSettings] = useState<AccessibilitySettings>(
+    initialState?.settings ?? defaultAccessibilitySettings,
+  );
+
+  const [activePreset, setActivePreset] =
+    useState<AccessibilityPresetName | null>(
+      initialState?.activePreset ?? null,
+    );
+
+  const [presetBaseSettings, setPresetBaseSettings] =
+    useState<AccessibilitySettings | null>(
+      initialState?.presetBaseSettings ?? null,
+    );
 
   function updateSetting<K extends keyof AccessibilitySettings>(
     key: K,
@@ -52,41 +71,89 @@ export function AccessibilityProvider({
       ...current,
       [key]: value,
     }));
+
+    if (!activePreset) {
+      return;
+    }
+
+    const presetSettings = accessibilityPresets[activePreset].settings;
+
+    const settingBelongsToPreset = key in presetSettings;
+
+    if (settingBelongsToPreset) {
+      setActivePreset(null);
+      setPresetBaseSettings(null);
+
+      return;
+    }
+
+    setPresetBaseSettings((current) => {
+      if (!current) {
+        return current;
+      }
+
+      return {
+        ...current,
+        [key]: value,
+      };
+    });
+  }
+
+  function togglePreset(presetName: AccessibilityPresetName) {
+    if (activePreset === presetName) {
+      setSettings(presetBaseSettings ?? defaultAccessibilitySettings);
+
+      setActivePreset(null);
+      setPresetBaseSettings(null);
+
+      return;
+    }
+
+    const baseSettings =
+      activePreset && presetBaseSettings ? presetBaseSettings : settings;
+
+    setPresetBaseSettings(baseSettings);
+
+    setSettings({
+      ...baseSettings,
+      ...accessibilityPresets[presetName].settings,
+    });
+
+    setActivePreset(presetName);
   }
 
   function resetSettings() {
     setSettings(defaultAccessibilitySettings);
-  }
-
-  function applyPreset(preset: AccessibilityPresetName) {
-    setSettings((current) => ({
-      ...current,
-      ...accessibilityPresets[preset],
-    }));
+    setActivePreset(null);
+    setPresetBaseSettings(null);
   }
 
   useEffect(() => {
-    saveAccessibilitySettings(settings);
-  }, [settings]);
-
-  const value = useMemo(
-    () => ({
+    saveAccessibilityState({
       settings,
-      updateSetting,
-      resetSettings,
-      applyPreset,
-    }),
-    [settings],
-  );
+      activePreset,
+      presetBaseSettings,
+    });
+  }, [settings, activePreset, presetBaseSettings]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const root = document.documentElement;
 
     root.dataset.reduceMotion = String(settings.reduceMotion);
-    root.dataset.highContrast = String(settings.highContrast);
+
     root.dataset.darkMode = String(settings.darkMode);
+
     root.dataset.highlightHeadings = String(settings.highlightHeadings);
+
     root.dataset.largeCursor = String(settings.largeCursor);
+
+    root.dataset.lineHeightAdjusted = String(
+      settings.lineHeight !== defaultAccessibilitySettings.lineHeight,
+    );
+
+    root.dataset.letterSpacingAdjusted = String(
+      settings.letterSpacing !== defaultAccessibilitySettings.letterSpacing,
+    );
 
     root.style.setProperty(
       "--a11y-font-scale",
@@ -102,7 +169,15 @@ export function AccessibilityProvider({
   }, [settings]);
 
   return (
-    <AccessibilityContext.Provider value={value}>
+    <AccessibilityContext.Provider
+      value={{
+        settings,
+        activePreset,
+        updateSetting,
+        resetSettings,
+        togglePreset,
+      }}
+    >
       {children}
     </AccessibilityContext.Provider>
   );

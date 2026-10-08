@@ -35,24 +35,24 @@ export function LoadingState({
         <div
           aria-hidden="true"
           className={`
-    rounded-full
-    animate-spin
-    motion-reduce:animate-none
-    ${spinnerSizeClasses[size]}
-  `}
+            rounded-full
+            animate-spin
+            motion-reduce:animate-none
+            ${spinnerSizeClasses[size]}
+          `}
           style={{
             background: `
-      conic-gradient(
-        var(--color-tea-blue) 0deg 75deg,
-        transparent 75deg 90deg,
-        var(--color-tea-green) 90deg 165deg,
-        transparent 165deg 180deg,
-        var(--color-tea-orange) 180deg 255deg,
-        transparent 255deg 270deg,
-        var(--color-tea-red) 270deg 345deg,
-        transparent 345deg 360deg
-      )
-    `,
+              conic-gradient(
+                var(--site-blue) 0deg 75deg,
+                transparent 75deg 90deg,
+                var(--site-green) 90deg 165deg,
+                transparent 165deg 180deg,
+                var(--site-orange) 180deg 255deg,
+                transparent 255deg 270deg,
+                var(--site-red) 270deg 345deg,
+                transparent 345deg 360deg
+              )
+            `,
             WebkitMask:
               "radial-gradient(farthest-side, transparent calc(100% - 2px), #000 0)",
             mask: "radial-gradient(farthest-side, transparent calc(100% - 2px), #000 0)",
@@ -62,7 +62,9 @@ export function LoadingState({
       </div>
 
       {label && (
-        <span className={`font-medium text-black/70 ${textSizeClasses[size]}`}>
+        <span
+          className={`font-medium text-site-muted ${textSizeClasses[size]}`}
+        >
           {label}
         </span>
       )}

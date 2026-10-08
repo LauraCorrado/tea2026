@@ -12,5 +12,6 @@ export interface LangSelectorProps
     value: string;
     onChange: (language: string) => void;
     placement?: "top" | "bottom";
+    variant?: "select" | "inline";
     className?: string;
 }

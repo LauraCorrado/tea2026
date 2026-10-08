@@ -1,15 +1,15 @@
-// appunti:sfondo colore e padding verticale
 import type { SectionProps } from "./Section.types";
 
 const baseClasses = "w-full";
 
 const variantClasses = {
-  default: "bg-white text-tea-black",
-  alternative: "bg-gray-100 text-tea-black",
-  blue: "bg-tea-blue text-white",
-  green: "bg-tea-green text-white",
-  orange: "bg-tea-orange text-white",
-  red: "bg-tea-red text-white",
+  default: "bg-site-surface text-site-text",
+  alternative: "bg-site-surface-alt text-site-text",
+
+  blue: "bg-site-blue text-site-on-blue",
+  green: "bg-site-green text-site-on-green",
+  orange: "bg-site-orange text-site-on-orange",
+  red: "bg-site-red text-site-on-red",
 };
 
 const spacingClasses = {

@@ -1,10 +1,10 @@
 import type { CardPadding, CardProps, CardVariant } from "./Card.types";
 
-const baseClasses = "overflow-hidden rounded-xl bg-white";
+const baseClasses = "overflow-hidden rounded-xl bg-site-surface text-site-text";
 
 const variantClasses: Record<CardVariant, string> = {
   default: "",
-  outlined: "border border-black/10",
+  outlined: "border border-site-border",
   elevated: "shadow-md",
 };
 
@@ -30,6 +30,7 @@ export function Card({
       {badges && badges.length > 0 && (
         <div className="mb-4 flex flex-wrap gap-2">{badges}</div>
       )}
+
       {children}
     </div>
   );

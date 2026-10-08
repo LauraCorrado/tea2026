@@ -34,8 +34,11 @@ export function PatentAccordion({
     >
       <div
         className="
-          flex flex-wrap
-          items-center gap-x-6 gap-y-2
+          flex
+          flex-wrap
+          items-center
+          gap-x-6
+          gap-y-2
           text-sm
         "
       >
@@ -44,22 +47,23 @@ export function PatentAccordion({
             font-semibold
             uppercase
             tracking-[0.16em]
-            text-tea-blue
+            text-site-blue
           "
         >
           {typeLabels[type]}
         </span>
 
-        <span className="font-medium text-black/45">{year}</span>
+        <span className="font-medium text-site-soft">{year}</span>
       </div>
 
       <p
         className="
           mt-4
           font-mono
-          text-sm font-semibold
+          text-sm
+          font-semibold
           tracking-wide
-          text-black/60
+          text-site-muted
         "
       >
         {number}
@@ -71,7 +75,7 @@ export function PatentAccordion({
             mt-5
             max-w-3xl
             leading-relaxed
-            text-black/65
+            text-site-muted
           "
         >
           {description}
@@ -86,15 +90,23 @@ export function PatentAccordion({
               target="_blank"
               rel="noopener noreferrer"
               className="
-                inline-flex items-center gap-2
-                text-sm font-semibold
-                text-tea-blue
+                inline-flex
+                items-center
+                gap-2
+
+                text-sm
+                font-semibold
+                text-site-blue
+
                 transition-opacity
+
                 hover:opacity-70
+
                 focus-visible:outline-none
                 focus-visible:ring-2
-                focus-visible:ring-tea-blue
+                focus-visible:ring-site-blue
                 focus-visible:ring-offset-2
+                focus-visible:ring-offset-site-surface
               "
             >
               Documentazione
@@ -107,15 +119,23 @@ export function PatentAccordion({
               href={pdfUrl}
               download
               className="
-                inline-flex items-center gap-2
-                text-sm font-semibold
-                text-tea-red
+                inline-flex
+                items-center
+                gap-2
+
+                text-sm
+                font-semibold
+                text-site-red
+
                 transition-opacity
+
                 hover:opacity-70
+
                 focus-visible:outline-none
                 focus-visible:ring-2
-                focus-visible:ring-tea-red
+                focus-visible:ring-site-red
                 focus-visible:ring-offset-2
+                focus-visible:ring-offset-site-surface
               "
             >
               Scarica PDF

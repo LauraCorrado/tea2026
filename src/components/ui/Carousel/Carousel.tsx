@@ -76,7 +76,8 @@ export function Carousel<T>({
     <div className={`w-full ${className}`} onKeyDown={handleKeyDown}>
       <div
         className="
-          relative overflow-hidden
+          relative
+          overflow-hidden
           touch-pan-y
         "
         tabIndex={0}
@@ -91,8 +92,10 @@ export function Carousel<T>({
       >
         <div
           className="
-            flex transition-transform
-            duration-500 ease-out
+            flex
+            transition-transform
+            duration-500
+            ease-out
           "
           style={{
             transform: `translateX(-${currentIndex * 100}%)`,
@@ -135,11 +138,21 @@ export function Carousel<T>({
                 aria-label={`Vai alla slide ${index + 1}`}
                 aria-current={index === currentIndex ? "true" : undefined}
                 className={`
-                  h-2 rounded-full transition-all duration-300
+                  h-2
+                  rounded-full
+                  transition-all
+                  duration-300
+
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-site-blue
+                  focus-visible:ring-offset-2
+                  focus-visible:ring-offset-site-bg
+
                   ${
                     index === currentIndex
-                      ? "w-6 bg-tea-blue"
-                      : "w-2 bg-black/20"
+                      ? "w-6 bg-site-blue"
+                      : "w-2 bg-site-border-strong"
                   }
                 `}
               />

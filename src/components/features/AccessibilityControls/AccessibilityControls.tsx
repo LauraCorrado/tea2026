@@ -1,172 +1,181 @@
 import { Button } from "@/components/ui";
 import { useAccessibility } from "@/hooks/useAccessibility";
+import { IoMdMoon } from "react-icons/io";
+import {
+  accessibilityPresetOrder,
+  accessibilityPresets,
+} from "@/accessibility/accessibility.presets";
 
 import type { AccessibilityControlsProps } from "./AccessibilityControls.types";
 
 export function AccessibilityControls({
   className = "",
 }: AccessibilityControlsProps) {
-  const { settings, updateSetting, resetSettings, applyPreset } =
+  const { settings, activePreset, updateSetting, resetSettings, togglePreset } =
     useAccessibility();
 
   return (
     <div
       className={`
         mt-6
-        space-y-8
+        space-y-10
+        text-site-text
         ${className}
       `}
     >
-      {/* PROFILI RAPIDI */}
+      {/* PRESET */}
       <section>
-        <h4 className="font-semibold text-tea-black underline underline-offset-4">
-          Profili rapidi
-        </h4>
+        <div className="mb-4">
+          <h3 className="text-lg font-semibold tracking-tight text-site-text">
+            Preset
+          </h3>
 
-        <div className="mt-4 grid gap-3">
-          <AccessibilityToggle
-            label="Riduzione movimento e trigger visivi"
-            checked={settings.reduceMotion}
-            onChange={(checked) => updateSetting("reduceMotion", checked)}
-          />
+          <p className="mt-1 text-sm leading-relaxed text-site-muted">
+            Applica rapidamente una configurazione predefinita
+          </p>
+        </div>
 
-          <Button
-            variant="secondary"
-            color="blue"
-            size="sm"
-            onClick={() => applyPreset("lowVision")}
-          >
-            Supporto per ipovisione
-          </Button>
+        <div className="grid gap-4">
+          {accessibilityPresetOrder.map((presetName) => {
+            const preset = accessibilityPresets[presetName];
 
-          <Button
-            variant="secondary"
-            color="orange"
-            size="sm"
-            onClick={() => applyPreset("cognitiveSupport")}
-          >
-            Supporto cognitivo e alla lettura
-          </Button>
+            const active = activePreset === presetName;
 
-          <Button
-            variant="secondary"
-            color="green"
-            size="sm"
-            onClick={() => applyPreset("reducedDistractions")}
-          >
-            Riduzione distrazioni
-          </Button>
+            return (
+              <div key={presetName}>
+                <Button
+                  variant={active ? "primary" : "secondary"}
+                  color={preset.color}
+                  size="sm"
+                  aria-pressed={active}
+                  onClick={() => togglePreset(presetName)}
+                >
+                  {preset.label}
+                </Button>
 
-          <Button
-            variant="secondary"
-            color="red"
-            size="sm"
-            onClick={() => applyPreset("senior")}
-          >
-            Supporto per persone anziane
-          </Button>
+                <p
+                  className="
+                mt-1.5
+                text-xs
+                leading-relaxed
+                text-site-soft
+              "
+                >
+                  {preset.description}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </section>
 
-      {/* COLORI */}
+      {/* AVANZATE */}
       <section>
-        <h4 className="font-semibold text-tea-black underline underline-offset-4">
-          Colori
-        </h4>
+        <div className="mb-6 border-t border-site-border pt-6">
+          <h3 className="text-lg font-semibold tracking-tight text-site-text">
+            Impostazioni avanzate
+          </h3>
 
-        <div className="mt-4 grid gap-3">
-          <AccessibilityToggle
-            label="Alto contrasto"
-            checked={settings.highContrast}
-            onChange={(checked) => updateSetting("highContrast", checked)}
-          />
-
-          <AccessibilityToggle
-            label="Modalità notte"
-            checked={settings.darkMode}
-            onChange={(checked) => updateSetting("darkMode", checked)}
-          />
+          <p className="mt-1 text-sm leading-relaxed text-site-muted">
+            Agisci sulle singole configurazioni
+          </p>
         </div>
-      </section>
 
-      {/* CONTENUTI */}
-      <section>
-        <h4 className="font-semibold text-tea-black underline underline-offset-4">
-          Contenuti
-        </h4>
+        <div className="space-y-8">
+          {/* COLORI */}
+          <section>
+            <h4 className="font-semibold text-site-text">
+              Colori e animazioni
+            </h4>
 
-        <div className="mt-4 space-y-5">
-          {/* <AccessibilityRange
-            label="Scala contenuti"
-            value={settings.contentScale}
-            min={80}
-            max={130}
-            step={5}
-            suffix="%"
-            onChange={(value) => updateSetting("contentScale", value)}
-          /> */}
+            <div className="mt-4 grid gap-3">
+              <AccessibilityToggle
+                label="Riduzione movimento e trigger visivi"
+                checked={settings.reduceMotion}
+                onChange={(checked) => updateSetting("reduceMotion", checked)}
+              />
 
-          <AccessibilityToggle
-            label="Evidenzia titoli"
-            checked={settings.highlightHeadings}
-            onChange={(checked) => updateSetting("highlightHeadings", checked)}
-          />
+              <AccessibilityToggle
+                label="Modalità notte"
+                icon={
+                    <IoMdMoon size={16} aria-hidden="true" className="text-site-orange" />
+                }
+                checked={settings.darkMode}
+                onChange={(checked) => updateSetting("darkMode", checked)}
+              />
+            </div>
+          </section>
 
-          <AccessibilityRange
-            label="Dimensione caratteri"
-            value={settings.fontScale}
-            min={80}
-            max={140}
-            step={5}
-            suffix="%"
-            onChange={(value) => updateSetting("fontScale", value)}
-          />
+          {/* CONTENUTI */}
+          <section>
+            <h4 className="font-semibold text-site-text">Contenuti</h4>
 
-          <AccessibilityRange
-            label="Interlinea"
-            value={settings.lineHeight}
-            min={1.2}
-            max={2}
-            step={0.1}
-            onChange={(value) => updateSetting("lineHeight", value)}
-          />
+            <div className="mt-4 space-y-5">
+              <AccessibilityToggle
+                label="Evidenzia titoli"
+                checked={settings.highlightHeadings}
+                onChange={(checked) =>
+                  updateSetting("highlightHeadings", checked)
+                }
+              />
 
-          <AccessibilityRange
-            label="Spaziatura lettere"
-            value={settings.letterSpacing}
-            min={0}
-            max={0.2}
-            step={0.01}
-            suffix="em"
-            onChange={(value) => updateSetting("letterSpacing", value)}
-          />
-        </div>
-      </section>
+              <AccessibilityRange
+                label="Dimensione caratteri"
+                value={settings.fontScale}
+                min={80}
+                max={140}
+                step={5}
+                suffix="%"
+                onChange={(value) => updateSetting("fontScale", value)}
+              />
 
-      {/* ORIENTAMENTO */}
-      <section>
-        <h4 className="font-semibold text-tea-black underline underline-offset-4">
-          Orientamento
-        </h4>
+              <AccessibilityRange
+                label="Interlinea"
+                value={settings.lineHeight}
+                min={1.2}
+                max={2}
+                step={0.1}
+                onChange={(value) => updateSetting("lineHeight", value)}
+              />
 
-        <div className="mt-4 grid gap-3">
-          <AccessibilityToggle
-            label="Grande cursore nero"
-            checked={settings.largeCursor}
-            onChange={(checked) => updateSetting("largeCursor", checked)}
-          />
+              <AccessibilityRange
+                label="Spaziatura lettere"
+                value={settings.letterSpacing}
+                min={0}
+                max={0.2}
+                step={0.01}
+                suffix="em"
+                onChange={(value) => updateSetting("letterSpacing", value)}
+              />
+            </div>
+          </section>
 
-          <AccessibilityToggle
-            label="Maschera per la lettura"
-            checked={settings.readingMask}
-            onChange={(checked) => updateSetting("readingMask", checked)}
-          />
+          {/* ORIENTAMENTO */}
+          <section>
+            <h4 className="font-semibold text-site-text">
+              Orientamento nella pagina
+            </h4>
 
-          <AccessibilityToggle
-            label="Guida alla lettura"
-            checked={settings.readingGuide}
-            onChange={(checked) => updateSetting("readingGuide", checked)}
-          />
+            <div className="mt-4 grid gap-3">
+              <AccessibilityToggle
+                label="Grande cursore nero"
+                checked={settings.largeCursor}
+                onChange={(checked) => updateSetting("largeCursor", checked)}
+              />
+
+              <AccessibilityToggle
+                label="Maschera per la lettura"
+                checked={settings.readingMask}
+                onChange={(checked) => updateSetting("readingMask", checked)}
+              />
+
+              <AccessibilityToggle
+                label="Guida per lettura"
+                checked={settings.readingGuide}
+                onChange={(checked) => updateSetting("readingGuide", checked)}
+              />
+            </div>
+          </section>
         </div>
       </section>
 
@@ -177,13 +186,13 @@ export function AccessibilityControls({
           items-center
           gap-3
           border-t
-          border-black/10
+          border-site-border
           pt-5
         "
       >
         <Button
           variant="secondary"
-          color="black"
+          color="red"
           size="sm"
           onClick={resetSettings}
         >
@@ -208,12 +217,14 @@ interface AccessibilityToggleProps {
   label: string;
   checked: boolean;
   onChange: (checked: boolean) => void;
+  icon?: React.ReactNode;
 }
 
 function AccessibilityToggle({
   label,
   checked,
   onChange,
+  icon,
 }: AccessibilityToggleProps) {
   return (
     <label
@@ -225,11 +236,19 @@ function AccessibilityToggle({
         gap-4
         rounded-lg
         border
-        border-black/10
+        border-site-border
         p-3
+        text-site-text
+        transition-colors
+        hover:border-site-blue
+        hover:bg-site-blue/80
+        hover:text-site-on-blue
       "
     >
-      <span className="text-sm font-medium">{label}</span>
+      <span className="flex items-center gap-2 text-sm font-medium">
+        {icon}
+        {label}
+      </span>
 
       <input
         type="checkbox"
@@ -237,7 +256,7 @@ function AccessibilityToggle({
         onChange={(event) => onChange(event.target.checked)}
         className="
           size-4
-          accent-tea-blue
+          accent-site-blue
         "
       />
     </label>
@@ -276,7 +295,7 @@ function AccessibilityRange({
       >
         <span className="text-sm font-medium">{label}</span>
 
-        <span className="text-xs text-black/50">
+        <span className="text-xs text-site-soft">
           {value}
           {suffix}
         </span>
@@ -289,7 +308,10 @@ function AccessibilityRange({
         step={step}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="w-full accent-tea-blue"
+        className="
+          w-full
+          accent-site-blue
+        "
       />
     </label>
   );
@@ -297,14 +319,14 @@ function AccessibilityRange({
 
 {
   /* // ? REGOLARE ESPERIENZA DI NAVIGAZIONE:
-              - SICUREZZA EPILESSIA (RIDUZIONE MOVIMENTO E TRIGGER VISIVI)
+              
               - SUPPORTO PER IPOVISIONE (AUMENTO CONTRASTO)
               - ADHDH FRIENDLY (RIDUZIONE DISTRAZIONI)
               - SUPPORTO COGNITIVO E ALLA LETTURA (SEMPLIFICAZIONE NAVIGAZIONE E LETTURA)
               - PERSONE ANZIANE (MIGLIORAMENTO VISIBILITà E COMFORT DI LETTURA)
     // ? REGOLARE I COLORI:
-              - ALTO CONTRASTO
               - MODALITA NOTTE
+              - SICUREZZA EPILESSIA (RIDUZIONE MOVIMENTO E TRIGGER VISIVI)
     // ? REGOLARE I CONTENUTI:
               - SCALA CONTENUTI
               - EVIDENZIA TITOLI

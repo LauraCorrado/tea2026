@@ -4,27 +4,35 @@ import type { HeroActionListProps } from "./HeroActionList.types";
 
 const colorClasses = {
   blue: `
-    border-tea-blue
-    hover:bg-tea-blue
-    aria-pressed:bg-tea-blue
+    border-site-blue
+    hover:bg-site-blue
+    hover:text-site-on-blue
+    aria-pressed:bg-site-blue
+    aria-pressed:text-site-on-blue
   `,
 
   green: `
-    border-tea-green
-    hover:bg-tea-green
-    aria-pressed:bg-tea-green
+    border-site-green
+    hover:bg-site-green
+    hover:text-site-on-green
+    aria-pressed:bg-site-green
+    aria-pressed:text-site-on-green
   `,
 
   orange: `
-    border-tea-orange
-    hover:bg-tea-orange
-    aria-pressed:bg-tea-orange
+    border-site-orange
+    hover:bg-site-orange
+    hover:text-site-on-orange
+    aria-pressed:bg-site-orange
+    aria-pressed:text-site-on-orange
   `,
 
   red: `
-    border-tea-red
-    hover:bg-tea-red
-    aria-pressed:bg-tea-red
+    border-site-red
+    hover:bg-site-red
+    hover:text-site-on-red
+    aria-pressed:bg-site-red
+    aria-pressed:text-site-on-red
   `,
 };
 
@@ -79,7 +87,6 @@ export function HeroActionList({
               duration-300
 
               hover:translate-x-1
-              hover:text-white
 
               focus-visible:outline-none
               focus-visible:ring-2
