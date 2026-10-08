@@ -6,9 +6,11 @@ import { AccessibilityControls } from "@/components/features";
 import { Accordion, IconButton, LangSelector } from "@/components/ui";
 import { languages } from "@/data/languages.ts";
 
+import { useLanguage } from "@/hooks/useLanguage";
+
 export function OptionBanner() {
   const [open, setOpen] = useState(false);
-  const [language, setLanguage] = useState("it");
+  const { language, setLanguage } = useLanguage();
 
   return (
     <>
@@ -17,7 +19,7 @@ export function OptionBanner() {
           fixed
           right-4
           top-1/2
-          z-40
+          z-60
           -translate-y-1/2
         "
       >
@@ -45,7 +47,7 @@ export function OptionBanner() {
           className="
             fixed
             inset-0
-            z-40
+            z-70
             bg-black/20
             backdrop-blur-[2px]
           "
@@ -60,7 +62,7 @@ export function OptionBanner() {
           fixed
           right-0
           top-0
-          z-50
+          z-80
 
           flex
           h-dvh
@@ -140,7 +142,7 @@ export function OptionBanner() {
             <LangSelector
               languages={languages}
               value={language}
-              onChange={setLanguage}
+              onChange={(value) => setLanguage(value as "it" | "en")}
               variant="inline"
             />
           </Accordion>
@@ -212,9 +214,7 @@ export function OptionBanner() {
                 animation="glow"
               />
 
-              <span className="text-sm text-site-muted">
-                +39 349.3056593
-              </span>
+              <span className="text-sm text-site-muted">+39 349.3056593</span>
             </div>
           </Accordion>
         </div>
