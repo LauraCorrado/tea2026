@@ -16,5 +16,5 @@ export const teaSocialLinks = [
     {
         platform: "youtube",
         href: "https://www.youtube.com/@teasrl4840",
-    },
+    }
 ] satisfies SocialLink[];

@@ -24,3 +24,22 @@ export const navigationItems = [
         href: "/contatti",
     },
 ] as const;
+
+export const legalItems = [
+  {
+    label: "Cookie Policy",
+    href: "/cookie-policy",
+  },
+  {
+    label: "Privacy Policy",
+    href: "/privacy-policy",
+  },
+  {
+    label: "Politica sulla parità di genere",
+    href: "/politica-parita-genere",
+  },
+  {
+    label: "Dichiarazione di accessibilità",
+    href: "/dichiarazione-accessibilita",
+  },
+] as const;
