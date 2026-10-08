@@ -1,16 +1,17 @@
 import { Outlet } from "react-router";
 
-import { Header } from "@/components/layout/Header";
-import { OptionBanner } from "@/components/layout/OptionBanner";
+import { Header, Footer, OptionBanner } from "@/components/layout";
 
 export function PageLayout() {
   return (
     <>
       <Header />
 
-      <main className="pt-16" >
+      <main className="pt-16">
         <Outlet />
       </main>
+
+      <Footer />
 
       <OptionBanner />
     </>

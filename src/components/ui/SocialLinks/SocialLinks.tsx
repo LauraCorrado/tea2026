@@ -5,6 +5,7 @@ import {
   FaInstagram,
   FaLinkedinIn,
   FaYoutube,
+  FaGlobe
 } from "react-icons/fa6";
 
 import type {
@@ -18,6 +19,7 @@ const platformIcons: Record<SocialPlatform, IconType> = {
   instagram: FaInstagram,
   linkedin: FaLinkedinIn,
   youtube: FaYoutube,
+  website: FaGlobe
 };
 
 const platformLabels: Record<SocialPlatform, string> = {
@@ -25,6 +27,7 @@ const platformLabels: Record<SocialPlatform, string> = {
   instagram: "Instagram",
   linkedin: "LinkedIn",
   youtube: "YouTube",
+  website: "Sito web"
 };
 
 const sizeClasses: Record<SocialLinksSize, string> = {
