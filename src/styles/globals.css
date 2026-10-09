@@ -1,10 +1,122 @@
 @import "tailwindcss";
 
+/* ! FONT */
+@font-face {
+  font-family: "Delta Jaeger";
+  src: url("../assets/fonts/delta-jaeger/delta-jaeger-light.woff")
+    format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Delta Jaeger";
+  src: url("../assets/fonts/delta-jaeger/delta-jaeger-light-italic.woff")
+    format("woff");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Delta Jaeger";
+  src: url("../assets/fonts/delta-jaeger/delta-jaeger-book.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Delta Jaeger";
+  src: url("../assets/fonts/delta-jaeger/delta-jaeger-book-italic.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Delta Jaeger";
+  src: url("../assets/fonts/delta-jaeger/delta-jaeger-medium.woff")
+    format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Delta Jaeger";
+  src: url("../assets/fonts/delta-jaeger/delta-jaeger-medium-italic.woff")
+    format("woff");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Delta Jaeger";
+  src: url("../assets/fonts/delta-jaeger/delta-jaeger-bold.woff")
+    format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Delta Jaeger";
+  src: url("../assets/fonts/delta-jaeger/delta-jaeger-bold-italic.woff")
+    format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Delta Jaeger Outline";
+  src: url("../assets/fonts/delta-jaeger/delta-jaeger-outline.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Futura";
+  src: url("../assets/fonts/futura/futura-medium.TTF")
+    format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Allura";
+  src: url("../assets/fonts/allura/allura-regular.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Allura";
+  src: url("../assets/fonts/allura/allura-regular.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Accessibilità */
   --a11y-font-scale: 1;
   --a11y-line-height: 1.5;
   --a11y-letter-spacing: 0em;
+
+  /* Tipografia script */
+  --script-font-scale: 1.12;
 
   /* Scala tipografica Tailwind adattata */
   --text-xs: calc(0.75rem * var(--a11y-font-scale));
@@ -56,7 +168,29 @@
 }
 
 @theme {
-  /* Palette ufficiale TEA: non cambia */
+  /* Tipografia */
+  --font-body:
+    "Delta Jaeger",
+    Arial,
+    sans-serif;
+
+  --font-heading:
+    "Futura",
+    "Trebuchet MS",
+    Arial,
+    sans-serif;
+
+  --font-outline:
+    "Delta Jaeger Outline",
+    "Delta Jaeger",
+    Arial,
+    sans-serif;
+
+  --font-script:
+    "Allura",
+    cursive;
+
+  /* Palette ufficiale TEA */
   --color-tea-orange: #f77f00;
   --color-tea-green: #009e49;
   --color-tea-red: #d81e05;
@@ -124,7 +258,7 @@ html[data-dark-mode="true"] {
   --site-on-blue: #071018;
   --site-on-green: #071018;
   --site-on-orange: #071018;
-    --site-on-orange-strong: #071018;
+  --site-on-orange-strong: #071018;
   --site-on-red: #071018;
 
   --site-neutral: #f8fafc;
@@ -137,7 +271,10 @@ html {
 
 body {
   min-width: 320px;
+  font-family: var(--font-body);
+  font-weight: 400;
   font-size: calc(1rem * var(--a11y-font-scale));
+
   line-height: var(--a11y-line-height);
   letter-spacing: var(--a11y-letter-spacing);
 
@@ -265,6 +402,23 @@ html[data-letter-spacing-adjusted="true"] body * {
 @layer base {
   button:not(:disabled) {
     cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+  }
+
+  .font-script {
+    font-family: var(--font-script);
+    font-size: calc(1em * var(--script-font-scale));
+    letter-spacing: var(--script-letter-spacing);
+    line-height: 1.15;
   }
 }
 
