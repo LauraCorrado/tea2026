@@ -231,8 +231,8 @@ export function Playground() {
       id: "slide1",
       title: (
         <>
-          In un mondo di <span className="text-tea-blue">tecnologia</span>, noi
-          vendiamo <span className="text-tea-green">poesia</span>
+          <span className="font-script">In un mondo di <span className="text-tea-blue">tecnologia</span>, noi
+          vendiamo <span className="text-tea-green">poesia</span></span>
         </>
       ),
       description: (
@@ -253,7 +253,7 @@ export function Playground() {
       id: "slide2",
       title: (
         <>
-          Un’evoluzione lunga <span className="text-tea-orange">30 anni</span>
+          <span className="font-script">Un’evoluzione lunga <span className="text-tea-orange">30 anni</span></span>
         </>
       ),
       description: (
@@ -278,7 +278,7 @@ export function Playground() {
       id: "slide3",
       title: (
         <>
-          Nuove <span className="text-tea-red">storie da scoprire</span>
+          <span className="font-script">Nuove <span className="text-tea-red">storie da scoprire</span></span>
         </>
       ),
       description: (
