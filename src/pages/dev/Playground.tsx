@@ -387,13 +387,13 @@ export function Playground() {
       {/* SEZIONI */}
       <h2 className="text-2xl font-semibold p-10">Sezioni</h2>
       <div className="flex">
-        <Section spacing="sm">
+        <Section spacing="sm" reveal="left">
           <h2>Default section with SM space</h2>
         </Section>
-        <Section spacing="md">
+        <Section spacing="md" reveal="right">
           <h2>Default section with MD space</h2>
         </Section>
-        <Section spacing="lg">
+        <Section spacing="lg" reveal="left">
           <h2>Default section with LG space</h2>
         </Section>
       </div>
@@ -485,7 +485,7 @@ export function Playground() {
         </Container>
       </Section>
 
-      <Section variant="alternative">
+      <Section variant="alternative"  reveal="left">
         <Container>
           <SectionHeader
             eyebrow={
