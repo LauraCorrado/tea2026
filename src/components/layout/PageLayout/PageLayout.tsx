@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 
-import { Header, Footer, OptionBanner } from "@/components/layout";
+import { Header, Footer, OptionBanner, BackToTop } from "@/components/layout";
 
 export function PageLayout() {
   return (
@@ -14,6 +14,7 @@ export function PageLayout() {
       <Footer />
 
       <OptionBanner />
+      <BackToTop />
     </>
   );
 }
