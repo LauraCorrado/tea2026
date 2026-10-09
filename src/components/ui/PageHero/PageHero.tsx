@@ -36,7 +36,7 @@ export function PageHero({
 
       <div className="w-full px-4 py-12 sm:px-6 md:py-16 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h1 className="font-script max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
             {title}
           </h1>
 

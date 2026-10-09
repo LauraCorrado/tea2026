@@ -62,7 +62,7 @@ export function AboutHero({
         relative
         w-full
         overflow-hidden
-        py-10
+        py-20
         ${sectionBackgroundClass}
         ${contentTextClass}
         ${className}
@@ -86,7 +86,7 @@ export function AboutHero({
                 h-full
                 w-full
                 object-cover
-                object-top
+                object-[center_25%]
                 opacity-30
               "
             />
