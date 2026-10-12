@@ -51,6 +51,8 @@ export function InteractiveHero({
         w-full
         overflow-hidden
 
+        md:py-10
+
         lg:min-h-[80vh]
 
         ${className}
@@ -151,6 +153,8 @@ export function InteractiveHero({
                   uppercase
                   tracking-[0.18em]
                   text-white/90
+                                    text-shadow-black/50
+                  text-shadow-md
                 "
               >
                 {eyebrow}
@@ -165,12 +169,14 @@ export function InteractiveHero({
                 text-3xl
                 font-semibold
                 leading-tight
-                tracking-tight
+                tracking-[0.05rem]
                 text-white
 
                 sm:text-4xl
                 md:text-5xl
                 lg:text-6xl
+                                  text-shadow-black/50
+                  text-shadow-md
               "
             >
               {title}
@@ -182,11 +188,11 @@ export function InteractiveHero({
                   mt-5
                   max-w-xl
 
-                  text-lg
+                  text-xl
                   leading-relaxed
-                  text-white/90
+                  text-white
 
-                  text-shadow-black
+                  text-shadow-black/50
                   text-shadow-md
                 "
               >

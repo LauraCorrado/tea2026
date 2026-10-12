@@ -78,7 +78,6 @@ export function HeroInfoPanel({ area, onClose }: HeroInfoPanelProps) {
             max-w-xl
             text-3xl
             font-semibold
-            tracking-tight
 
             md:text-4xl
           "

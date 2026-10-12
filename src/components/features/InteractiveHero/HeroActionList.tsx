@@ -43,6 +43,7 @@ export function HeroActionList({
 }: HeroActionListProps) {
   return (
     <div
+      role="group"
       className="
         flex
         w-full
@@ -60,7 +61,7 @@ export function HeroActionList({
             key={area.id}
             type="button"
             aria-pressed={active}
-            aria-controls="hero-info-panel"
+            aria-controls={active ? "hero-info-panel" : undefined}
             onClick={() => onSelect(area)}
             className={`
               group
@@ -97,7 +98,7 @@ export function HeroActionList({
               ${colorClasses[area.color]}
             `}
           >
-            <span className="font-semibold">{area.title}</span>
+            <span className="tracking-wide">{area.title}</span>
 
             <ArrowRight
               size={18}
