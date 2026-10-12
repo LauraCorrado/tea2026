@@ -193,20 +193,10 @@ export function AccessibilityControls({
         <Button
           variant="secondary"
           color="red"
-          size="sm"
+          size="md"
           onClick={resetSettings}
         >
           Reset
-        </Button>
-
-        <Button
-          as="a"
-          href="/dichiarazione-accessibilita"
-          variant="primary"
-          color="blue"
-          size="sm"
-        >
-          Dichiarazione di accessibilità
         </Button>
       </div>
     </div>
