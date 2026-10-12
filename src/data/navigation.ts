@@ -1,6 +1,6 @@
 export const navigationItems = [
   {
-    label: "Homepage",
+    label: "Home",
     href: "/",
   },
   {
