@@ -16,14 +16,14 @@ export function PageLayout() {
     const currentMatch = [...matches].reverse().find((match) => (match.handle as RouteHandle | undefined)?.title)
     const pageTitle = (currentMatch?.handle as RouteHandle | undefined)?.title;
 
-    document.title = pageTitle ? `${pageTitle} | TEA Storie da SCoprire` : "TEA Storie da Scoprire"
+    document.title = pageTitle ? `${pageTitle} | TEA Storie da Scoprire` : "TEA Storie da Scoprire"
   }, [matches])
 
   return (
     <>
       <Header />
 
-      <main className="pt-16">
+      <main className="pt-28">
         {isLoading ? (
           <div
             className="
