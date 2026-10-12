@@ -5,7 +5,7 @@ export const heroAreas = [
     id: "fruizione-accessibile",
     title: "Fruizione accessibile",
     description:
-      "Tecnologie e soluzioni multisensoriali per rendere il patrimonio culturale più accessibile e inclusivo.",
+      "Progettiamo esperienze tattili, fisiche e interattive per rendere la cultura tangibile e coinvolgente attraverso i sensi.",
     href: "/about#fruizione-accessibile",
     color: "orange",
   },
@@ -14,7 +14,7 @@ export const heroAreas = [
     id: "imaging-multispettrale",
     title: "Imaging Multispettrale",
     description:
-      "Tecnologie di acquisizione e analisi avanzata delle immagini applicate allo studio e alla conservazione del patrimonio.",
+      "Valorizziamo e ricostruiamo digitalmente il patrimonio attraverso tecnologie non invasive di Imaging Multispettrale e di Restauro Virtuale.",
     href: "/about#imaging-multispettrale",
     color: "green",
   },
@@ -23,7 +23,7 @@ export const heroAreas = [
     id: "edutainment-gamification",
     title: "Edutainment e Gamification",
     description:
-      "Esperienze digitali e interattive che uniscono apprendimento, gioco e coinvolgimento dell'utente.",
+      "Trasformiamo l’apprendimento in un’esperienza attiva fondendo gioco, narrazione e interazione.",
     href: "/about#edutainment-gamification",
     color: "blue",
   },
@@ -32,7 +32,7 @@ export const heroAreas = [
     id: "consulenza-statistica",
     title: "Consulenza statistica",
     description:
-      "Analisi e interpretazione dei dati a supporto della ricerca, della valutazione e dei processi decisionali.",
+      "Trasformiamo il dato semplice e lo inseriamo in contesti strutturati.",
     href: "/about#consulenza-statistica",
     color: "red",
   },

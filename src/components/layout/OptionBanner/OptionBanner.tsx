@@ -58,29 +58,29 @@ export function OptionBanner() {
         id="site-options"
         aria-label="Opzioni del sito"
         aria-hidden={!open}
+        inert={!open}
         className={`
-          fixed
-          right-0
-          top-0
-          z-80
+    fixed
+    right-0
+    top-0
+    z-80
 
-          flex
-          h-dvh
-          w-full
-          max-w-md
-          flex-col
+    flex
+    h-dvh
+    w-full
+    max-w-md
+    flex-col
 
-          bg-site-surface
-          text-site-text
+    bg-site-surface
+    text-site-text
+    shadow-2xl
 
-          shadow-2xl
+    transition-transform
+    duration-300
+    ease-out
 
-          transition-transform
-          duration-300
-          ease-out
-
-          ${open ? "translate-x-0" : "translate-x-full"}
-        `}
+    ${open ? "translate-x-0" : "translate-x-full pointer-events-none"}
+  `}
       >
         <div
           className="
@@ -133,7 +133,7 @@ export function OptionBanner() {
                   aria-hidden="true"
                 />
 
-                <span className="font-semibold tracking-wide text-site-text">
+                <span className="font-light tracking-wide text-site-text">
                   Cambia lingua
                 </span>
               </div>
@@ -156,7 +156,7 @@ export function OptionBanner() {
                   aria-hidden="true"
                 />
 
-                <span className="font-semibold tracking-wide text-site-text">
+                <span className="font-light tracking-wide text-site-text">
                   Regolazioni per l'accessibilità
                 </span>
               </div>
@@ -185,7 +185,7 @@ export function OptionBanner() {
                   aria-hidden="true"
                 />
 
-                <span className="font-semibold tracking-wide text-site-text">
+                <span className="font-light tracking-wide text-site-text">
                   Contatti rapidi
                 </span>
               </div>

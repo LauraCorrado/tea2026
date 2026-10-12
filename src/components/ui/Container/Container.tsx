@@ -1,11 +1,10 @@
-// appunti: devo centrare il contenuto, limitarne la larghezza max, gestire padding orizzontale
 import type {
   ContainerProps,
   ContainerSize,
 } from "./Container.types";
 
 const baseClasses =
-  "mx-auto w-full px-4 sm:px-6 lg:px-8";
+  "mx-auto w-full space-y-10 px-4 sm:px-6 md:space-y-8 lg:px-8";
 
 const sizeClasses: Record<ContainerSize, string> = {
   sm: "max-w-3xl",

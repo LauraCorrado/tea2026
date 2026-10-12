@@ -54,7 +54,7 @@ export function SectionHeader({
         </div>
       )}
 
-      <h2 className="mb-3 text-3xl font-semibold tracking-tight md:text-4xl">
+      <h2 className="mb-3 text-3xl font-semibold md:text-4xl">
         {title}
       </h2>
 

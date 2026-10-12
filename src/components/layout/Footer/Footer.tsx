@@ -291,8 +291,8 @@ export function Footer() {
             px-4
             py-5
             text-xs
-            text-site-soft
-
+            text-site-muted
+            
             sm:px-6
 
             md:flex-row
@@ -302,7 +302,7 @@ export function Footer() {
             lg:px-8
           "
         >
-          <span>© {new Date().getFullYear()} TEA S.r.l.</span>
+          <span>© {new Date().getFullYear()} TEA S.R.L.</span>
 
           <span>Tutti i diritti riservati</span>
         </div>

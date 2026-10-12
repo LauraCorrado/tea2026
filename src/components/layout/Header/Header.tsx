@@ -67,7 +67,7 @@ export function Header() {
         >
           <Logo
             variant={settings.darkMode ? "negative" : "default"}
-            size="md"
+            size="xl"
           />
         </NavLink>
 
