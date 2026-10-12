@@ -1,28 +1,28 @@
 export const navigationItems = [
-    {
-        label: "Homepage",
-        href: "/",
-    },
-    {
-        label: "Chi siamo",
-        href: "/chi-siamo",
-    },
-    {
-        label: "Le nostre competenze",
-        href: "/competenze",
-    },
-    {
-        label: "Ricerca e Sviluppo",
-        href: "/ricerca-sviluppo",
-    },
-    {
-        label: "I nostri lavori",
-        href: "/lavori",
-    },
-    {
-        label: "Contatti",
-        href: "/contatti",
-    },
+  {
+    label: "Homepage",
+    href: "/",
+  },
+  {
+    label: "Chi siamo",
+    href: "/about",
+  },
+  {
+    label: "Le nostre competenze",
+    href: "/skills",
+  },
+  {
+    label: "Ricerca & Sviluppo",
+    href: "/res-dev",
+  },
+  {
+    label: "I nostri lavori",
+    href: "/works",
+  },
+  {
+    label: "Contatti",
+    href: "/contacts",
+  },
 ] as const;
 
 export const legalItems = [
@@ -36,10 +36,10 @@ export const legalItems = [
   },
   {
     label: "Politica sulla parità di genere",
-    href: "/politica-parita-genere",
+    href: "/gender-equality",
   },
-  {
-    label: "Dichiarazione di accessibilità",
-    href: "/dichiarazione-accessibilita",
-  },
+  // {
+  //   label: "Dichiarazione di accessibilità",
+  //   href: "/accessibility-statement",
+  // },
 ] as const;

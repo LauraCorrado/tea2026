@@ -6,7 +6,7 @@ export const heroAreas = [
     title: "Fruizione accessibile",
     description:
       "Tecnologie e soluzioni multisensoriali per rendere il patrimonio culturale più accessibile e inclusivo.",
-    href: "/chi-siamo#fruizione-accessibile",
+    href: "/about#fruizione-accessibile",
     color: "orange",
   },
 
@@ -15,7 +15,7 @@ export const heroAreas = [
     title: "Imaging Multispettrale",
     description:
       "Tecnologie di acquisizione e analisi avanzata delle immagini applicate allo studio e alla conservazione del patrimonio.",
-    href: "/chi-siamo#imaging-multispettrale",
+    href: "/about#imaging-multispettrale",
     color: "green",
   },
 
@@ -24,7 +24,7 @@ export const heroAreas = [
     title: "Edutainment e Gamification",
     description:
       "Esperienze digitali e interattive che uniscono apprendimento, gioco e coinvolgimento dell'utente.",
-    href: "/chi-siamo#edutainment-gamification",
+    href: "/about#edutainment-gamification",
     color: "blue",
   },
 
@@ -33,7 +33,7 @@ export const heroAreas = [
     title: "Consulenza statistica",
     description:
       "Analisi e interpretazione dei dati a supporto della ricerca, della valutazione e dei processi decisionali.",
-    href: "/chi-siamo#consulenza-statistica",
+    href: "/about#consulenza-statistica",
     color: "red",
   },
 ] satisfies readonly InteractiveHeroArea[];
