@@ -1,12 +1,23 @@
-import { Outlet, useNavigation } from "react-router";
-
+import { useEffect } from "react";
+import { Outlet, useNavigation, useMatches } from "react-router";
 import { Header, Footer, OptionBanner, BackToTop } from "@/components/layout";
-
 import { LoadingState } from "@/components/ui";
+
+interface RouteHandle {
+  title?: string;
+}
 
 export function PageLayout() {
   const navigation = useNavigation();
+  const matches = useMatches();
   const isLoading = navigation.state === "loading";
+
+  useEffect(() => {
+    const currentMatch = [...matches].reverse().find((match) => (match.handle as RouteHandle | undefined)?.title)
+    const pageTitle = (currentMatch?.handle as RouteHandle | undefined)?.title;
+
+    document.title = pageTitle ? `${pageTitle} | TEA Storie da SCoprire` : "TEA Storie da Scoprire"
+  }, [matches])
 
   return (
     <>
