@@ -469,115 +469,142 @@ export function Modal({
     "
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) {
-              setSelectedImage(null);
-              setZoom(1);
+              closeImage();
             }
           }}
         >
           <div
             className="
-        relative
-        flex max-h-[90vh] max-w-[90vw]
-        items-center justify-center
+        flex
+        max-h-[90vh]
+        max-w-[90vw]
+        flex-col
+        items-center
+        gap-3
       "
             onMouseDown={(event) => event.stopPropagation()}
           >
-            <div
-              ref={imageViewportRef}
-              className={`
-    lightbox-scrollbar
-    max-h-[85vh] max-w-[90vw]
-    overflow-auto
-    select-none
-    touch-none
-    ${zoom > 1 ? "cursor-grab" : "cursor-default"}
-    ${isDragging ? "cursor-grabbing" : ""}
-  `}
-              onPointerDown={handlePointerDown}
-              onPointerMove={handlePointerMove}
-              onPointerUp={handlePointerUp}
-              onPointerCancel={handlePointerUp}
-            >
-              <img
-                src={selectedImage.src}
-                alt={selectedImage.alt}
-                draggable={false}
-                className="
-      block
-      max-h-[85vh] max-w-[90vw]
-      object-contain
-      transition-transform duration-200
-      origin-center
-    "
-                style={{
-                  transform: `scale(${zoom})`,
-                }}
-              />
-            </div>
+            <div className="relative">
+              <div
+                ref={imageViewportRef}
+                className={`
+            lightbox-scrollbar
+            max-h-[80vh]
+            max-w-[90vw]
+            overflow-auto
+            select-none
+            touch-none
 
-            <div
-              className="
-          absolute
-    bottom-4
-    left-1/2
-
-    flex
-    -translate-x-1/2
-    items-center
-    gap-2
-
-    rounded-full
-    bg-site-surface/95
-    p-2
-
-    text-site-text
-    shadow-lg
-    backdrop-blur-sm
-        "
-            >
-              <IconButton
-                icon={<Minus size={18} />}
-                label="Riduci immagine"
-                disabled={zoom <= MIN_ZOOM}
-                onClick={() =>
-                  setZoom((current) => Math.max(MIN_ZOOM, current - ZOOM_STEP))
-                }
-              />
-
-              <span
-                className="
-    min-w-12
-    text-center
-    text-sm
-    font-medium
-    text-site-text
-  "
-                aria-live="polite"
+            ${zoom > 1 ? "cursor-grab" : "cursor-default"}
+            ${isDragging ? "cursor-grabbing" : ""}
+          `}
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onPointerCancel={handlePointerUp}
               >
-                {Math.round(zoom * 100)}%
-              </span>
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  draggable={false}
+                  className="
+              block
+              max-h-[80vh]
+              max-w-[90vw]
+              object-contain
+              transition-transform
+              duration-200
+              origin-center
+            "
+                  style={{
+                    transform: `scale(${zoom})`,
+                  }}
+                />
+              </div>
 
-              <IconButton
-                icon={<Plus size={18} />}
-                label="Ingrandisci immagine"
-                disabled={zoom >= MAX_ZOOM}
-                onClick={() =>
-                  setZoom((current) => Math.min(MAX_ZOOM, current + ZOOM_STEP))
-                }
-              />
+              <div
+                className="
+            absolute
+            bottom-4
+            left-1/2
 
-              <span
-                aria-hidden="true"
-                className="mx-1 h-6 w-px bg-site-border-strong"
-              />
+            flex
+            -translate-x-1/2
+            items-center
+            gap-2
 
-              <IconButton
-                icon={<X size={18} />}
-                label="Chiudi immagine"
-                animation="rotate"
-                onClick={closeImage}
-              />
+            rounded-full
+            bg-site-surface/95
+            p-2
+
+            text-site-text
+            shadow-lg
+            backdrop-blur-sm
+          "
+              >
+                <IconButton
+                  icon={<Minus size={18} />}
+                  label="Riduci immagine"
+                  disabled={zoom <= MIN_ZOOM}
+                  onClick={() =>
+                    setZoom((current) =>
+                      Math.max(MIN_ZOOM, current - ZOOM_STEP),
+                    )
+                  }
+                />
+
+                <span
+                  className="
+              min-w-12
+              text-center
+              text-sm
+              font-medium
+              text-site-text
+            "
+                  aria-live="polite"
+                >
+                  {Math.round(zoom * 100)}%
+                </span>
+
+                <IconButton
+                  icon={<Plus size={18} />}
+                  label="Ingrandisci immagine"
+                  disabled={zoom >= MAX_ZOOM}
+                  onClick={() =>
+                    setZoom((current) =>
+                      Math.min(MAX_ZOOM, current + ZOOM_STEP),
+                    )
+                  }
+                />
+
+                <span
+                  aria-hidden="true"
+                  className="mx-1 h-6 w-px bg-site-border-strong"
+                />
+
+                <IconButton
+                  icon={<X size={18} />}
+                  label="Chiudi immagine"
+                  animation="rotate"
+                  onClick={closeImage}
+                />
+              </div>
             </div>
+
+            {selectedImage.caption && (
+              <p
+                className="
+            max-w-3xl
+            px-4
+            text-center
+            text-md
+            leading-relaxed
+            text-white/90
+          "
+              >
+                {selectedImage.caption}
+              </p>
+            )}
           </div>
         </div>
       )}

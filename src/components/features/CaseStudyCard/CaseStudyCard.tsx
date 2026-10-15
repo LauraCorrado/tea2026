@@ -76,7 +76,7 @@ export function CaseStudyCard({
               text-3xl
               font-semibold
               leading-tight
-              tracking-tight
+              tracking-wider
               text-white
               text-shadow-lg
               text-shadow-tea-black/20
