@@ -101,8 +101,6 @@ export function Header() {
                     rounded-md
                     px-3
                     py-2
-                    text-sm
-                    font-medium
 
                     transition-colors
                     duration-200
@@ -115,7 +113,7 @@ export function Header() {
 
                     ${
                       isActive
-                        ? "text-site-blue"
+                        ? "text-site-blue font-medium"
                         : "text-site-text hover:bg-site-surface-alt hover:text-site-blue"
                     }
                   `}

@@ -38,7 +38,7 @@ import testProgetto2 from "@/assets/images/decorative/testProgetto2.webp";
 import testProgetto3 from "@/assets/images/decorative/testProgetto3.webp";
 import { useState } from "react";
 import type { WorkArea } from "@/types/workArea";
-import { workAreaConfig } from "@/types/workArea";
+import { workAreaConfig } from "@/data/workAreaConfig";
 import { teaSocialLinks } from "@/data/socialLinks";
 import { heroAreas } from "@/data/heroAreas";
 import { languages } from "@/data/languages";
@@ -162,13 +162,13 @@ export function Playground() {
       description:
         "Ricerca di mercato e creazione esperienza multisensoriale e multimaterica dedicata alla fruizione accessibile del patrimonio culturale.",
       //uso qui le aree del workArea che ho creato
-      areas: ["fruizione-accessibile", "analisi-statistica"],
+      areas: ["fruizione-accessibile", "consulenza-statistica"],
     },
     {
       title: "Percorso gastronomico di Napoli",
       description:
         "Piattaforma per la consultazione e la visualizzazione dei migliori ristoranti del territorio di Napoli.",
-      areas: ["analisi-statistica"],
+      areas: ["consulenza-statistica"],
     },
     {
       title: "Restauro virtuale documenti del Museo Nome Falso",

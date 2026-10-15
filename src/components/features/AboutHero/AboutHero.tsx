@@ -130,6 +130,7 @@ export function AboutHero({
         <div className="flex flex-col gap-5">
           <h1
             className="
+            font-script
               text-4xl
               font-bold
               leading-tight

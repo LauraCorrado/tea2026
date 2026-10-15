@@ -5,6 +5,7 @@ export type ModalSize = "sm" | "md" | "lg" | "xl";
 export interface ModalImage {
     src: string;
     alt: string;
+    caption?: string;
 }
 
 export type ModalVariant =

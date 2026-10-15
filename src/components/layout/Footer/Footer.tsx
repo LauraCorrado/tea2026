@@ -105,12 +105,11 @@ export function Footer() {
                     end={item.href === "/"}
                     className={({ isActive }) => `
     text-sm
-    font-semibold
 
     transition-colors
     duration-200
 
-    ${isActive ? "text-site-blue" : "text-site-text hover:text-site-blue"}
+    ${isActive ? "text-site-blue font-medium" : "text-site-text hover:text-site-blue"}
 
     focus-visible:outline-none
     focus-visible:ring-2
@@ -251,12 +250,11 @@ export function Footer() {
                     to={item.href}
                     className={({ isActive }) => `
     text-sm
-    font-semibold
 
     transition-colors
     duration-200
 
-    ${isActive ? "text-site-blue" : "text-site-text hover:text-site-blue"}
+    ${isActive ? "text-site-blue font-medium" : "text-site-text hover:text-site-blue"}
 
     focus-visible:outline-none
     focus-visible:ring-2
