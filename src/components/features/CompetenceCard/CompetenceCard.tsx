@@ -87,7 +87,7 @@ export function CompetenceCard({
       <div
         className="
           grid
-          min-h-75
+          min-h-80
           w-full
           transform-3d
 
@@ -195,7 +195,7 @@ export function CompetenceCard({
                     text-xl
                     font-semibold
                     leading-tight
-                    tracking-tight
+                    tracking-wide
 
                     text-shadow-lg
                     text-shadow-tea-black/20
@@ -257,7 +257,7 @@ export function CompetenceCard({
             bg-linear-to-br
             ${gradientClasses[color]}
 
-            p-5
+            p-7
 
             text-left
             text-white
@@ -280,10 +280,9 @@ export function CompetenceCard({
             <h3
               className="
                 mt-2
-                text-lg
-                font-semibold
+                text-xl
                 leading-tight
-                tracking-tight
+                tracking-wide
                 text-white
               "
             >
