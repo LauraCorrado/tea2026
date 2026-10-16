@@ -1,5 +1,5 @@
 import type { SectionProps } from "./Section.types";
-import { useSectionReveal } from "@/hooks/useSectionReveal";
+import { useSectionReveal } from "@/hooks/useSectionReveal"
 
 const baseClasses = "w-full";
 

@@ -25,7 +25,6 @@ export function Home() {
 
   return (
     <>
-      {/* //! HERO */}
       <InteractiveHero
         videoSrc="/videos/testRec.mp4" // * DA MODIFICARE CON VIDEO CORRETTO
         videoPoster={testHero}
@@ -35,7 +34,6 @@ export function Home() {
         areas={heroAreas}
       />
 
-      {/* //! BENVENUTO */}
       <Section variant="alternative" reveal="up">
         <Container>
           <SectionHeader
@@ -59,7 +57,6 @@ export function Home() {
         </Container>
       </Section>
 
-      {/* //! RICERCA E SVILUPPO */}
       <Section variant="default" reveal="left">
         <Container
           className="
@@ -143,7 +140,6 @@ export function Home() {
         </Container>
       </Section>
 
-      {/* //! PRODOTTI */}
       <Section id="products" variant="alternative" reveal="up">
         <Container>
           <SectionHeader
@@ -224,7 +220,6 @@ export function Home() {
         </Container>
       </Section>
 
-      {/* //! AFFIDATI A NOI */}
       <Section variant="default" reveal="left">
         <Container>
           <SectionHeader
@@ -369,7 +364,6 @@ export function Home() {
         </Container>
       </Section>
 
-      {/* //! CONTATTI */}
       <Section variant="blue" reveal="up">
         <Container>
           <SectionHeader title="Parliamo del tuo progetto" />

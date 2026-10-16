@@ -36,12 +36,12 @@ export function PageHero({
 
       <div className="w-full px-4 py-12 sm:px-6 md:py-16 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className="max-w-4xl text-4xl font-semibold tracking-wide text-white md:text-5xl lg:text-7xl">
             {title}
           </h1>
 
           {subtitle && (
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/90 md:text-lg">
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/90 md:text-xl">
               {subtitle}
             </p>
           )}

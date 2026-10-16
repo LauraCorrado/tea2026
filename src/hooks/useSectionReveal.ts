@@ -11,7 +11,7 @@ interface UseSectionRevealOptions {
 export function useSectionReveal({
     enabled = true,
     threshold = 0.12,
-    rootMargin = "0px 0px -10% 0px",
+    rootMargin = "0px 0px 10% 0px",
 }: UseSectionRevealOptions = {}) {
     const { settings } = useAccessibility();
     const sectionRef = useRef<HTMLElement | null>(null);

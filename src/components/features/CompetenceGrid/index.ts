@@ -1,0 +1,1 @@
+export { CompetenceGrid } from "./CompetenceGrid";
