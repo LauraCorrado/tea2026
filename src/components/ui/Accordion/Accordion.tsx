@@ -55,7 +55,7 @@ export function Accordion({
         <div
           className="
             text-xl
-            font-semibold
+            font-base
             tracking-tight
             text-site-blue
 

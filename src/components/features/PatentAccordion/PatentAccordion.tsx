@@ -1,4 +1,5 @@
 import { ExternalLink, FileDown } from "lucide-react";
+
 import { Accordion } from "@/components/ui";
 
 import type {
@@ -15,10 +16,12 @@ const typeLabels: Record<PatentAccordionType, string> = {
 
 export function PatentAccordion({
   type,
+  typeLabel,
   name,
   number,
   year,
   description,
+  nationalizations,
   documentationUrl,
   pdfUrl,
   defaultOpen = false,
@@ -50,7 +53,7 @@ export function PatentAccordion({
             text-site-blue
           "
         >
-          {typeLabels[type]}
+          {typeLabel ?? typeLabels[type]}
         </span>
 
         <span className="font-medium text-site-soft">{year}</span>
@@ -66,7 +69,7 @@ export function PatentAccordion({
           text-site-muted
         "
       >
-        {number}
+        N. {number}
       </p>
 
       {description && (
@@ -79,6 +82,40 @@ export function PatentAccordion({
           "
         >
           {description}
+        </div>
+      )}
+
+      {nationalizations && nationalizations.length > 0 && (
+        <div className="mt-6">
+          <p className="text-sm font-semibold text-site-text">
+            Brevetti nazionalizzati
+          </p>
+
+          <ul className="mt-3 space-y-2">
+            {nationalizations.map((item) => (
+              <li
+                key={`${item.country}-${item.number}`}
+                className="
+                  flex
+                  flex-wrap
+                  gap-x-3
+                  gap-y-1
+                  text-sm
+                  text-site-muted
+                "
+              >
+                <span className="font-semibold text-site-text">
+                  {item.country}
+                </span>
+
+                <span className="font-mono">{item.number}</span>
+
+                {item.year && (
+                  <span className="text-site-soft">{item.year}</span>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
       )}
 
