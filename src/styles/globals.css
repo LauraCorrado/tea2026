@@ -249,11 +249,12 @@ html[data-dark-mode="true"] {
   --site-border: #293442;
   --site-border-strong: #475569;
 
-  --site-blue: #36b9ff;
-  --site-green: #31e981;
-  --site-orange: #ffb13b;
-  --site-orange-strong: #ffb35c;
+  --site-blue: #2f9fd8;
+  --site-green: #27b56c;
+  --site-orange: #d89535;
+  --site-orange-strong: #c97a2e;
   --site-red: #ff5c5c;
+  /* altro rosso #d85a5a */
 
   --site-on-blue: #071018;
   --site-on-green: #071018;
