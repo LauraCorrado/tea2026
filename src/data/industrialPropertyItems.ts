@@ -1,6 +1,6 @@
 import type { PatentAccordionProps } from "@/components/features";
 
-type PatentItem = Pick<
+export type IndustrialPropertyItem = Pick<
     PatentAccordionProps,
     | "type"
     | "typeLabel"
@@ -13,7 +13,7 @@ type PatentItem = Pick<
     | "pdfUrl"
 >;
 
-export const patents: PatentItem[] = [
+export const patents: IndustrialPropertyItem[] = [
     {
         type: "national-patent",
 
@@ -116,5 +116,54 @@ export const patents: PatentItem[] = [
         number: "102023000018969",
 
         year: 2025,
+    },
+]
+
+export const trademarks: IndustrialPropertyItem[] = [
+    {
+        type: "community-trademark",
+
+        typeLabel: "Marchio comunitario denominativo",
+
+        name: "AIVES",
+
+        number: "015058654",
+
+        year: 2016,
+
+        description:
+            "Domanda N. 015058654 presentata il 30/01/2016. Attestato di concessione N. 015058654 del 17/05/2016.",
+    },
+
+    {
+        type: "community-trademark",
+
+        typeLabel: "Marchio comunitario figurativo",
+
+        name: "AI",
+
+        number: "015061286",
+
+        year: 2017,
+
+        description:
+            "Domanda N. 015061286 presentata il 30/01/2016. Attestato di concessione N. 015061286 del 04/09/2017.",
+    },
+];
+
+export const designs: IndustrialPropertyItem[] = [
+    {
+        type: "design",
+
+        typeLabel: "Design comunitario",
+
+        name: "Design europeo AIVES",
+
+        number: "007694542-0001",
+
+        year: 2020,
+
+        description:
+            "Domanda N. 007694542 presentata il 14/02/2020. Certificato di registrazione N. 007694542-0001 del 14/02/2020.",
     },
 ]

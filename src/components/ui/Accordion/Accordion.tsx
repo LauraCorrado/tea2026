@@ -23,6 +23,7 @@ export function Accordion({
         text-site-text
         transition-colors
         duration-300
+        shadow-sm
 
         ${open ? "border-site-blue/50" : ""}
         ${className}
@@ -54,7 +55,7 @@ export function Accordion({
       >
         <div
           className="
-            text-xl
+            text-lg
             font-base
             tracking-tight
             text-site-blue
