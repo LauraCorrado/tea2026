@@ -1,5 +1,8 @@
 import { Link } from "react-router";
 
+import testHero from "@/assets/images/decorative/testHero.webp";
+import testProgetto2 from "@/assets/images/decorative/testProgetto2.webp";
+
 import { PatentAccordion } from "@/components/features";
 
 import {
@@ -10,10 +13,46 @@ import {
   SectionHeader,
 } from "@/components/ui";
 
-import { patents } from "@/data/patentItems";
+import {
+  designs,
+  patents,
+  trademarks,
+  type IndustrialPropertyItem,
+} from "@/data/industrialPropertyItems";
 
-import testHero from "@/assets/images/decorative/testHero.webp";
-import testProgetto2 from "@/assets/images/decorative/testProgetto2.webp";
+interface PropertyAccordionGridProps {
+  items: IndustrialPropertyItem[];
+}
+
+function PropertyAccordionGrid({ items }: PropertyAccordionGridProps) {
+  return (
+    <>
+      <div className="space-y-5 lg:hidden">
+        {items.map((item) => (
+          <PatentAccordion key={`${item.type}-${item.number}`} {...item} />
+        ))}
+      </div>
+
+      <div className="hidden gap-5 lg:grid lg:grid-cols-2">
+        <div className="flex flex-col gap-5">
+          {items
+            .filter((_, index) => index % 2 === 0)
+            .map((item) => (
+              <PatentAccordion key={`${item.type}-${item.number}`} {...item} />
+            ))}
+        </div>
+
+        <div className="flex flex-col gap-5">
+          {items
+            .filter((_, index) => index % 2 !== 0)
+            .map((item) => (
+              <PatentAccordion key={`${item.type}-${item.number}`} {...item} />
+            ))}
+        </div>
+      </div>
+    </>
+  );
+}
 
 export function ResDev() {
   return (
@@ -30,7 +69,7 @@ export function ResDev() {
         overlay="blue"
       />
 
-      <Section variant="default" reveal="up">
+      <Section variant="alternative" reveal="up">
         <Container>
           <div
             className="
@@ -138,7 +177,7 @@ export function ResDev() {
         </Container>
       </Section>
 
-      <Section id="brevetti" variant="alternative" reveal="up">
+      <Section id="brevetti" variant="default" reveal="up">
         <Container>
           <SectionHeader
             eyebrow="Proprietà industriale"
@@ -151,39 +190,50 @@ export function ResDev() {
             "
           />
 
-          <div className="mt-10">
-            <div className="space-y-5 lg:hidden">
-              {patents.map((patent) => (
-                <PatentAccordion
-                  key={`${patent.type}-${patent.number}`}
-                  {...patent}
-                />
-              ))}
+          <div className="mt-12 space-y-16">
+            <div>
+              <h3
+                className="
+        mb-6
+        text-2xl
+        font-semibold
+        tracking-wide
+      "
+              >
+                Brevetti
+              </h3>
+
+              <PropertyAccordionGrid items={patents} />
             </div>
 
-            {/* DESKTOP */}
-            <div className="hidden gap-5 lg:grid lg:grid-cols-2">
-              <div className="flex flex-col gap-5">
-                {patents
-                  .filter((_, index) => index % 2 === 0)
-                  .map((patent) => (
-                    <PatentAccordion
-                      key={`${patent.type}-${patent.number}`}
-                      {...patent}
-                    />
-                  ))}
-              </div>
+            <div>
+              <h3
+                className="
+        mb-6
+        text-2xl
+        font-semibold
+        tracking-wide
+      "
+              >
+                Marchi comunitari
+              </h3>
 
-              <div className="flex flex-col gap-5">
-                {patents
-                  .filter((_, index) => index % 2 !== 0)
-                  .map((patent) => (
-                    <PatentAccordion
-                      key={`${patent.type}-${patent.number}`}
-                      {...patent}
-                    />
-                  ))}
-              </div>
+              <PropertyAccordionGrid items={trademarks} />
+            </div>
+
+            <div>
+              <h3
+                className="
+        mb-6
+        text-2xl
+        font-semibold
+        tracking-wide
+      "
+              >
+                Design
+              </h3>
+
+              <PropertyAccordionGrid items={designs} />
             </div>
           </div>
         </Container>
