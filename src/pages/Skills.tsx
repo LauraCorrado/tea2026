@@ -107,7 +107,7 @@ export function Skills() {
             >
               <Button
                 color="black"
-                onClick={() => navigate("/research-development#brevetti")}
+                onClick={() => navigate("/res-dev#brevetti")}
               >
                 Scopri i nostri brevetti
               </Button>
