@@ -240,8 +240,8 @@ export function Contacts() {
     <>
       {/* //! HERO */}
       <PageHero
-        title="Hai un’idea? Iniziamo a costruirla insieme!"
-        subtitle="Ogni progetto nasce da un’esigenza, da un’intuizione o da una domanda. Raccontaci la tua: possiamo partire da lì per costruire insieme una soluzione adatta al contesto."
+        title="Entriamo in contatto"
+        subtitle="Che tu voglia proporre un progetto, avviare una collaborazione o candidarti per entrare nel team, questo è il punto di partenza"
         backgroundImage={testHero}
         overlay="dark"
       />
@@ -313,7 +313,7 @@ export function Contacts() {
             "
           >
             <div>
-              <SectionHeader eyebrow="Contatti" title="Recapiti" />
+              <SectionHeader eyebrow="Recapiti" title="Come puoi contattarci" />
 
               <div className="mt-8 space-y-6">
                 <div className="flex gap-4">
@@ -468,7 +468,7 @@ export function Contacts() {
 
             <div>
               <SectionHeader
-                eyebrow="Scrivici"
+                eyebrow="Idee e progetti"
                 title="Parlaci del tuo progetto"
                 description="Raccontaci da dove vuoi partire. Ti ricontatteremo per trovare insieme le possibili soluzioni"
               />
