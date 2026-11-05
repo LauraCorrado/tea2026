@@ -156,8 +156,8 @@ const faqItems = [
 
 export function Contacts() {
   const [status, setStatus] = useState<FormStatus>("idle");
-
   const [careerStatus, setCareerStatus] = useState<CareerFormStatus>("idle");
+  const [selectedJob, setSelectedJob] = useState<JobOpening | null>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -687,7 +687,7 @@ export function Contacts() {
           </div>
         </Container>
       </Section>
-      
+
       {/* //! LAVORA CON NOI */}
       <Section
         id="careers"
@@ -933,6 +933,24 @@ export function Contacts() {
                             </ul>
                           </div>
                         )}
+                        <Button
+                          type="button"
+                          color="blue"
+                          onClick={() => {
+                            setSelectedJob(job);
+
+                            requestAnimationFrame(() => {
+                              document
+                                .getElementById("career-form")
+                                ?.scrollIntoView({
+                                  behavior: "smooth",
+                                  block: "start",
+                                });
+                            });
+                          }}
+                        >
+                          Candidati per questa posizione
+                        </Button>
                       </div>
                     </Accordion>
                   ))}
@@ -940,16 +958,18 @@ export function Contacts() {
               )}
             </div>
 
-            {/* //! CANDIDATURA SPONTANEA */}
-            <div>
+            {/* //! CANDIDATURA SPONTANEA / candidatura */}
+            <div id="career-form" className="scroll-mt-28">
               <h3
                 className="
-            text-2xl
-            font-semibold
-            text-site-text
-          "
+    text-2xl
+    font-semibold
+    text-site-text
+  "
               >
-                Candidatura spontanea
+                {selectedJob
+                  ? "Candidati per questa posizione"
+                  : "Candidatura spontanea"}
               </h3>
 
               <p
@@ -959,11 +979,40 @@ export function Contacts() {
             text-site-muted
           "
               >
-                Non trovi una posizione adatta al tuo profilo? Inviaci il tuo
-                curriculum e raccontaci brevemente le tue competenze!
+                {selectedJob ? (
+                  <>
+                    Stai inviando la tua candidatura per{" "}
+                    <strong className="text-site-green">
+                      {selectedJob.title}
+                    </strong>
+                    .
+                  </>
+                ) : (
+                  <>
+                    Non trovi una posizione adatta al tuo profilo? Inviaci il
+                    tuo curriculum e raccontaci brevemente le tue competenze!
+                  </>
+                )}
               </p>
+              {selectedJob && (
+                <Button
+                  type="button"
+                  variant="secondary"
+                  color="green"
+                  size="sm"
+                  className="mt-4"
+                  onClick={() => setSelectedJob(null)}
+                >
+                  Passa alla candidatura spontanea
+                </Button>
+              )}
 
               <form className="mt-8 space-y-5" onSubmit={handleCareerSubmit}>
+                <input
+                  type="hidden"
+                  name="position"
+                  value={selectedJob?.title ?? "Candidatura spontanea"}
+                />
                 <div>
                   <label
                     htmlFor="career-name"
